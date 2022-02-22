@@ -8,10 +8,10 @@ up:
 	docker-compose up -d
 
 stop:
-	docker compose stop
+	docker-compose stop
 
 down:
-	docker compose down --remove-orphans
+	docker-compose down --remove-orphans
 
 logs:
 	docker-compose logs -f
@@ -19,4 +19,4 @@ logs:
 reset: down build up
 
 exec:
-	docker compose exec app bash
+	docker-compose exec app bash
