@@ -895,7 +895,6 @@ footer p a:hover {
 	height: 46px;
 	border: 1px solid #eee;
 	font-size: 13px;
-	text-transform: uppercase;
 	font-weight: 500;
 	color: #7a7a7a;
 	outline: none;
@@ -1116,7 +1115,7 @@ footer p a:hover {
 }
 .dropdown-item {
 	padding-top: 10px;
-	padding-bottom: 10px;item-content
+	padding-bottom: 10px;
 }
 
 .btn-primary {
