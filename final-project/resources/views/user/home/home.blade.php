@@ -209,6 +209,81 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="blog-post">
+                            <div class="blog-thumb">
+                                <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
+                            </div>
+                            <div class="down-content">
+                                <span> $500.00 - $700.00 </span>
+                                <a href="vacations.html">
+                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                                </a>
+                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
+                                    mauris sit amet eleifend.</p>
+                                <div class="post-options">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <ul class="post-tags">
+                                                <li><i class="fa fa-bullseye"></i></li>
+                                                <li><a href="vacation-details.html">View Homestay</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="blog-post">
+                            <div class="blog-thumb">
+                                <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
+                            </div>
+                            <div class="down-content">
+                                <span> $500.00 - $700.00 </span>
+                                <a href="vacations.html">
+                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                                </a>
+                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
+                                    mauris sit amet eleifend.</p>
+                                <div class="post-options">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <ul class="post-tags">
+                                                <li><i class="fa fa-bullseye"></i></li>
+                                                <li><a href="vacation-details.html">View Homestay</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="blog-post">
+                            <div class="blog-thumb">
+                                <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
+                            </div>
+                            <div class="down-content">
+                                <span> $500.00 - $700.00 </span>
+                                <a href="vacations.html">
+                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                                </a>
+                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
+                                    mauris sit amet eleifend.</p>
+                                <div class="post-options">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <ul class="post-tags">
+                                                <li><i class="fa fa-bullseye"></i></li>
+                                                <li><a href="vacation-details.html">View Homestay</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,84 +311,10 @@
         </div>
     </section>
 
-    <section class="blog-posts grid-system">
-        <div class="container">
-            <div class="all-blog-posts">
-                <h2 class="text-center">Blog</h2>
-                <br>
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/blog-1-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <a href="blog-details.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                                </a>
-
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-
-                                <ul class="post-info">
-                                    <li><a href="#">John Doe</a></li>
-                                    <li><a href="#">10.07.2020 10:20</a></li>
-                                    <li><a href="#"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/blog-2-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <a href="blog-details.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                                </a>
-
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-
-                                <ul class="post-info">
-                                    <li><a href="#">John Doe</a></li>
-                                    <li><a href="#">10.07.2020 10:20</a></li>
-                                    <li><a href="#"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/blog-3-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <a href="blog-details.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                                </a>
-
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-
-                                <ul class="post-info">
-                                    <li><a href="#">John Doe</a></li>
-                                    <li><a href="#">10.07.2020 10:20</a></li>
-                                    <li><a href="#"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <div class="blog-posts">
         <div class="container">
             <div class="sidebar-item comments">
-                <h2 class="text-center">Testimonials</h2>
+                <h2 class="text-center">Comments</h2>
                 <br>
                 <br>
                 <div class="content">
