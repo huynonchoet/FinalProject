@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             KindHomestaySeeder::class,
             UserSeeder::class,
+            Homestay::class,
         ]);
     }
 }

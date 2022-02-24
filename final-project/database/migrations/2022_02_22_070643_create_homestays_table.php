@@ -18,7 +18,7 @@ class CreateHomestaysTable extends Migration
             $table->string('name');
             $table->string('images');
             $table->string('price');
-            $table->string('description');
+            $table->text('description');
             $table->integer('discount');
             $table->integer('quantity_room');
             $table->enum('status', [0, 1])->default(0)->comment = "0:normal,1:locked";
