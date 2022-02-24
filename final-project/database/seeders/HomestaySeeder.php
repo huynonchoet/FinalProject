@@ -15,7 +15,7 @@ class HomestaySeeder extends Seeder
     public function run()
     {
         Homestay::factory()
-            ->count(200)
+            ->count(100)
             ->create();
     }
 }
