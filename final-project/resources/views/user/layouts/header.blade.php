@@ -36,6 +36,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+                        @if (Auth::check())
+                            <a class="nav-link" href="contact.html">Logout</a>
+                        @endif
+                        @if (!Auth::check())
+                            <a class="nav-link" href="{{ Route('login') }}">Login</a>
+                        @endif
+                    </li>
                 </ul>
             </div>
         </div>
