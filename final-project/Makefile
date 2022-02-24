@@ -20,3 +20,4 @@ reset: down build up
 
 exec:
 	docker-compose exec app bash
+	
