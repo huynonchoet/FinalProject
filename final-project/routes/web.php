@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\Auth\CustomAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::get('/registration',[CustomAuthController::class, 'registration'])->name('register.index');
+Route::post('/registration',[CustomAuthController::class, 'customRegistration'])->name('register.create');
