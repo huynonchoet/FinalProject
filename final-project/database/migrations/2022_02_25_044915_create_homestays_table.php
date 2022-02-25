@@ -15,19 +15,14 @@ class CreateHomestaysTable extends Migration
     {
         Schema::create('homestays', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('images');
-            $table->string('price');
-            $table->string('description');
-            $table->integer('discount');
-            $table->integer('quantity_room');
-            $table->enum('status', [0, 1])->default(0)->comment = "0:normal,1:locked";
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('kind_homestay_id');
+            $table->string('address');
+            $table->string('phone');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('kind_homestay_id')->references('id')->on('kind_homestay')->onDelete('cascade');
         });
     }
 

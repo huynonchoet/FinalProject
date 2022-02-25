@@ -11,7 +11,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home
+                        <a class="nav-link" href="{{ Route('home') }}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -38,7 +38,7 @@
                     </li>
                     <li class="nav-item">
                         @if (Auth::check())
-                            <a class="nav-link" href="contact.html">Logout</a>
+                            <a class="nav-link" href="{{ Route('logout') }}">Logout</a>
                         @endif
                         @if (!Auth::check())
                             <a class="nav-link" href="{{ Route('login') }}">Login</a>
