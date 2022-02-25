@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class KindHomestay extends Model
+class TypeRoom extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $table = "kind_homestay";
+    public $table = "type_rooms";
 
     protected $fillable = ['name'];
 }

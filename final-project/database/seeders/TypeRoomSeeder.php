@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\KindHomestay;
+use App\Models\TypeRoom;
 use Illuminate\Database\Seeder;
 
-class KindHomestaySeeder extends Seeder
+class TypeRoomSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,22 +14,22 @@ class KindHomestaySeeder extends Seeder
      */
     public function run()
     {
-        KindHomestay::insert([
+        TypeRoom::insert([
             'name' => 'Single bed room',
         ]);
-        KindHomestay::insert([
+        TypeRoom::insert([
             'name' => 'Twin bed room',
         ]);
-        KindHomestay::insert([
+        TypeRoom::insert([
             'name' => 'Double bed room',
         ]);
-        KindHomestay::insert([
+        TypeRoom::insert([
             'name' => 'Family room',
         ]);
-        KindHomestay::insert([
+        TypeRoom::insert([
             'name' => 'Studio room',
         ]);
-        KindHomestay::insert([
+        TypeRoom::insert([
             'name' => 'Full House',
         ]);
     }

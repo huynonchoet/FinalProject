@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKindHomestayTable extends Migration
+class CreateTypeRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateKindHomestayTable extends Migration
      */
     public function up()
     {
-        Schema::create('kind_homestay', function (Blueprint $table) {
+        Schema::create('type_rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -28,6 +28,6 @@ class CreateKindHomestayTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kind_homestay');
+        Schema::dropIfExists('type_rooms');
     }
 }

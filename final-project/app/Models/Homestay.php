@@ -19,12 +19,8 @@ class Homestay extends Model
         'id',
         'name',
         'images',
-        'price',
-        'description',
-        'discount',
-        'quantity_room',
-        'status',
+        'address',
+        'phone',
         'user_id',
-        'kind_homestay_id',
     ];
 }

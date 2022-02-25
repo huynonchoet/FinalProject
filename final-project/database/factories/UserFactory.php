@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'birthday' => $this->faker->dateTime($max = '01/01/2015', $timezone = null),
             'address' => $this->faker->address(),
             'phone' => $this->faker->phoneNumber(),
+            'bank_number' => '19036103013017',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
