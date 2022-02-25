@@ -17,7 +17,7 @@ class CustomAuthController extends Controller
     {  
         $data = $request->all();
         if($this->create($data)){
-            dd('Huy ne');
+            return redirect()->route('register.index')->with('success','Create successfully');
         }
 
         return abort(404);
@@ -26,7 +26,7 @@ class CustomAuthController extends Controller
     public function create(array $data)
     {
     return User::create([
-        'user_name' => $data['username'],
+        'name' => $data['name'],
         'email' => $data['email'],
         'password' => bcrypt($data['password'])
     ]);
