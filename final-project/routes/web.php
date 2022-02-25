@@ -20,5 +20,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'postLogin'])->name('login.post');
+
+
 Route::get('/registration',[CustomAuthController::class, 'registration'])->name('register.index');
 Route::post('/registration',[CustomAuthController::class, 'customRegistration'])->name('register.create');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
