@@ -23,18 +23,22 @@
     <section class="contact-us">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-12">
                     <div class="down-contact">
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="sidebar-item contact-form">
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('success') }}
+                                        </div>
+                                    @endif
                                     <div class="sidebar-heading">
                                         <h2>Register</h2>
                                     </div>
                                     <div class="content">
                                         <form id="contact" action="{{ route('register.create') }}" method="post">
-                                        @csrf
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
@@ -46,15 +50,15 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="username" type="text" placeholder="Username">
+                                                        <input name="name" type="text" placeholder="name">
                                                     </fieldset>
                                                 </div>
-                                                @error('username')
+                                                @error('name')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="password" type="text" placeholder="Password">
+                                                        <input name="password" type="password" placeholder="Password">
                                                     </fieldset>
                                                 </div>
                                                 @error('password')
@@ -62,7 +66,7 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="password_confirmation" type="text"
+                                                        <input name="password_confirmation" type="password"
                                                             placeholder="Confirm password">
                                                     </fieldset>
                                                 </div>
