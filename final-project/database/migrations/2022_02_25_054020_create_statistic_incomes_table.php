@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRatesTable extends Migration
+class CreateStatisticIncomesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
+        Schema::create('statistic_incomes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('homestay_id');
-            $table->enum('star', [1, 2,3,4,5]);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('month');
+            $table->integer('year');
+            $table->float('total');
+            $table->enum('status', [0, 1])->comment = "0:not paid, 1:paid";
+            $table->timestamps();
+            $table->softDeletes();
             $table->foreign('homestay_id')->references('id')->on('homestays')->onDelete('cascade');
         });
     }
@@ -30,6 +33,6 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::dropIfExists('statistic_incomes');
     }
 }

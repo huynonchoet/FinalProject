@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportHomestaysTable extends Migration
+class CreateCommentReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateReportHomestaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('report_homestays', function (Blueprint $table) {
+        Schema::create('comment_reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('homestay_id');
-            $table->string('content');
+            $table->unsignedBigInteger('comment_id');
+            $table->text('content');
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('homestay_id')->references('id')->on('homestays')->onDelete('cascade');
+            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateReportHomestaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('report_homestays');
+        Schema::dropIfExists('comment_reports');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
@@ -40,5 +41,18 @@ class LoginController extends Controller
         } else {
             return back()->with('error', __('messages.error_login'));
         }
+    }
+
+    /**
+     * handle logout
+     *
+     * @param LoginRequest $request
+     * @return mixed
+     */
+    public function logout()
+    {
+        Auth::logout();
+
+        return view('auth.login');
     }
 }
