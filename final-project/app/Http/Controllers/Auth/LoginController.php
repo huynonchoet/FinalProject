@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      * @param LoginRequest $request
      * @return mixed
      */
-    public function postLogin(Request $request)
+    public function postLogin(LoginRequest $request)
     {
         $login = [
             'email' => $request->email,
@@ -37,6 +38,8 @@ class LoginController extends Controller
             } else {
                 return redirect()->route('home');
             }
+        } else {
+            return back()->with('error', __('messages.error_login'));
         }
     }
 

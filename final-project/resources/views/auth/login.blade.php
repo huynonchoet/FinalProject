@@ -38,7 +38,8 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="email" type="text" placeholder="Username">
+                                                        <input name="email" type="text" placeholder="Username"
+                                                            value="{{ old('email') }}">
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12">
@@ -46,6 +47,18 @@
                                                         <input name="password" type="text" placeholder="Password">
                                                     </fieldset>
                                                 </div>
+                                                @if (session('error'))
+                                                    <div class="alert alert-success">
+                                                        {{ session('error') }}
+                                                    </div>
+                                                @endif
+                                                @if (count($errors) > 0)
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li class="alert alert-danger"> {{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
                                                 <div class="col-lg-12">
                                                     <fieldset>
                                                         <button type="submit" id="form-submit"
