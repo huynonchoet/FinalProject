@@ -30,13 +30,13 @@
                                             <img src="{{ asset('storage/homestays/' . $images[0]) }}" alt="">
                                         </div>
                                         <div class="down-content">
-                                            <a href="blog-details.html">
-                                                <h4>{{$item->name}}</h4>
+                                            <a href="{{ Route('user.homestays.rooms.index') }}">
+                                                <h4>{{ $item->name }}</h4>
                                             </a>
                                             <ul class="post-info">
-                                                <li><a href="#">John Doe</a></li>
-                                                <li><a href="#">{{$item->address}}</a></li>
-                                                <li><a href="#"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
+                                                <li>John Doe</li>
+                                                <li><a href="{{ Route('user.homestays.rooms.index') }}">{{ $item->address }}</a></li>
+                                                <li><a href="{{ Route('user.homestays.rooms.index') }}"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
                                             </ul>
                                         </div>
                                     </div>
