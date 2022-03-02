@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Homestay;
+use App\Models\Room;
 use Illuminate\Database\Seeder;
 
-class HomestaySeeder extends Seeder
+class RoomSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class HomestaySeeder extends Seeder
      */
     public function run()
     {
-        Homestay::factory()
-            ->count(10)
+        Room::factory()
+            ->count(30)
             ->create();
     }
 }
