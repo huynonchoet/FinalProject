@@ -25,12 +25,10 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                            aria-haspopup="true" aria-expanded="false">About</a>
+                            aria-haspopup="true" aria-expanded="false">Profile</a>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="about.html">About Us</a>
-                            <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                            <a class="dropdown-item" href="terms.html">Terms</a>
+                            <a class="dropdown-item" href="{{ Route('user.homestays.index') }}">My Homestay</a>
                         </div>
                     </li>
                     <li class="nav-item">
