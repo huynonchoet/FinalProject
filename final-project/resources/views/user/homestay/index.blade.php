@@ -30,8 +30,7 @@
                                             <img src="{{ asset('storage/homestays/' . $images[0]) }}" alt="">
                                         </div>
                                         <div class="down-content">
-                                            <a
-                                                href="{{ Route('user.homestays.show', ['id' => $item->id]) }}">
+                                            <a href="{{ Route('user.homestays.show', ['id' => $item->id]) }}">
                                                 <h4>{{ $item->name }}</h4>
                                             </a>
                                             <ul class="post-info">
@@ -39,8 +38,7 @@
                                                 <li><a
                                                         href="{{ Route('user.homestays.show', ['id' => $item->id]) }}">{{ $item->address }}</a>
                                                 </li>
-                                                <li><a
-                                                        href="{{ Route('user.homestays.show', ['id' => $item->id]) }}"><i
+                                                <li><a href="{{ Route('user.homestays.show', ['id' => $item->id]) }}"><i
                                                             class="fa fa-comments" title="Comments"></i> 12</a></li>
                                             </ul>
                                         </div>
