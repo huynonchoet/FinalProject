@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\HomestayRepositoryInterface;
 use App\Models\Homestay;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomestayRepository implements HomestayRepositoryInterface
@@ -19,13 +20,23 @@ class HomestayRepository implements HomestayRepositoryInterface
     }
 
     /**
+     * get all Homestays
+     *
+     * @return void
+     */
+    public function getAllHomestaysByIdUser()
+    {
+        return Homestay::where("user_id", Auth::id())->get();
+    }
+
+    /**
      * create Homestay 
      *
      * @param array
      * @return mixed
      */
     public function createHomestay(array $attributes)
-    {
+    { 
         return Homestay::create($attributes);
     }
 

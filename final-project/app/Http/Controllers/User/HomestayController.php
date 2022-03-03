@@ -25,7 +25,7 @@ class HomestayController extends Controller
         return view(
             'user.homestay.index',
             [
-                'homestay' => $this->homestayRepository->getAllHomestays()
+                'homestay' => $this->homestayRepository->getAllHomestaysByIdUser()
             ]
         );
     }
