@@ -4,16 +4,20 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\HomestayRepositoryInterface;
+use App\Interfaces\RoomRepositoryInterface;
 use Illuminate\Http\Request;
 
 class HomestayController extends Controller
 {
     private $homestayRepository;
+    private $roomRepository;
 
-    public function __construct(HomestayRepositoryInterface $homestayRepository)
+    public function __construct(HomestayRepositoryInterface $homestayRepository, RoomRepositoryInterface $roomRepository)
     {
         $this->homestayRepository = $homestayRepository;
+        $this->roomRepository = $roomRepository;
     }
+
 
     /**
      * Display a listing of the resource.
@@ -59,7 +63,13 @@ class HomestayController extends Controller
      */
     public function show($id)
     {
-        //
+        return view(
+            'user.room.index',
+            [
+                'rooms' => $this->roomRepository->getAllRoomsByIdHomestay($id),
+                'homestay' => $this->homestayRepository->getHomestayById($id)
+            ]
+        );
     }
 
     /**

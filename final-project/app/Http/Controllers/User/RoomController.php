@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\HomestayRepositoryInterface;
+use App\Interfaces\RoomRepositoryInterface;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $homestayRepository;
+    private $roomRepository;
+
+    public function __construct(HomestayRepositoryInterface $homestayRepository, RoomRepositoryInterface $roomRepository)
     {
-        return view('user.room.index');
+        $this->homestayRepository = $homestayRepository;
+        $this->roomRepository = $roomRepository;
     }
 
     /**
@@ -22,9 +23,16 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(int $homestayId)
     {
-        //
+        return view(
+            'user.room.add',
+            [
+                'homestay' => $this->homestayRepository->getHomestayById($homestayId),
+                'homestays' => $this->homestayRepository->getAllHomestaysByIdUser(),
+                'room' => $this->roomRepository->getRoomById($homestayId)
+            ]
+        );
     }
 
     /**
@@ -57,7 +65,14 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = $this->roomRepository->getRoomById($id);
+        return view(
+            'user.room.edit',
+            [
+                'homestay' => $this->homestayRepository->getHomestayById($room->homestay_id),
+                'room' => $room
+            ]
+        );
     }
 
     /**

@@ -21,5 +21,22 @@ class Room extends Model
         'status',
         'homestay_id',
         'type_room_id',
+        'created_at',
     ];
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function typeRoom()
+    {
+        return $this->belongsTo(TypeRoom::class);
+    }
 }
