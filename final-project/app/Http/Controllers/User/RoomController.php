@@ -3,19 +3,25 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddRoomRequest;
 use App\Interfaces\HomestayRepositoryInterface;
 use App\Interfaces\RoomRepositoryInterface;
+use App\Interfaces\TypeRoomRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Image;
 
 class RoomController extends Controller
 {
     private $homestayRepository;
     private $roomRepository;
+    private $typeRoomRepository;
 
-    public function __construct(HomestayRepositoryInterface $homestayRepository, RoomRepositoryInterface $roomRepository)
+    public function __construct(HomestayRepositoryInterface $homestayRepository, RoomRepositoryInterface $roomRepository,TypeRoomRepositoryInterface $typeRoomRepository)
     {
         $this->homestayRepository = $homestayRepository;
         $this->roomRepository = $roomRepository;
+        $this->typeRoomRepository = $typeRoomRepository;
     }
 
     /**
@@ -30,7 +36,8 @@ class RoomController extends Controller
             [
                 'homestay' => $this->homestayRepository->getHomestayById($homestayId),
                 'homestays' => $this->homestayRepository->getAllHomestaysByIdUser(),
-                'room' => $this->roomRepository->getRoomById($homestayId)
+                'room' => $this->roomRepository->getRoomById($homestayId),
+                'typeRooms' => $this->typeRoomRepository->getAllTypeRooms()
             ]
         );
     }
@@ -41,9 +48,33 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddRoomRequest $request)
     {
-        //
+        $nameImages = [];
+        if ($request->hasFile('image')) {
+            foreach ($request->image as $img) {
+                $nameImages[] = $nameImage = strtotime(date('Y-m-d H:i:s')) . "_" . $img->getClientOriginalName();
+                $img->storeAs('public/rooms', $nameImage);
+            }
+        }
+        $request['images'] = json_encode($nameImages);
+        $request['homestay_id'] = $request->homestayId;
+        $request['type_room_id'] = $request->typeroom;
+        $newDetails = $request->only(
+            [
+                'name',
+                'images',
+                'price',
+                'description',
+                'discount',
+                'quantity_room',
+                'homestay_id',
+                'type_room_id',
+            ]
+        );
+        $this->roomRepository->createRoom($newDetails);
+
+        return back()->with('success', __('messages.create.success'));
     }
 
     /**

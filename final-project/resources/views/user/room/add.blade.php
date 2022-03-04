@@ -1,5 +1,38 @@
 @extends('user.layouts.app')
 @section('content')
+    <script type="text/javascript">
+        /**
+         * Show multiple image when choose image
+         */
+        $(document).ready(function() {
+            $('#multiple-image').change(function(event) {
+                var files = event.target.files;
+                console.log(files);
+                var result = $("#showImage");
+                result.empty();
+                $.each(files, function(i, file) {
+                    var imgpath = URL.createObjectURL(file);
+                    result.add(
+                        "<img class='new-image' style='height: 120px;width: 200px; margin-left:30px;' src='" +
+                        imgpath + "'>").appendTo(
+                        '#showImage');
+                });
+            });
+
+            /**
+             * remove image when click button remove image
+             */
+            $('.btn-remove-img').bind('click', function(e) {
+                var dataProduct = $(this).data('product');
+                var dataIndex = $(this).data('index');
+                var img_item = $(this).parent();
+                $('#checkbox-image-' + dataProduct + '-' + dataIndex).attr('checked', true);
+                console.log($('#checkbox-image-' + dataProduct + '-' + dataIndex));
+                img_item.remove()
+            });
+        });
+    </script>
+
     <div class="heading-page header-text">
         <section class="page-heading">
             <div class="container">
@@ -30,7 +63,8 @@
                                         <h2>Create New Room</h2>
                                     </div>
                                     <div class="content">
-                                        <form id="contact" action="{{ route('register.create') }}" method="post">
+                                        <form id="contact" action="{{ route('user.homestays.rooms.store',['homestayId' => $homestay->id]) }}"
+                                            method="post" enctype="multipart/form-data" >
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
@@ -43,7 +77,24 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="price" type="text" placeholder="Price">
+                                                        <div class="form-group">
+                                                            <label>Image<span>*</span></label>
+                                                            <input id="multiple-image" type="file" name="image[]"
+                                                                multiple="multiple">
+                                                        </div>
+                                                        <div id="showImage" class="mt-20">
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                @error('image')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                                @error('images.*')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                                <div class="col-md-12 col-sm-12">
+                                                    <fieldset>
+                                                        <input name="price" type="text" placeholder="Price (VNĐ)">
                                                     </fieldset>
                                                 </div>
                                                 @error('price')
@@ -60,7 +111,8 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="discount" type="text" placeholder="Discount">
+                                                        <label>Discount</label>
+                                                        <input name="discount" value="0" type="text" placeholder="Discount">
                                                     </fieldset>
                                                 </div>
                                                 @error('discount')
@@ -74,30 +126,26 @@
                                                 @error('quantity_room')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
-                                                <div class="col-md-12 col-sm-12">
-                                                    <fieldset>
-                                                        <input name="quantity_room" type="text" placeholder="Quantity room">
-                                                    </fieldset>
-                                                </div>
-                                                @error('quantity_room')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                                 <div class="col-lg-12">
                                                     <fieldset>
-                                                        <select name="homestay">
-                                                            <option>Select Your Homestay
+                                                        <select name="typeroom">
+                                                            <option>Select Your Type Room
                                                             </option>
-                                                            @foreach ($homestays as $item)
+                                                            @foreach ($typeRooms as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
                                                     </fieldset>
                                                 </div>
-                                                @error('homestay')
+                                                @error('typeroom_id')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
+                                            <div class="col-12">
+                                                <div class="form-group button">
+                                                    <button type="submit" class="btn2"><a
+                                                            class="btn1">CREATE</a></button>
                                         </form>
                                     </div>
                                 </div>

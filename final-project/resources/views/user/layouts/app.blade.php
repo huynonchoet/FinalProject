@@ -26,13 +26,6 @@
 </head>
 
 <body>
-
-    @include('user.layouts.header')
-
-    @yield('content')
-
-    @include('user.layouts.footer')
-
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('assets/user/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -54,6 +47,13 @@
             }
         }
     </script>
+
+    @include('user.layouts.header')
+
+    @yield('content')
+
+    @include('user.layouts.footer')
+
 
 </body>
 
