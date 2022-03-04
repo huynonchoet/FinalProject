@@ -24,14 +24,14 @@ class UserRepository implements UserRepositoryInterface
     public function searchUser()
     {
         $users = User::query();
-        $users->when(request('search'), function($query) {
+        $users->when(request('search'), function ($query) {
             $search = trim(request('search'));
             return $query->where('name', 'LIKE', '%' . $search . '%')
-                    ->orWhere('email', 'LIKE', '%' . $search . '%')
-                    ->orWhere('address', 'LIKE', '%' . $search . '%')
-                    ->orWhere('phone', 'LIKE', '%' . $search . '%');
+                ->orWhere('email', 'LIKE', '%' . $search . '%')
+                ->orWhere('address', 'LIKE', '%' . $search . '%')
+                ->orWhere('phone', 'LIKE', '%' . $search . '%');
         });
-        $users->when(request('sort'), function($query) {
+        $users->when(request('sort'), function ($query) {
             return $query->orderBy('name', request('sort'));
         });
 
