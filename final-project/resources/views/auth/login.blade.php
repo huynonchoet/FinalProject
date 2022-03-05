@@ -44,7 +44,7 @@
                                                 </div>
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="password" type="text" placeholder="Password">
+                                                        <input name="password" type="password" placeholder="Password">
                                                     </fieldset>
                                                 </div>
                                                 @if (session('error'))
