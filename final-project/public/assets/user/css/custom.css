@@ -1,3 +1,23 @@
 .add-room{
     margin-top: 50px;
 }
+.a-back{
+    display: inline-block;
+    background-color: #f48840;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    transition: all .3s;
+    border: none;
+    outline: none;
+}
+.image-room{
+    height: 120px;
+    width: 200px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}

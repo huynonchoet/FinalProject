@@ -39,6 +39,16 @@
             <div class="sidebar-item comments">
                 <div class="content">
                     <ul>
+                        @if (Session::has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         @foreach ($rooms as $key => $item)
                             @php
                                 $images = json_decode($rooms[$key]->images);
@@ -50,18 +60,31 @@
                                 <div class="right-content">
                                     <h4>{{ $item->name }}<span>{{ $item->created_at }}<span>({{ $item->typeRoom->name }})</span>
                                     </h4>
+                                    <p>Real Price : {{ $item->price }}VNĐ.</p>
+                                    <p>Quantity : {{ $item->quantity_room }}.</p>
+                                    <p>Discount : {{ $item->discount }}.</p>
                                     <p>{{ $item->description }}.</p>
-                                    <a type="button" href="{{ Route('user.homestays.rooms.edit', ['id' => $item->id]) }}"
+                                    <a type="button"
+                                        href="{{ Route('user.homestays.rooms.edit', ['roomId' => $item->id]) }}"
                                         class="btn btn-info">Detail</a>
-                                    <a type="button" style="color:aliceblue" class="btn btn-danger">Delete</a>
+                                    <form action="{{ route('user.homestays.rooms.destroy', ['roomId' => $item->id]) }}"
+                                        method="post">
+                                        {{ csrf_field() }}
+                                        @method('delete')
+                                        <button type="submit" style="margin-top: -63px;margin-left: 78px;"
+                                            class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
+                                <br>
                             </li>
+                            <br>
                         @endforeach
                     </ul>
                 </div>
             </div>
             <div class="add-room">
-                <a type="button" href="{{ Route('user.homestays.rooms.create', ['homestayId' => $homestay->id]) }}" style="color:aliceblue" class="btn btn-success">Add Room</a>
+                <a type="button" href="{{ Route('user.homestays.rooms.create', ['homestayId' => $homestay->id]) }}"
+                    style="color:aliceblue" class="btn btn-success">Add Room</a>
             </div>
         </div>
     </div>

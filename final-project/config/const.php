@@ -18,13 +18,13 @@ return [
     ],
 
     'imageRoom'=>[
-        'max' => 2,
-        'min' => 6,
+        'max' => 6,
+        'min' => 2,
     ],
 
     'imageHomestay'=>[
-        'max' => 2,
-        'min' => 6,
+        'max' => 6,
+        'min' => 2,
     ],
 
     'social' => [

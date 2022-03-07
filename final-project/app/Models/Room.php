@@ -25,7 +25,7 @@ class Room extends Model
     ];
 
     /**
-     * Get the post that owns the comment.
+     * Get the user that owns the room.
      */
     public function user()
     {
@@ -33,10 +33,18 @@ class Room extends Model
     }
 
     /**
-     * Get the post that owns the comment.
+     * Get the typeRoom that owns the room.
      */
     public function typeRoom()
     {
         return $this->belongsTo(TypeRoom::class);
+    }
+    
+    /**
+     * Get the boking detail that owns the room.
+     */
+    public function bookingDetails()
+    {
+        return $this->hasMany(BookingDetail::class);
     }
 }

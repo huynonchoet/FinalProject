@@ -68,7 +68,7 @@ class RoomRepository implements RoomRepositoryInterface
     {
         $room = $this->getRoomById($roomId);
         $result = DB::transaction(function () use ($room) {
-            $room->products()->delete();
+            $room->bookingDetails()->delete();
 
             return $room->delete();
         });

@@ -49,9 +49,9 @@ Route::name('user.')->group(function () {
         Route::prefix('/rooms')->name('rooms.')->group(function () {
             Route::get('/{homestayId}/create', [RoomController::class, 'create'])->name('create');
             Route::post('/{homestayId}', [RoomController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [RoomController::class, 'edit'])->name('edit');
-            Route::patch('/{id}', [RoomController::class, 'update'])->name('update');
-            Route::delete('/{id}/delete', [RoomController::class, 'destroy'])->name('destroy');
+            Route::get('/{roomId}/edit', [RoomController::class, 'edit'])->name('edit');
+            Route::patch('/{roomId}', [RoomController::class, 'update'])->name('update');
+            Route::delete('/{roomId}/delete', [RoomController::class, 'destroy'])->name('destroy');
         });
     });
 });
