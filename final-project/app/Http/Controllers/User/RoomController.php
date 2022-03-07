@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddRoomRequest;
+use App\Http\Requests\UpdateRoomRequest;
 use App\Interfaces\HomestayRepositoryInterface;
 use App\Interfaces\RoomRepositoryInterface;
 use App\Interfaces\TypeRoomRepositoryInterface;
@@ -44,7 +45,7 @@ class RoomController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response    
      */
     public function store(AddRoomRequest $request)
     {
@@ -104,7 +105,7 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoomRequest $request, $id)
     {
         $oldRoom = $this->roomRepository->getRoomById($id);
         $oldImages =  json_decode($oldRoom->images);

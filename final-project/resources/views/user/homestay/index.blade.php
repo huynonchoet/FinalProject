@@ -35,17 +35,27 @@
                                             </a>
                                             <ul class="post-info">
                                                 <li>John Doe</li>
-                                                <li><a
-                                                        href="{{ Route('user.homestays.show', ['id' => $item->id]) }}">{{ $item->address }}</a>
-                                                </li>
-                                                <li><a href="{{ Route('user.homestays.show', ['id' => $item->id]) }}"><i
-                                                            class="fa fa-comments" title="Comments"></i> 12</a></li>
+                                                <li>{{ $item->address }}</li>
+                                                <li><i class="fa fa-comments" title="Comments"></i> 12</li>
                                             </ul>
+                                            <div class="add-room">
+                                                <a type="button"
+                                                    href="{{ Route('user.homestays.show', ['id' => $item->id]) }}"
+                                                    style="color:aliceblue" class="btn btn-success">Show Detail</a>
+                                                <a type="button"
+                                                    href="{{ Route('user.homestays.edit', ['id' => $item->id]) }}"
+                                                    style="color:aliceblue" class="btn btn-success">Update Information</a>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             @endforeach
                         </div>
+                    </div>
+                    <div class="add-room">
+                        <a type="button" href="{{ Route('user.homestays.create') }}" style="color:aliceblue"
+                            class="btn btn-success">Add New Homestay</a>
                     </div>
                 </div>
             </div>

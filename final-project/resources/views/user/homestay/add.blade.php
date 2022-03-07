@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-content">
-                            <h2>{{ $homestay->name }}</h2>
+                            <h2>Add Your New HomeStay</h2>
                         </div>
                     </div>
                 </div>
@@ -65,17 +65,17 @@
                                         </div>
                                     @endif
                                     <div class="sidebar-heading">
-                                        <h2>Create New Room</h2>
+                                        <h2>Add Your New HomeStay</h2>
                                     </div>
                                     <div class="content">
                                         <form id="contact"
-                                            action="{{ route('user.homestays.rooms.store', ['homestayId' => $homestay->id]) }}"
+                                            action="{{ route('user.homestays.store') }}"
                                             method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <label>Name Room</label>
+                                                        <label>Name Homestay</label>
                                                         <input name="name" type="text" placeholder="Name">
                                                     </fieldset>
                                                 </div>
@@ -101,54 +101,20 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <label>Price</label>
-                                                        <input name="price" type="text" placeholder="Price (VNĐ)">
+                                                        <label>Address</label>
+                                                        <input name="address" type="text" placeholder="Address">
                                                     </fieldset>
                                                 </div>
-                                                @error('price')
+                                                @error('address')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <label>Description</label>
-                                                        <textarea rows="9" cols="70" name="description"
-                                                            placeholder="Description"></textarea>
+                                                        <label>Phone</label>
+                                                        <input name="phone" type="text" placeholder="Phone">
                                                     </fieldset>
                                                 </div>
-                                                @error('description')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-md-12 col-sm-12">
-                                                    <fieldset>
-                                                        <label>Discount</label>
-                                                        <input name="discount" value="0" type="text" placeholder="Discount">
-                                                    </fieldset>
-                                                </div>
-                                                @error('discount')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-md-12 col-sm-12">
-                                                    <fieldset>
-                                                        <label>Quantity</label>
-                                                        <input name="quantity_room" type="text" placeholder="Quantity room">
-                                                    </fieldset>
-                                                </div>
-                                                @error('quantity_room')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-lg-12">
-                                                    <fieldset>
-                                                        <select name="typeroom">
-                                                            <option>Select Your Type Room
-                                                            </option>
-                                                            @foreach ($typeRooms as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </fieldset>
-                                                </div>
-                                                @error('typeroom_id')
+                                                @error('phone')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -157,7 +123,7 @@
                                                     <button type="submit" class="btn2"><a
                                                             class="btn1">CREATE</a></button>
                                                     <a class="a-back"
-                                                        href="{{ Route('user.homestays.show', ['id' => $homestay->id]) }}">BACK
+                                                        href="{{ Route('user.homestays.index') }}">BACK
                                                     </a>
                                                 </div>
                                             </div>

@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-content">
-                            <h2>{{ $homestay->name }}</h2>
+                            <h2>Update Information Your Homestay</h2>
                         </div>
                     </div>
                 </div>
@@ -65,18 +65,20 @@
                                         </div>
                                     @endif
                                     <div class="sidebar-heading">
-                                        <h2>Create New Room</h2>
+                                        <h2>Update Information Your Homestay</h2>
                                     </div>
                                     <div class="content">
                                         <form id="contact"
-                                            action="{{ route('user.homestays.rooms.store', ['homestayId' => $homestay->id]) }}"
+                                            action="{{ route('user.homestays.update', ['id' => $homestay->id]) }}"
                                             method="post" enctype="multipart/form-data">
                                             @csrf
+                                            @method('PATCH')
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <label>Name Room</label>
-                                                        <input name="name" type="text" placeholder="Name">
+                                                        <label>Name Homestay</label>
+                                                        <input name="name" type="text" placeholder="Name"
+                                                            value="{{ $homestay->name }}">
                                                     </fieldset>
                                                 </div>
                                                 @error('name')
@@ -85,12 +87,55 @@
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <label>Image<span>*</span></label>
-                                                            <input id="multiple-image" type="file" name="image[]"
+                                                            <label>Image</label>
+                                                            <input id="multiple-image" type="file" name="imageNew[]"
                                                                 multiple="multiple">
                                                         </div>
                                                         <div id="showImage" class="mt-20">
                                                         </div>
+                                                    </fieldset>
+                                                </div>
+                                                @error('imageNew')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                                @error('imageNew.*')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                                <div class="col-md-12 col-sm-12">
+                                                    <fieldset>
+                                                        @if ($homestay->images)
+                                                            <div class="col-12">
+                                                                <label>Old Image</label>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        @php
+                                                                            $homestay->images = json_decode($homestay->images);
+                                                                        @endphp
+                                                                        @foreach ($homestay->images as $item)
+                                                                            <th id="table-old-image">
+                                                                                <div id="old-img-{{ $homestay->id }}"
+                                                                                    class="mt-20">
+                                                                                    <img class='image-room'
+                                                                                        src="{{ asset('storage/homestays/' . $item) }}"
+                                                                                        alt="">
+                                                                                </div>
+                                                                            </th>
+                                                                        @endforeach
+                                                                    </tr>
+                                                                    <tr id="tr-old-image">
+                                                                        @foreach ($homestay->images as $item)
+                                                                            <td id="table-old-image">
+                                                                                <input
+                                                                                    id="checkbox-image-{{ $homestay->id }}-{{ $loop->index }}"
+                                                                                    class="checkbox"
+                                                                                    name="imageDelete[]" type="checkbox"
+                                                                                    value="{{ $item }}">
+                                                                            </td>
+                                                                        @endforeach
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        @endif
                                                     </fieldset>
                                                 </div>
                                                 @error('image')
@@ -101,54 +146,22 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <label>Price</label>
-                                                        <input name="price" type="text" placeholder="Price (VNĐ)">
+                                                        <label>Address</label>
+                                                        <input name="address" type="text" placeholder="Address"
+                                                            value="{{ $homestay->address }}">
                                                     </fieldset>
                                                 </div>
-                                                @error('price')
+                                                @error('address')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <label>Description</label>
-                                                        <textarea rows="9" cols="70" name="description"
-                                                            placeholder="Description"></textarea>
+                                                        <label>Phone</label>
+                                                        <input name="phone" type="text" placeholder="Phone"
+                                                            value="{{ $homestay->phone }}">
                                                     </fieldset>
                                                 </div>
-                                                @error('description')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-md-12 col-sm-12">
-                                                    <fieldset>
-                                                        <label>Discount</label>
-                                                        <input name="discount" value="0" type="text" placeholder="Discount">
-                                                    </fieldset>
-                                                </div>
-                                                @error('discount')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-md-12 col-sm-12">
-                                                    <fieldset>
-                                                        <label>Quantity</label>
-                                                        <input name="quantity_room" type="text" placeholder="Quantity room">
-                                                    </fieldset>
-                                                </div>
-                                                @error('quantity_room')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                                <div class="col-lg-12">
-                                                    <fieldset>
-                                                        <select name="typeroom">
-                                                            <option>Select Your Type Room
-                                                            </option>
-                                                            @foreach ($typeRooms as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </fieldset>
-                                                </div>
-                                                @error('typeroom_id')
+                                                @error('phone')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -157,7 +170,7 @@
                                                     <button type="submit" class="btn2"><a
                                                             class="btn1">CREATE</a></button>
                                                     <a class="a-back"
-                                                        href="{{ Route('user.homestays.show', ['id' => $homestay->id]) }}">BACK
+                                                        href="{{ Route('user.homestays.index') }}">BACK
                                                     </a>
                                                 </div>
                                             </div>

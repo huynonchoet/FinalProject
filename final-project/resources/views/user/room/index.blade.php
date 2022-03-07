@@ -84,7 +84,9 @@
             </div>
             <div class="add-room">
                 <a type="button" href="{{ Route('user.homestays.rooms.create', ['homestayId' => $homestay->id]) }}"
-                    style="color:aliceblue" class="btn btn-success">Add Room</a>
+                    style="color:aliceblue" class="btn btn-success">Add New Room</a>
+                <a type="button" href="{{ Route('user.homestays.index') }}" style="color:aliceblue"
+                    class="btn btn-success">Back List Homestay</a>
             </div>
         </div>
     </div>

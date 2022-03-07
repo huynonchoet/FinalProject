@@ -84,10 +84,10 @@
                                                         </div>
                                                     </fieldset>
                                                 </div>
-                                                @error('image')
+                                                @error('imageNew')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
-                                                @error('images.*')
+                                                @error('imageNew.*')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
@@ -128,6 +128,7 @@
                                                 </div>
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
+                                                        <label>Price</label>
                                                         <input name="price" type="text" placeholder="Price (VNĐ)"
                                                             value="{{ $room->price }}">
                                                     </fieldset>
@@ -137,6 +138,7 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
+                                                        <label>Description</label>
                                                         <textarea rows="9" cols="70" name="description"
                                                             placeholder="Description">{{ $room->description }}</textarea>
                                                     </fieldset>
@@ -146,7 +148,7 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <label>Discount</label>
+                                                        <label>Discount(%)</label>
                                                         <input name="discount" value="0" type="text" placeholder="Discount"
                                                             value="{{ $room->discount }}">
                                                     </fieldset>
@@ -156,6 +158,7 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
+                                                        <label>Quantity</label>
                                                         <input name="quantity_room" type="text" placeholder="Quantity room"
                                                             value="{{ $room->quantity_room }}">
                                                     </fieldset>
