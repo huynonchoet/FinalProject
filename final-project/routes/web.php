@@ -57,7 +57,7 @@ Route::name('user.')->group(function () {
     });
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('/users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');

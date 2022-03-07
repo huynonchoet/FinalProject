@@ -25,7 +25,7 @@ class AccountRequest extends FormRequest
     {
         return [
             'name' => 'required|min:6',
-            'avatar' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
+            'avatar' => 'mimes:jpeg,png,jpg,gif|max:2048',
             'phone' => 'required',
             'birthday' => 'required',
             'address' => 'required',
@@ -43,7 +43,6 @@ class AccountRequest extends FormRequest
         return [
             'name.required' =>  __('validation.required', ['attribute' => 'name']),
             'name.min' => __('validation.min', ['attribute' => 'name']),
-            'avatar.required' =>  __('validation.required', ['attribute' => 'image']),
             'avatar.mimes' =>  __('validation.mimes', ['attribute' => 'image']),
             'avatar.max' => __('validation.max', ['attribute' => 'image']),
             'phone.required' =>  __('validation.required', ['attribute' => 'phone']),
