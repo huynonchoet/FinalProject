@@ -6,5 +6,11 @@ return [
     [
         'success' => "Update Account Successful",
         'fail' => "Failed To Update",
+    ],
+
+    'delete' =>
+    [
+        'success' => "Delete Account Successful",
+        'fail' => "Failed To Delete",
     ]
 ];

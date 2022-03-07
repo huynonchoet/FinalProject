@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Auth\CustomAuthController;
@@ -53,5 +54,12 @@ Route::name('user.')->group(function () {
             Route::patch('/{id}', [RoomController::class, 'update'])->name('update');
             Route::delete('/{id}/delete', [RoomController::class, 'destroy'])->name('destroy');
         });
+    });
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('/users')->name('users.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
     });
 });
