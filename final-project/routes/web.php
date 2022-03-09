@@ -37,7 +37,7 @@ Route::name('user.')->group(function () {
         Route::post('/update/{id}', [AccountController::class, 'update'])->name('update');
     });
 
-    Route::prefix('/homestays')->name('homestays.')->group(function () {
+    Route::middleware('user')->prefix('/homestays')->name('homestays.')->group(function () {
         Route::get('/', [HomestayController::class, 'index'])->name('index');
         Route::get('/create', [HomestayController::class, 'create'])->name('create');
         Route::post('/', [HomestayController::class, 'store'])->name('store');
