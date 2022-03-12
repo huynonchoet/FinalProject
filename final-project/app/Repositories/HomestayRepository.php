@@ -69,7 +69,9 @@ class HomestayRepository implements HomestayRepositoryInterface
     {
         $homestay = $this->getHomestayById($homestayId);
         $result = DB::transaction(function () use ($homestay) {
-            $homestay->products()->delete();
+            $homestay->rooms()->delete();
+            $homestay->comments()->delete();
+            $homestay->rates()->delete();
 
             return $homestay->delete();
         });

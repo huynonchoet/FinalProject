@@ -47,4 +47,12 @@ class Room extends Model
     {
         return $this->hasMany(BookingDetail::class);
     }
+
+    /**
+     * Get the typeRoom that owns the room.
+     */
+    public function homestay()
+    {
+        return $this->belongsTo(Homestay::class);
+    }
 }

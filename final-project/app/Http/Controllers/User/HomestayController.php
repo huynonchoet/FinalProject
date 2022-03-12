@@ -172,6 +172,17 @@ class HomestayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $homestay = $this->homestayRepository->getHomestayById($id);
+        $imageDelete = json_decode($homestay->images);
+        $result = $this->homestayRepository->deleteHomestay($id);
+        if (!empty($result)) {
+            foreach ($imageDelete as $item) {
+                Storage::delete('/public/homestays/' . $item);
+            }
+
+            return back()->with('success', __('messages.delete.success'));
+        }
+
+        return back()->with('error', __('messages.delete.fail'));
     }
 }

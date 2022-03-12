@@ -45,6 +45,13 @@
                                                 <a type="button"
                                                     href="{{ Route('user.homestays.edit', ['id' => $item->id]) }}"
                                                     style="color:aliceblue" class="btn btn-success">Update Information</a>
+                                                <form action="{{ Route('user.homestays.destroy', ['id' => $item->id]) }}"
+                                                    method="post">
+                                                    {{ csrf_field() }}
+                                                    @method('delete')
+                                                    <button type="submit" style="margin-top: -65px;margin-left: 281px;"
+                                                        class="btn btn-danger">Delete Homestay</button>
+                                                </form>
                                             </div>
                                         </div>
 
