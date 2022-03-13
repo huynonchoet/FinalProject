@@ -38,21 +38,21 @@ Route::name('user.')->group(function () {
         Route::post('/update/{id}', [AccountController::class, 'update'])->name('update');
     });
 
-    Route::prefix('/homestays')->name('homestays.')->group(function () {
+    Route::middleware('user')->prefix('/homestays')->name('homestays.')->group(function () {
         Route::get('/', [HomestayController::class, 'index'])->name('index');
         Route::get('/create', [HomestayController::class, 'create'])->name('create');
         Route::post('/', [HomestayController::class, 'store'])->name('store');
+        Route::get('/{id}', [HomestayController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [HomestayController::class, 'edit'])->name('edit');
         Route::patch('/{id}', [HomestayController::class, 'update'])->name('update');
         Route::delete('/{id}/delete', [HomestayController::class, 'destroy'])->name('destroy');
 
         Route::prefix('/rooms')->name('rooms.')->group(function () {
-            Route::get('/', [RoomController::class, 'index'])->name('index');
-            Route::get('/create', [RoomController::class, 'create'])->name('create');
-            Route::post('/', [RoomController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [RoomController::class, 'edit'])->name('edit');
-            Route::patch('/{id}', [RoomController::class, 'update'])->name('update');
-            Route::delete('/{id}/delete', [RoomController::class, 'destroy'])->name('destroy');
+            Route::get('/{homestayId}/create', [RoomController::class, 'create'])->name('create');
+            Route::post('/{homestayId}', [RoomController::class, 'store'])->name('store');
+            Route::get('/{roomId}/edit', [RoomController::class, 'edit'])->name('edit');
+            Route::patch('/{roomId}', [RoomController::class, 'update'])->name('update');
+            Route::delete('/{roomId}/delete', [RoomController::class, 'destroy'])->name('destroy');
         });
     });
 });
@@ -60,6 +60,8 @@ Route::name('user.')->group(function () {
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('/users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/add', [UserController::class, 'create'])->name('create');
+        Route::post('/', [UserController::class, 'store'])->name('store');
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
     });
 });

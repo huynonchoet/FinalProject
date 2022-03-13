@@ -22,10 +22,11 @@
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
     <link href="{{ asset('assets/admin/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/fonts/Pe-icon-7-stroke.svg') }}" rel="stylesheet">
 </head>
 
 <body>
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div class=" app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         @include('admin.layouts.header')
         <div class="ui-theme-settings">
             <button type="button" id="TooltipDemo" class="btn-open-options btn btn-warning">

@@ -30,27 +30,39 @@
                                             <img src="{{ asset('storage/homestays/' . $images[0]) }}" alt="">
                                         </div>
                                         <div class="down-content">
-                                            <a href="{{ Route('user.homestays.rooms.index') }}">
+                                            <a href="{{ Route('user.homestays.show', ['id' => $item->id]) }}">
                                                 <h4>{{ $item->name }}</h4>
                                             </a>
                                             <ul class="post-info">
                                                 <li>John Doe</li>
-                                                <li><a href="{{ Route('user.homestays.rooms.index') }}">{{ $item->address }}</a></li>
-                                                <li><a href="{{ Route('user.homestays.rooms.index') }}"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
+                                                <li>{{ $item->address }}</li>
+                                                <li><i class="fa fa-comments" title="Comments"></i> 12</li>
                                             </ul>
+                                            <div class="add-room">
+                                                <a type="button"
+                                                    href="{{ Route('user.homestays.show', ['id' => $item->id]) }}"
+                                                    style="color:aliceblue" class="btn btn-success">Show Detail</a>
+                                                <a type="button"
+                                                    href="{{ Route('user.homestays.edit', ['id' => $item->id]) }}"
+                                                    style="color:aliceblue" class="btn btn-success">Update Information</a>
+                                                <form action="{{ Route('user.homestays.destroy', ['id' => $item->id]) }}"
+                                                    method="post">
+                                                    {{ csrf_field() }}
+                                                    @method('delete')
+                                                    <button type="submit" style="margin-top: -65px;margin-left: 281px;"
+                                                        class="btn btn-danger">Delete Homestay</button>
+                                                </form>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="col-lg-12">
-                                <ul class="page-numbers">
-                                    <li><a href="#">1</a></li>
-                                    <li class="active"><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
+                    </div>
+                    <div class="add-room">
+                        <a type="button" href="{{ Route('user.homestays.create') }}" style="color:aliceblue"
+                            class="btn btn-success">Add New Homestay</a>
                     </div>
                 </div>
             </div>

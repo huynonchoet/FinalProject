@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -34,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.add');
     }
 
     /**
@@ -43,9 +45,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        //
+        $data = $request->all();
+        if ($this->add($data)) {
+            return redirect()->route('admin.users.create')->with('message', 'Create successfully');
+        }
+
+        return abort(404);
+    }
+
+    public function add(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+        ]);
     }
 
     /**

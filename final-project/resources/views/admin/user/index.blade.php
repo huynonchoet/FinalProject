@@ -71,7 +71,8 @@
         </tbody>
         <tfoot>
             <td colspan="8">
-                <a href=""><button class="btn btn-primary">Add User</button></a>
+                <a href="{{ route('admin.users.create') }}"><button class="btn btn-primary">Add
+                        User</button></a>
                 {!! $users->appends(Request::except('page'))->links() !!}
             </td>
         </tfoot>

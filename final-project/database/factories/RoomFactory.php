@@ -19,7 +19,7 @@ class RoomFactory extends Factory
             'images'=>"[" . '"' . $this->faker->image('storage/app/public/rooms', 720, 480, null, false) . '"' . "," . '"' . $this->faker->image('storage/app/public/rooms', 720, 480, null, false) . '"' . "]",
             'price' => (rand(80,800)*1000),
             'description' => $this->faker->text(),
-            'discount' => 0,
+            'discount' => rand(0,10),
             'quantity_room' => rand(5, 10),
             'status' => '0',
             'homestay_id' => rand(1,10),
