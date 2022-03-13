@@ -37,8 +37,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Hãy nhập :attribute',
-            'email' => 'Email không đúng định dạng',
+            'required' => ':attributes is required',
+            'email' => 'This :attribute is not valid',
         ];
     }
 
