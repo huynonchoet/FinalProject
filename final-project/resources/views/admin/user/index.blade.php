@@ -65,6 +65,19 @@
                             @method('delete')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        @if ($user->status == 0)
+                            <form action="{{ route('admin.users.update', ['id' => $user->id]) }}" method="post">
+                                {{ csrf_field() }}
+                                @method('post')
+                                <button type="submit" class="btn btn-warning">Block</button>
+                            </form>
+                        @else
+                            <form action="{{ route('admin.users.unblock', ['id' => $user->id]) }}" method="post">
+                                {{ csrf_field() }}
+                                @method('post')
+                                <button type="submit" class="btn btn-success">UnBlock</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

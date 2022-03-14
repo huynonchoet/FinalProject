@@ -87,7 +87,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * change status of user to 1
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -95,7 +95,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = $this->userRepository->getUserById($id);
+        $update = ['status' => '1'];
+        $user->update($update);
+        return redirect()->route('admin.users.index')->with('message', __('messages.block.success'));
+    }
+
+    /**
+     * change status of uses to 0.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unblock(Request $request, $id)
+    {
+        $user = $this->userRepository->getUserById($id);
+        $update = ['status' => '0'];
+        $user->update($update);
+        return redirect()->route('admin.users.index')->with('message', __('messages.block.unblock'));
     }
 
     /**

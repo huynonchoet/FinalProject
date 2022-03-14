@@ -62,5 +62,9 @@ return [
     ],
     'cancel' => [
         'success' => 'Cancelled successfully!'
+    ],
+    'block' => [
+        'success' => 'Block successfully!',
+        'unblock' => 'Un Block successfully!'
     ]
 ];

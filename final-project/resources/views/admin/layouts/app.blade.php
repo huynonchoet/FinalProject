@@ -402,7 +402,6 @@
             @include('admin.layouts.sidebar')
             <div class="app-main__outer">
                 @yield('content')
-                @include('admin.layouts.footer')
             </div>
             <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
