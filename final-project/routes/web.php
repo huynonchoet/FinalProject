@@ -62,6 +62,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('/add', [UserController::class, 'create'])->name('create');
         Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [UserController::class, 'update'])->name('update');
+        Route::post('/unblock/{id}', [UserController::class, 'unblock'])->name('unblock');
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
     });
 });

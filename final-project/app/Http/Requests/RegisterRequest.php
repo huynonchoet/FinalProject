@@ -27,24 +27,23 @@ class RegisterRequest extends FormRequest
             'email' => 'required|unique:users|email:rfc,dns',
             'name' => 'required|min:6',
             'password' => 'required|min:8|max:20|confirmed',
-            'password_confirmation' => 'required|min:6|max:20',
+            'password_confirmation' => 'required|min:8|max:20',
         ];
     }
 
     /**
      * Get the error messages for the defined validation rules.
      *
-    * @return array
-    */
+     * @return array
+     */
     public function messages()
     {
         return [
             'email' => 'This email is not valid ',
             'required' => ':attributes is required',
-            'min' => ':attributes is required at least :min characters', 
+            'min' => ':attributes is required at least :min characters',
             'max' => ':attributes is required less than :max characters',
             'confirmed' => 'Password Confirmation should match the Password'
         ];
     }
-
 }
