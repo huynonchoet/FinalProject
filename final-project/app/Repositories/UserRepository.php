@@ -35,7 +35,7 @@ class UserRepository implements UserRepositoryInterface
             return $query->orderBy('name', request('sort'));
         });
 
-        return $users->paginate(config('paginate.user'));
+        return $users->simplePaginate(config('paginate.user'));
     }
 
     /**

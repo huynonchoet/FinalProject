@@ -70,7 +70,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Birthday</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="birthday" value="<?php echo Auth::user()->birthday; ?>"
+                                            <input type="date" name="birthday" value="<?php echo Auth::user()->birthday; ?>"
                                                 class="form-control form-control-line">
                                         </div>
                                     </div>
