@@ -18,7 +18,7 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->date('day_start');
             $table->date('day_end');
-            $table->enum('status', [0, 1, 2])->default(0)->comment = "0:pending,1:confirmed,2:deleted";
+            $table->enum('status', [0, 1, 2])->default(0)->comment = "0:pending,1:confirmed,2:cancelled";
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

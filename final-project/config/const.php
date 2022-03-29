@@ -32,5 +32,11 @@ return [
         'google' => 'google',
         'github' => 'github',
     ],
+
+    'booking' => [
+        'pending' => 1,
+        'accepted' => 2,
+        'cancelled' => 3
+    ]
     
 ];

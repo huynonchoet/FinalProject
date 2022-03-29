@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/user/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/user/css/owl.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @stack('css')
 </head>
 
