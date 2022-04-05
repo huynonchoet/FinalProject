@@ -60,7 +60,7 @@
                                 <div class="right-content">
                                     <h4>{{ $item->name }}<span>{{ $item->created_at }}<span>({{ $item->typeRoom->name }})</span>
                                     </h4>
-                                    <p>Real Price : {{ $item->price }}VNĐ.</p>
+                                    <p>Real Price : {{ number_format($item->price) }}VNĐ.</p>
                                     <p>Quantity : {{ $item->quantity_room }}.</p>
                                     <p>Discount : {{ $item->discount }}.</p>
                                     <p>{{ $item->description }}.</p>

@@ -20,27 +20,6 @@ class BookingDetailRepository implements BookingDetailRepositoryInterface
     }
 
     /**
-     * get all BookingDetails
-     *
-     * @return void
-     */
-    public function getAllBookingDetailsByIdUser()
-    {
-        return BookingDetail::where("user_id", Auth::id())->get();
-    }
-
-    /**
-     * create BookingDetail 
-     *
-     * @param array
-     * @return mixed
-     */
-    public function createBookingDetail(array $attributes)
-    { 
-        return BookingDetail::create($attributes);
-    }
-
-    /**
      * Get BookingDetail by id 
      *
      * @param int
@@ -51,21 +30,12 @@ class BookingDetailRepository implements BookingDetailRepositoryInterface
     }
 
     /**
-     * Update BookingDetail 
-     *
-     * @return mixed
-     */
-    public function updateBookingDetail($id, array $attributes)
-    {
-        return BookingDetail::whereId($id)->update($attributes);
-    }
-
-    /**
-     * delete BookingDetail by id 
+     * Get BookingDetail by id booking
      *
      * @param int
      */
-    public function deleteBookingDetail($homestayId)
+    public function getBookingDetailByIdBooking($bookingId)
     {
+        return BookingDetail::where('booking_id', $bookingId)->get();
     }
 }

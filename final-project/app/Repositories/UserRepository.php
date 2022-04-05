@@ -32,6 +32,7 @@ class UserRepository implements UserRepositoryInterface
                 ->orWhere('phone', 'LIKE', '%' . $search . '%');
         });
         $users->when(request('sort'), function ($query) {
+            
             return $query->orderBy('name', request('sort'));
         });
 

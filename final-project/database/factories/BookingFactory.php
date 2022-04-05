@@ -15,8 +15,8 @@ class BookingFactory extends Factory
     {
         return [
             'user_id' => rand(11, 50),
-            'day_start' => $this->faker->dateTimeBetween('-100 days', 'now'),
-            'day_end' => $this->faker->dateTimeBetween('now', '+100 days'),
+            'day_start' => $this->faker->dateTimeBetween('now', '+49 days'),
+            'day_end' => $this->faker->dateTimeBetween('+50 days', '+100 days'),
             'status' => $this->faker->randomElement(['0', '1', '2']),
         ];
     }

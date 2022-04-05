@@ -20,6 +20,12 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - final:/var/lib/mysql/
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    ports:
+      - "8003:1025"
+      - "8100:8025"
 volumes:
   final:
     driver: local

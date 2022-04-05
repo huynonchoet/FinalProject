@@ -59,9 +59,9 @@ Route::name('user.')->group(function () {
 
     Route::middleware('user')->prefix('/booking-landlords')->name('booking-landlords.')->group(function () {
         Route::get('/', [BookingLandlordController::class, 'index'])->name('index');
-        Route::get('/edit', [BookingLandlordController::class, 'edit'])->name('edit');
+        Route::get('/search', [BookingLandlordController::class, 'indexSearch'])->name('indexSearch');
         Route::patch('/{id}', [BookingLandlordController::class, 'update'])->name('update');
-        Route::delete('/{Id}/delete', [BookingLandlordController::class, 'destroy'])->name('destroy');
+        Route::get('/{id}', [BookingLandlordController::class, 'show'])->name('show');
     });
 });
 
