@@ -36,7 +36,7 @@ class HomestayRepository implements HomestayRepositoryInterface
      * @return mixed
      */
     public function createHomestay(array $attributes)
-    { 
+    {
         return Homestay::create($attributes);
     }
 
@@ -77,5 +77,21 @@ class HomestayRepository implements HomestayRepositoryInterface
         });
 
         return $result;
+    }
+
+    /**
+     *search
+     *
+     * @param int
+     */
+    public function searchHomestays()
+    {
+        $homestay = Homestay::query();
+        $homestay->when(request('search'), function ($query) {
+            $search = trim(request('search'));
+            return $query->where('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('address', 'LIKE', '%' . $search . '%');
+        });
+        return $homestay->simplePaginate(9);
     }
 }

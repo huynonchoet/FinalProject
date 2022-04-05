@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/user/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/user/css/owl.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     @stack('css')
 </head>
 
@@ -36,6 +38,8 @@
     <script src="{{ asset('assets/user/js/slick.js') }}"></script>
     <script src="{{ asset('assets/user/js/isotope.js') }}"></script>
     <script src="{{ asset('assets/user/js/accordions.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
     <script language="text/Javascript">
         cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field

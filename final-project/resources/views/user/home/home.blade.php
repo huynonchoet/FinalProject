@@ -134,156 +134,39 @@
                 <h2 class="text-center">Featured Vacations</h2>
                 <br>
                 <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span> $500.00 - $700.00 </span>
-                                <a href="vacations.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                                </a>
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-                                <div class="post-options">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-bullseye"></i></li>
-                                                <li><a href="vacation-details.html">View Homestay</a></li>
-                                            </ul>
+                    @foreach ($homestays as $homestay)
+                        @php
+                            $images = json_decode($homestay->images);
+                        @endphp
+                        <div class="col-md-4 col-sm-6">
+                            <div class="blog-post">
+                                <div class="blog-thumb">
+                                    <img src="{{ asset('storage/homestays/' . $images['0']) }}" alt="">
+                                </div>
+                                <div class="down-content">
+                                    <span> {{ $homestay->name }} </span>
+                                    <a href="vacations.html">
+                                        <h4>{{ $homestay->phone }}</h4>
+                                    </a>
+                                    <p>{{ $homestay->address }}</p>
+                                    <div class="post-options">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <ul class="post-tags">
+                                                    <li><i class="fa fa-bullseye"></i></li>
+                                                    <li><a href="{{ route('booking.index', ['homestayId' => $homestay->id]) }}">View
+                                                            Homestay
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/product-5-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span> $500.00 - $700.00 </span>
-                                <a href="vacations.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                                </a>
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-                                <div class="post-options">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-bullseye"></i></li>
-                                                <li><a href="vacation-details.html">View Homestay</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/product-6-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span> $500.00 - $700.00 </span>
-                                <a href="vacations.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                                </a>
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-                                <div class="post-options">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-bullseye"></i></li>
-                                                <li><a href="vacation-details.html">View Homestay</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span> $500.00 - $700.00 </span>
-                                <a href="vacations.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                                </a>
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-                                <div class="post-options">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-bullseye"></i></li>
-                                                <li><a href="vacation-details.html">View Homestay</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span> $500.00 - $700.00 </span>
-                                <a href="vacations.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                                </a>
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-                                <div class="post-options">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-bullseye"></i></li>
-                                                <li><a href="vacation-details.html">View Homestay</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="blog-post">
-                            <div class="blog-thumb">
-                                <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span> $500.00 - $700.00 </span>
-                                <a href="vacations.html">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-                                </a>
-                                <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a
-                                    mauris sit amet eleifend.</p>
-                                <div class="post-options">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-bullseye"></i></li>
-                                                <li><a href="vacation-details.html">View Homestay</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    {{ $homestays->appends(Request::except('page'))->links() }}
                 </div>
             </div>
         </div>
