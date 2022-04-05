@@ -10,4 +10,5 @@ interface HomestayRepositoryInterface
     public function updateHomestay($homestayId, array $newDetails);
     public function deleteHomestay($homestayId);
     public function createHomestay(array $attributes);
+    public function searchHomestays();
 }

@@ -5,8 +5,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Auth\CustomAuthController;
 use App\Http\Controllers\User\AccountController;
+use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\User\HomestayController;
 use App\Http\Controllers\User\RoomController;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,3 +69,10 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
     });
 });
+
+Route::prefix('/booking')->name('booking.')->group(function () {
+    Route::get('/{homestayId}', [BookingController::class, 'index'])->name('index');
+    Route::get('/room/detail/{roomId}', [BookingController::class, 'roomDetail'])->name('room-detail');
+});
+
+
