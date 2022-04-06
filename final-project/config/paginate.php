@@ -9,5 +9,6 @@ return [
     |
     */
 
-    'user' => 10
+    'user' => 10,
+    'booking' => 10
 ];

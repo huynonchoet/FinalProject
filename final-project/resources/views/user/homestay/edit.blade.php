@@ -168,7 +168,7 @@
                                             <div class="col-12">
                                                 <div class="form-group button">
                                                     <button type="submit" class="btn2"><a
-                                                            class="btn1">CREATE</a></button>
+                                                            class="btn1">UPDATE</a></button>
                                                     <a class="a-back"
                                                         href="{{ Route('user.homestays.index') }}">BACK
                                                     </a>

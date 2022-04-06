@@ -17,9 +17,9 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('homestay_id');
-            $table->enum('status', [0, 1])->comment = "0:normal, 1:locked";
-            $table->integer('parent_id');
-            $table->string('content');
+            $table->enum('status', [0, 1])->default(0)->comment = "0:normal, 1:locked";
+            $table->integer('parent_id')->default(0);
+            $table->text('content');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

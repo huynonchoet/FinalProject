@@ -17,7 +17,7 @@ class BookingDetailFactory extends Factory
             'booking_id'=>rand(1,50),
             'room_id'=>rand(1,30),
             'price' => (rand(80,800)*1000),
-            'quantity_room' => rand(1,10),
+            'quantity_room' => rand(1,3),
         ];
     }
 }

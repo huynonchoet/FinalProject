@@ -31,6 +31,7 @@ class Homestay extends Model
     {
         return $this->hasMany(Room::class);
     }
+
     /**
      * Get the comment that owns the homestay.
      */
@@ -45,5 +46,13 @@ class Homestay extends Model
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+
+    /**
+     * Get the comment that owns the homestay.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

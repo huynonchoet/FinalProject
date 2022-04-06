@@ -19,7 +19,7 @@ class CreateStatisticIncomesTable extends Migration
             $table->integer('month');
             $table->integer('year');
             $table->float('total');
-            $table->enum('status', [0, 1])->comment = "0:not paid, 1:paid";
+            $table->enum('status', [0, 1])->default(0)->comment = "0:not paid, 1:paid";
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('homestay_id')->references('id')->on('homestays')->onDelete('cascade');

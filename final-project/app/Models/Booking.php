@@ -17,4 +17,18 @@ class Booking extends Model
         'day_end',
         'status',
     ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    public function getStatusLabelAttribute()
+    {
+        return [
+            '0' => 'Pending',
+            '1' => 'Accepted',
+            '2' => 'Cancelled'
+        ][$this->status];
+    }
 }

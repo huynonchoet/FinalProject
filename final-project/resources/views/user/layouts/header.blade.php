@@ -26,14 +26,14 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="vacations.html">Vacations</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                    </li>
                     @if (Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ Route('user.booking-landlords.index') }}">Người cho
+                                thuê</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="blog.html">Người thuê</a>
+                        </li>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">Profile</a>

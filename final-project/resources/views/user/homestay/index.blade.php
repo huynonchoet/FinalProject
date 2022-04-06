@@ -34,7 +34,7 @@
                                                 <h4>{{ $item->name }}</h4>
                                             </a>
                                             <ul class="post-info">
-                                                <li>John Doe</li>
+                                                <li>{{ $item->user->name }}</li>
                                                 <li>{{ $item->address }}</li>
                                                 <li><i class="fa fa-comments" title="Comments"></i> 12</li>
                                             </ul>

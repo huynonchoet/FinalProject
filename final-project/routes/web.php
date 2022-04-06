@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Auth\CustomAuthController;
 use App\Http\Controllers\User\AccountController;
+use App\Http\Controllers\User\BookingLandlordController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\User\HomestayController;
 use App\Http\Controllers\User\RoomController;
@@ -56,6 +57,13 @@ Route::name('user.')->group(function () {
             Route::patch('/{roomId}', [RoomController::class, 'update'])->name('update');
             Route::delete('/{roomId}/delete', [RoomController::class, 'destroy'])->name('destroy');
         });
+    });
+
+    Route::middleware('user')->prefix('/booking-landlords')->name('booking-landlords.')->group(function () {
+        Route::get('/', [BookingLandlordController::class, 'index'])->name('index');
+        Route::get('/search', [BookingLandlordController::class, 'indexSearch'])->name('indexSearch');
+        Route::patch('/{id}', [BookingLandlordController::class, 'update'])->name('update');
+        Route::get('/{id}', [BookingLandlordController::class, 'show'])->name('show');
     });
 });
 

@@ -38,7 +38,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="email" type="text" placeholder="Username"
+                                                        <input name="email" type="text" placeholder="Email"
                                                             value="{{ old('email') }}">
                                                     </fieldset>
                                                 </div>
@@ -48,7 +48,7 @@
                                                     </fieldset>
                                                 </div>
                                                 @if (session('error'))
-                                                    <div class="alert alert-success">
+                                                    <div class="alert alert-danger">
                                                         {{ session('error') }}
                                                     </div>
                                                 @endif
