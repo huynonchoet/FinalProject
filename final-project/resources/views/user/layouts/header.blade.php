@@ -50,8 +50,8 @@
                         </li>
                     @endif
                     @if (!Auth::check())
-                        <a class="nav-link" href="{{ Route('login') }}">Login</a>
-                        </li>
+                        <li><a class="nav-link" href="{{ Route('login') }}">Login</a></li>
+                        <li><a class="nav-link" href="{{ Route('register.index') }}">Register</a></li>
                     @endif
                 </ul>
             </div>

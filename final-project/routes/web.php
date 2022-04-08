@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Auth\CustomAuthController;
+use App\Http\Controllers\CaptchaValidationController;
 use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\BookingLandlordController;
 use App\Http\Controllers\User\BookingController;
@@ -31,6 +32,8 @@ Route::post('/login', [LoginController::class, 'postLogin'])->name('login.post')
 
 Route::get('/registration', [CustomAuthController::class, 'registration'])->name('register.index');
 Route::post('/registration', [CustomAuthController::class, 'customRegistration'])->name('register.create');
+Route::patch('/confirm-email', [CustomAuthController::class, 'confirmEmail'])->name('confirm-email.update');
+Route::get('/reload-captcha', [CaptchaValidationController::class, 'reloadCaptcha']);
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 

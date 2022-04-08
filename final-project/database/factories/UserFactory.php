@@ -24,6 +24,7 @@ class UserFactory extends Factory
             'address' => $this->faker->address(),
             'phone' => $this->faker->phoneNumber(),
             'bank_number' => '19036103013017',
+            'status' => '0',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];

@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('bank_number')->nullable();
-            $table->enum('status', [0, 1])->default(0)->comment = '1:locked 0:normal';
+            $table->enum('status', [0, 1])->comment = '1:locked 0:normal';
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
