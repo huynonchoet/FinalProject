@@ -38,4 +38,14 @@ class BookingDetailRepository implements BookingDetailRepositoryInterface
     {
         return BookingDetail::where('booking_id', $bookingId)->get();
     }
+
+    /**
+     * Get BookingDetail by id room
+     *
+     * @param int
+     */
+    public function getBookingDetailByIdRoom($roomId)
+    {
+        return BookingDetail::where('room_id', $roomId)->get();
+    }
 }

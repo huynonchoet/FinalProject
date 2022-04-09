@@ -79,8 +79,20 @@
                     </div>
                     <br>
                     <div class="main-button">
-                        <a href="#" data-toggle="modal" data-target="#exampleModal">Booking</a>
+                        @if (session()->has('from'))
+                            <a href="#" data-toggle="modal" data-target="#exampleModal">Booking</a>
+                        @else
+                            <a href="#" data-toggle="modal" data-target="#exampleModal">Check Room</a>
+                        @endif
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
                     </div>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
                     <br>
                 </div>
             </div>
@@ -111,49 +123,6 @@
                 <br>
                 <br>
             </div>
-            <div class="sidebar-item recent-posts">
-                <div class="sidebar-heading">
-                    <h2>Availability &amp; Prices</h2>
-                </div>
-                <div class="content">
-                    <div class="table-responsive">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
-                            <thead>
-                                <tr>
-                                    <th>From Date: <input type="text" id="datepicker" class="form-control"></th>
-                                    <th>To Date: <input type="text" id="datepicker2" class="form-control"></th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <!-- Total Amount -->
-                                        <div class="total-amount">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-7 col-12">
-                                                    <div class="right">
-                                                        <ul>
-                                                            <li>Status Room: </li>
-                                                            <li>Total Price: VND</li>
-                                                            <li>Discount: %</li>
-                                                            <li>You Pay: </li>
-                                                        </ul>
-                                                        <div>
-                                                            <a type="button" href="" class="btn btn-info">Check Room</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
     <!-- Modal -->
@@ -169,56 +138,73 @@
                 </div>
                 <div class="modal-body">
                     <div class="contact-us">
-                        <div class="contact-form">
-                            <form action="#" id="contact">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input type="text" class="form-control" placeholder="Enter full name"
-                                                required="">
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input type="text" class="form-control" placeholder="Enter email address"
-                                                required="">
-                                        </fieldset>
-                                    </div>
+                        @if (!Auth::check())
+                            <fieldset>
+                                <div class="content">
+                                    <p>You Must Login To Continue!</P>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <fieldset>
-                                            <input type="text" class="form-control" placeholder="Enter phone" required="">
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <fieldset>
-                                                    <input type="text" class="form-control" placeholder="From date"
-                                                        required="">
-                                                </fieldset>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <fieldset>
-                                                    <input type="text" class="form-control" placeholder="To date"
-                                                        required="">
-                                                </fieldset>
-                                            </div>
+                            </fieldset>
+                            <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
+                        @else
+                            @if (session()->has('from'))
+                                <form id="contact" action="{{ route('booking.booking', ['roomId' => $room->id]) }}"
+                                    method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <fieldset>
+                                        <div class="content">
+                                            <p>Name Room: {{ $room->name }}</P>
+                                            <p>Type: {{ $room->typeRoom->name }}</P>
+                                            <p>From: {{ session()->get('from') }}</P>
+                                            <p>To: {{ session()->get('to') }}</P>
+                                            <p>Discount: {{ $room->discount }}%</P>
+                                            <p>Total Price: {{ $room->price * session()->get('qty') }} VND</P>
+                                            <input type="hidden" name="from" class="form-control"
+                                                value={{ session()->get('from') }}>
+                                            <input type="hidden" name="to" class="form-control"
+                                                value={{ session()->get('to') }}>
+                                            <input type="hidden" name="qty" class="form-control"
+                                                value={{ session()->get('qty') }}>
+                                            <input type="hidden" name="price" class="form-control"
+                                                value={{ $room->price * session()->get('qty') }}>
                                         </div>
+                                    </fieldset>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Send Request</button>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            @else
+                                <fieldset>
+                                    <div class="content">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                            class="table">
+                                            <form id="contact"
+                                                action="{{ route('booking.check', ['roomId' => $room->id]) }}"
+                                                method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <thead>
+                                                    <tr>
+                                                        <th>From Date: <input type="text" name="fromDate" id="datepicker"
+                                                                class="form-control"></th>
+                                                        <th>To Date: <input type="text" name="toDate" id="datepicker2"
+                                                                class="form-control">
+                                                        </th>
+                                                        <th>Quantity Room: <input type="text" name="qty"
+                                                                class="form-control">
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Check
+                                                        Room</button>
+                                                </div>
+                                            </form>
+                                        </table>
+                                    </div>
+                                </fieldset>
+                            @endif
+                        @endif
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Send Request</button>
                 </div>
             </div>
         </div>

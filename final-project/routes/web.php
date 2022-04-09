@@ -81,6 +81,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
 Route::prefix('/booking')->name('booking.')->group(function () {
     Route::get('/{homestayId}', [BookingController::class, 'index'])->name('index');
     Route::get('/room/detail/{roomId}', [BookingController::class, 'roomDetail'])->name('room-detail');
+    Route::post('/room/check/{roomId}', [BookingController::class, 'check'])->name('check');
+    Route::post('/room/booking/{roomId}', [BookingController::class, 'booking'])->name('booking');
 });
 
 
