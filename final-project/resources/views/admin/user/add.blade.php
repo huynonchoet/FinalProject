@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button name="submit" type="submit" class="btn btn-success">Add User</button>
+                                            <button name="submit" type="submit" class="btn btn-success">Add Admin</button>
                                         </div>
                                     </div>
                                 </form>
