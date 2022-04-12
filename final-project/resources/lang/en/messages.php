@@ -66,5 +66,13 @@ return [
     'block' => [
         'success' => 'Block successfully!',
         'unblock' => 'Un Block successfully!'
+    ],
+    'check' => [
+        'availavle' => 'Room Availavle,You Can Send Request Booking!',
+        'full' => 'The number of rooms is not enough for your request!'
+    ],
+    'booking' => [
+        'sucsess' => 'You have sent successful reservation request!',
     ]
+
 ];
