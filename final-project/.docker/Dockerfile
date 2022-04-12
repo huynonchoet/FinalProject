@@ -24,19 +24,19 @@ RUN apt-get update && apt-get install -y \
     && docker-php-source delete
 
 ### Install redis
-RUN pecl install redis && docker-php-ext-enable redis
+# RUN pecl install redis && docker-php-ext-enable redis
 ### Install Xdebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+# RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
-COPY .docker/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+# COPY .docker/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 ### Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ### Installl Node
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
-RUN apt-get install -y nodejs
+# RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
+# RUN apt-get install -y nodejs
 
 ENV PS1A="🐳\[\e[33m\]\u\[\e[m\]@laravel\[\e[36m\][\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[36m\]]\[\e[m\]: "
 

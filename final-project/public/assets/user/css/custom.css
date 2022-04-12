@@ -1,0 +1,59 @@
+.add-room {
+    margin-top: 50px;
+}
+.a-back {
+    display: inline-block;
+    background-color: #f48840;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border: none;
+    outline: none;
+}
+.image-room {
+    height: 120px;
+    width: 200px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.h1-title-statistic {
+    position: absolute;
+    top: 15px;
+    left: 5%;
+}
+.option-statistic {
+    margin-left: 120px;
+    margin-right: 120px;
+    font-size: 15px;
+    left: 25%;
+}
+a {
+    font-size: 19px;
+    color: #f48840;
+    text-decoration: underline;
+}
+a:hover {
+    color: #833b0b;
+    text-decoration: underline;
+}
+.h1-money-statistic {
+    position: absolute;
+    top: 15px;
+    left: 80%;
+}
+.option-filter {
+    padding: 11px;
+}
+.table-center {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.div-action{
+    height: 33px;
+    margin-top: 29px;
+}

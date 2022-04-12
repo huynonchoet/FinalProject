@@ -16,10 +16,16 @@ services:
     ports:
       - "3308:3306"
     environment:
-      MYSQL_DATABASE: final_project
+      MYSQL_DATABASE: mydb
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - traning:/var/lib/mysql/
+      - final:/var/lib/mysql/
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    ports:
+      - "8003:1025"
+      - "8100:8025"
 volumes:
-  traning:
+  final:
     driver: local
