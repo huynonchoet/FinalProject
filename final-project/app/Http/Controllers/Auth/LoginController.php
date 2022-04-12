@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Exception;
 
 class LoginController extends Controller
 {
@@ -28,9 +28,13 @@ class LoginController extends Controller
      */
     public function postLogin(LoginRequest $request)
     {
+        $user = User::where('email', $request->email)->get();
+        if ($user[0]['status'] == '1') {
+            return back()->with('error', __('This Email ahs been locked!!!'));
+        }
         $login = [
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => $request->password
         ];
         if (Auth::attempt($login)) {
             if (Auth::user()->role == 1) {

@@ -35,28 +35,28 @@
                 <li class="app-sidebar__heading">User Management</li>
                 <li>
                     <a href="{{ route('admin.users.index') }}">
-                        <i class="metismenu-icon pe-7s-display2"></i>
+                        <i class="metismenu-icon fas fa-users"></i>
                         Users Management
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Reports Managements</li>
                 <li>
                     <a href="">
-                        <i class="metismenu-icon pe-7s-display2"></i>
+                        <i class="metismenu-icon fas fa-comments"></i>
                         Reports Management
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Statistical</li>
                 <li>
                     <a href="">
-                        <i class="metismenu-icon pe-7s-display2"></i>
+                        <i class="metismenu-icon fas fa-sort-amount-up-alt"></i>
                         Statistical
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Room directory management</li>
                 <li>
                     <a href="">
-                        <i class="metismenu-icon pe-7s-display2"></i>
+                        <i class="metismenu-icon fas fa-folder"></i>
                         Room directory management
                     </a>
                 </li>

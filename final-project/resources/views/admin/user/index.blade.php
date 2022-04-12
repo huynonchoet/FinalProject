@@ -21,6 +21,8 @@
                 {{ session()->get('message') }}
             </div>
         @endif
+        <a href="{{ route('admin.users.create') }}"><button class="btn btn-primary float-right mb-2 mr-2">Add
+            Admin</button></a>
         <thead>
             <tr>
                 <th>
@@ -84,8 +86,6 @@
         </tbody>
         <tfoot>
             <td colspan="8">
-                <a href="{{ route('admin.users.create') }}"><button class="btn btn-primary">Add
-                        User</button></a>
                 {!! $users->appends(Request::except('page'))->links() !!}
             </td>
         </tfoot>

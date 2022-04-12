@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends FormRequest
 {
@@ -24,8 +25,9 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => ['required', 'email', Rule::exists('users', 'email')->whereNull('deleted_at')],
             'password' => 'required',
+            'captcha' => 'required|captcha',
         ];
     }
 
@@ -39,6 +41,8 @@ class LoginRequest extends FormRequest
         return [
             'required' => ':attributes is required',
             'email' => 'This :attribute is not valid',
+            'email.exists' => 'This Email does not exist',
+            "captcha.captcha" => 'Wrong Captcha'
         ];
     }
 
@@ -51,7 +55,8 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'Email',
-            'password' => 'password',
+            'password' => 'Password',
+            'captcha' => 'Captcha',
         ];
     }
 }

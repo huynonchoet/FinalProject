@@ -42,7 +42,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="email" type="text" placeholder="Email">
+                                                        <input name="email" value="{{ old('email') }}" type="text" placeholder="Email">
                                                     </fieldset>
                                                 </div>
                                                 @error('email')
@@ -50,7 +50,7 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="name" type="text" placeholder="name">
+                                                        <input name="name" value="{{ old('name') }}" type="text" placeholder="Full Name">
                                                     </fieldset>
                                                 </div>
                                                 @error('name')
@@ -58,7 +58,7 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="password" type="password" placeholder="Password">
+                                                        <input name="password" value="{{ old('password') }}" type="password" placeholder="Password">
                                                     </fieldset>
                                                 </div>
                                                 @error('password')
@@ -66,7 +66,7 @@
                                                 @enderror
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
-                                                        <input name="password_confirmation" type="password"
+                                                        <input name="password_confirmation" value="{{ old('password_confirmation') }}" type="password"
                                                             placeholder="Confirm password">
                                                     </fieldset>
                                                 </div>
