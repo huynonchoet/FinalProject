@@ -85,6 +85,9 @@ class BookingController extends Controller
     {
         $begin = date('Y-m-d', strtotime($request->fromDate));
         $end =  date('Y-m-d', strtotime(Carbon::parse($request->toDate)->add("+1 days")));
+        $datetime1 = strtotime($begin); // convert to timestamps
+        $datetime2 = strtotime($end); // convert to timestamps
+        $days = (int)(($datetime2 - $datetime1 - 1) / 86400);
         $period1 = new DatePeriod(
             new DateTime($begin),
             new DateInterval('P1D'),
@@ -134,7 +137,8 @@ class BookingController extends Controller
         return redirect()->back()->with('message', __('messages.check.availavle'))
             ->with('from', $request->fromDate)
             ->with('to', $request->toDate)
-            ->with('qty', $request->qty);
+            ->with('qty', $request->qty)
+            ->with('days', $days);
     }
 
     /**
