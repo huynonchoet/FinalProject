@@ -49,8 +49,7 @@
                             <p>Name Room: {{ $room->name }}</P>
                             <p>Type: {{ $room->typeRoom->name }}</P>
                             <p>Available: {{ $room->quantity_room }}</P>
-                            <p>Price: {{ $room->price }} VND per night</P>
-                            <p>Discount: {{ $room->discount }}%</P>
+                            <p>Price: {{ $room->price - ($room->price * $room->discount/100) }} VND Per Night @if($room->discount>0)(Include Discount: {{ $room->discount }}%)@endif
                         </div>
                     </div>
                     <br>
@@ -157,7 +156,9 @@
                                             <p>From: {{ session()->get('from') }}</P>
                                             <p>To: {{ session()->get('to') }}</P>
                                             <p>Discount: {{ $room->discount }}%</P>
-                                            <p>Total Price: {{ $room->price * session()->get('qty') }} VND</P>
+                                            <p>Total Price:
+                                                {{ ($room->price * session()->get('qty') * session()->get('days')) -($room->price * session()->get('qty') * session()->get('days') * $room->discount/100) }}
+                                                VND</P>
                                             <input type="hidden" name="from" class="form-control"
                                                 value={{ session()->get('from') }}>
                                             <input type="hidden" name="to" class="form-control"
@@ -165,7 +166,7 @@
                                             <input type="hidden" name="qty" class="form-control"
                                                 value={{ session()->get('qty') }}>
                                             <input type="hidden" name="price" class="form-control"
-                                                value={{ $room->price * session()->get('qty') }}>
+                                                value={{ ($room->price * session()->get('qty') * session()->get('days')) -($room->price * session()->get('qty') * session()->get('days') * $room->discount/100) }}>
                                         </div>
                                     </fieldset>
                                     <div class="modal-footer">

@@ -31,9 +31,20 @@
                             <a class="nav-link" href="{{ Route('user.booking-landlords.index') }}">Người cho
                                 thuê</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">Người thuê</a>
-                        </li>
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="false">Người Thuê</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="">My booking</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="">Booking
+                                        History</a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">Profile</a>
