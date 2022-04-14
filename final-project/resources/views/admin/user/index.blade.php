@@ -21,8 +21,7 @@
                 {{ session()->get('message') }}
             </div>
         @endif
-        <a href="{{ route('admin.users.create') }}"><button class="btn btn-primary float-right mb-2 mr-2">Add
-            Admin</button></a>
+        <a href="{{ route('admin.users.create') }}"><button class="btn btn-primary float-right mb-2 mr-2">Add</button></a>
         <thead>
             <tr>
                 <th>

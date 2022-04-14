@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'avatar' => $this->faker->image('storage/app/public/users', 140, 180, null, false),
             'birthday' => $this->faker->dateTime($max = '01/01/2015', $timezone = null),
             'address' => $this->faker->address(),
+            'role' => '0',
             'phone' => $this->faker->phoneNumber(),
             'bank_number' => '19036103013017',
             'status' => '0',

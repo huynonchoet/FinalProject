@@ -76,7 +76,7 @@
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
                                                         <label>Name Homestay</label>
-                                                        <input name="name" type="text" placeholder="Name">
+                                                        <input name="name" type="text" value="{{ old('name') }}" placeholder="Name">
                                                     </fieldset>
                                                 </div>
                                                 @error('name')
@@ -102,7 +102,7 @@
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
                                                         <label>Address</label>
-                                                        <input name="address" type="text" placeholder="Address">
+                                                        <input name="address" value="{{ old('address') }}" type="text" placeholder="Address">
                                                     </fieldset>
                                                 </div>
                                                 @error('address')
@@ -111,7 +111,7 @@
                                                 <div class="col-md-12 col-sm-12">
                                                     <fieldset>
                                                         <label>Phone</label>
-                                                        <input name="phone" type="text" placeholder="Phone">
+                                                        <input name="phone" value="{{ old('phone') }}" type="text" placeholder="Phone">
                                                     </fieldset>
                                                 </div>
                                                 @error('phone')

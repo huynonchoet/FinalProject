@@ -44,6 +44,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-12">Role</label>
+                                        <div class="col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="role"
+                                                    id="exampleRadios1" value="1" checked>
+                                                <label class="form-check-label">
+                                                    Admin
+                                                </label>
+                                                <input class="form-check-input" type="radio" name="role"
+                                                    id="exampleRadios2" value="0" style="margin-left: 15px;">
+                                                <label class="form-check-label" style="margin-left: 32px;">
+                                                    User
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         @if ($errors->any())
                                             <ul>
                                                 @foreach ($errors->all() as $error)

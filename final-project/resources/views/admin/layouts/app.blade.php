@@ -23,7 +23,8 @@
     -->
     <link href="{{ asset('assets/admin/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/fonts/Pe-icon-7-stroke.svg') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>  
+    <meta name="csrf-token" content="{{ csrf_token() }}">  
 </head>
 
 <body>

@@ -37,14 +37,15 @@ class LoginController extends Controller
             'password' => $request->password
         ];
         if (Auth::attempt($login)) {
-            if (Auth::user()->role == 1) {
+            if (Auth::user()->role == 1 || Auth::user()->role == 2) {
                 return redirect()->route('admin.users.index');
             } else {
                 return redirect()->route('home');
             }
-        } else {
-            return back()->with('error', __('messages.error_login'));
         }
+
+        return back()->with('error', __('messages.error_login'))->withInput();
+
     }
 
     /**

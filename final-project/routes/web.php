@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TypeRoomController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\HomeController;
@@ -78,6 +79,13 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/update/{id}', [UserController::class, 'update'])->name('update');
         Route::post('/unblock/{id}', [UserController::class, 'unblock'])->name('unblock');
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('/type-rooms')->name('type-rooms.')->group(function () {
+        Route::get('/', [TypeRoomController::class, 'index'])->name('index');
+        Route::get('/add', [TypeRoomController::class, 'create'])->name('create');
+        Route::post('/', [TypeRoomController::class, 'store'])->name('store');
+        Route::patch('/update/{id}', [TypeRoomController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [TypeRoomController::class, 'destroy'])->name('destroy');
     });
 });
 
