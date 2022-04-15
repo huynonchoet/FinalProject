@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="signup-form">
                                 <!--sign up form-->
-                                <h2 class="nav-link">Add Admin</h2>
+                                <h2 class="nav-link">Add User</h2>
                                 @if (session()->has('message'))
                                     <div class="alert alert-success">
                                         {{ session()->get('message') }}

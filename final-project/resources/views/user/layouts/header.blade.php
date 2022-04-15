@@ -27,10 +27,15 @@
                         </a>
                     </li>
                     @if (Auth::check())
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ Route('user.booking-landlords.index') }}">Người cho
-                                thuê</a>
-                        </li>
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="false">Người cho thuê</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{ Route('user.booking-landlords.index') }}">Booking order</a></li>
+                                <li><a class="dropdown-item" href="{{ Route('user.type-rooms.request') }}">Request Type Room</a></li>
+                            </ul>
+                        </div>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">Người Thuê</a>

@@ -48,7 +48,7 @@
                 {{ session()->get('message') }}
             </div>
         @endif
-        <a href="{{ route('admin.users.create') }}"><button style="margin-top: 11px;"
+        <a href="{{ route('admin.type-rooms.create') }}"><button style="margin-top: 11px;"
                 class="btn btn-primary float-right mb-2 mr-2">Add New
                 TypeRoom</button></a>
         <thead style="width: 650px;margin-inline: auto;">

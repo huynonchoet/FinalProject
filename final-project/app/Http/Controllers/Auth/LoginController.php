@@ -30,7 +30,7 @@ class LoginController extends Controller
     {
         $user = User::where('email', $request->email)->get();
         if ($user[0]['status'] == '1') {
-            return back()->with('error', __('This Email ahs been locked!!!'));
+            return back()->with('error', __('This Email has been locked!!!'));
         }
         $login = [
             'email' => $request->email,

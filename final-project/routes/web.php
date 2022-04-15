@@ -69,6 +69,11 @@ Route::name('user.')->group(function () {
         Route::patch('/{id}', [BookingLandlordController::class, 'update'])->name('update');
         Route::get('/{id}', [BookingLandlordController::class, 'show'])->name('show');
     });
+
+    Route::prefix('/type-rooms')->name('type-rooms.')->group(function () {
+        Route::post('/', [TypeRoomController::class, 'store'])->name('store');
+        Route::get('/request', [TypeRoomController::class, 'request'])->name('request');
+    });
 });
 
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {

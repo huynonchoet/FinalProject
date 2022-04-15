@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddTypeRoomRequest;
 use App\Models\TypeRoom;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,17 @@ class TypeRoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.type-room.add');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function request()
+    {
+        return view('user.type-room.add');
     }
 
     /**
@@ -35,9 +46,15 @@ class TypeRoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddTypeRoomRequest $request)
     {
-        //
+        $data = [
+            'name' => $request->name,
+            'status' =>$request-> status
+        ];
+        TypeRoom::create($data);
+
+        return redirect()->back()->with('message', 'Add new Type Room successfully!!!');
     }
 
     /**
