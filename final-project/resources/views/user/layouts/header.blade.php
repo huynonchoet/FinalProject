@@ -37,10 +37,10 @@
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li>
-                                    <a class="dropdown-item" href="">My booking</a>
+                                    <a class="dropdown-item" href="{{ route('booking.test') }}">My booking</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="">Booking
+                                    <a class="dropdown-item" href="{{ route('booking.history') }}">Booking
                                         History</a>
                                 </li>
                             </ul>

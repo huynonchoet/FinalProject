@@ -149,11 +149,137 @@ class BookingController extends Controller
      */
     public function booking(Request $request, $roomId)
     {
-        $begin = date('Y-m-d', strtotime($request->from));
-        $end =  date('Y-m-d', strtotime(Carbon::parse($request->to)));
-        $booking = Booking::create(['user_id' => auth()->user()->id, 'day_start' => $begin, 'day_end' => $end, 'status' => 1]);
-        BookingDetail::create(['booking_id' => $booking->id, 'room_id' => $roomId, 'price' => $request->price, 'quantity_room' => $request->qty]);
+        $homestayId = $this->roomRepository->getRoomById($roomId)->homestay_id;
+        $cart = session()->get('cart');
+        $key = $roomId . "" . $request->from . "" . $request->to;
+        if (isset($cart)) {
+            foreach ($cart as $key1 => $booking) {
+                $homestayIdCurrent = $this->roomRepository->getRoomById($cart[$key1]['roomId'])->homestay_id;
+            }
+            if ($homestayId != $homestayIdCurrent) {
+                return redirect()->back()->with('message', __('messages.booking.error'));
+            }
+            if (isset($cart[$key])) {
+                $cart[$key]['qty'] += $request->qty;
+                session()->put('cart', $cart);
+            } else {
+                $roomName = $this->roomRepository->getRoomById($roomId)->name;
+                $roomType = $this->roomRepository->getRoomById($roomId)->typeRoom->name;
+                $cart[$key] = [
+                    "roomId" => $roomId,
+                    "roomType" => $roomType,
+                    "roomName" => $roomName,
+                    "from" => $request->from,
+                    "to" => $request->to,
+                    "qty" => $request->qty,
+                    "price" => $request->price
+                ];
+                session()->put('cart', $cart);
+            }
+        } else {
+            $roomName = $this->roomRepository->getRoomById($roomId)->name;
+            $roomType = $this->roomRepository->getRoomById($roomId)->typeRoom->name;
+            $cart[$key] = [
+                "roomId" => $roomId,
+                "roomType" => $roomType,
+                "roomName" => $roomName,
+                "from" => $request->from,
+                "to" => $request->to,
+                "qty" => $request->qty,
+                "price" => $request->price
+            ];
+            session()->put('cart', $cart);
+        }
+        // $begin = date('Y-m-d', strtotime($request->from));
+        // $end =  date('Y-m-d', strtotime(Carbon::parse($request->to)));
+        // $booking = Booking::create(['user_id' => auth()->user()->id, 'day_start' => $begin, 'day_end' => $end, 'status' => 1]);
+        // BookingDetail::create(['booking_id' => $booking->id, 'room_id' => $roomId, 'price' => $request->price, 'quantity_room' => $request->qty]);
         return redirect()->back()->with('message', __('messages.booking.sucsess'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        $cart = array();
+        $homestay = array();
+        if (session()->has('cart')) {
+            $cart = session()->get('cart');
+            foreach ($cart as $key => $booking) {
+                $homestayId = $this->roomRepository->getRoomById($cart[$key]['roomId'])->homestay_id;
+                $homestay = $this->homestayRepository->getHomestayById($homestayId);
+            }
+        }
+        return view('user.booking.my-booking', [
+            'cart' => $cart,
+            'homestay' => $homestay
+        ]);
+    }
+
+    /**
+     * checkout
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function checkout()
+    {
+        $cart = session()->get('cart');
+        $check = array();
+        foreach ($cart as $key => $value) {
+            $begin = date('Y-m-d', strtotime($cart[$key]['from']));
+            $end =  date('Y-m-d', strtotime(Carbon::parse($cart[$key]['from'])));
+            $days = $begin . "" . $end;
+            if (!isset($check[$days])) {
+                $booking = Booking::create(['user_id' => auth()->user()->id, 'day_start' => $begin, 'day_end' => $end, 'status' => 1]);
+                BookingDetail::create(['booking_id' => $booking->id, 'room_id' => $cart[$key]['roomId'], 'price' => $cart[$key]['price'], 'quantity_room' => $cart[$key]['qty']]);
+                $check[$days] = [
+                    "booking_id" => $booking->id,
+                ];
+            } else {
+                BookingDetail::create(['booking_id' => $check[$days]['booking_id'], 'room_id' => $cart[$key]['roomId'], 'price' => $cart[$key]['price'], 'quantity_room' => $cart[$key]['qty']]);
+            }
+        }
+        Session()->forget('cart');
+
+        return redirect()->back()->with('message', __('messages.booking.sucsess'));
+    }
+
+    /**
+     * cancel the booking
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel($key)
+    {
+        dd($key);
+    }
+
+    /**
+     * history
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function history()
+    {
+        $booking = $this->bookingRepository->getBookingByIdUser(auth()->user()->id);
+        $bookingDetails = array();
+        foreach ($booking as $value) {
+            $bookingDetail = $this->bookingDetailRepository->getBookingDetailByIdBooking($value['id']);
+            foreach ($bookingDetail as $key => $value1) {
+                $mang = array($bookingDetail[$key]);
+                $bookingDetails = array_merge($bookingDetails, $mang);
+            }
+        }
+        dd($bookingDetails);
+
+        return view('user.booking.history', ['bookingDetails' => $bookingDetails]);
     }
 
     /**
