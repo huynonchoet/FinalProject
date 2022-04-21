@@ -7,6 +7,7 @@ use App\Http\Requests\AddHomestayRequest;
 use App\Http\Requests\UpdateHomestayRequest;
 use App\Interfaces\HomestayRepositoryInterface;
 use App\Interfaces\RoomRepositoryInterface;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -79,7 +80,7 @@ class HomestayController extends Controller
             return back()->with('success', __('messages.create.success'));
         }
 
-        return back()->with('error', __('messages.create.fail'));
+        return back()->with('error', __('messages.create.fail'))->withInput();
     }
 
     /**
@@ -161,7 +162,7 @@ class HomestayController extends Controller
             return back()->with('success', __('messages.update.success'));
         }
 
-        return back()->with('error', __('messages.update.fail'));
+        return back()->with('error', __('messages.update.fail'))->withInput();
     }
 
     /**

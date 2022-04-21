@@ -1,7 +1,7 @@
 <header class="">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <h2>Your Homestay Website<em>.</em></h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -27,10 +27,15 @@
                         </a>
                     </li>
                     @if (Auth::check())
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ Route('user.booking-landlords.index') }}">Người cho
-                                thuê</a>
-                        </li>
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="false">Người cho thuê</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{ Route('user.booking-landlords.index') }}">Booking order</a></li>
+                                <li><a class="dropdown-item" href="{{ Route('user.type-rooms.request') }}">Request Type Room</a></li>
+                            </ul>
+                        </div>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">Người Thuê</a>

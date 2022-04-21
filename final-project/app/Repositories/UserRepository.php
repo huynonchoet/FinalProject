@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Interfaces\UserRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -36,7 +37,10 @@ class UserRepository implements UserRepositoryInterface
             return $query->orderBy('name', request('sort'));
         });
 
-        return $users->simplePaginate(config('paginate.user'));
+            return $users->where('id', '<>' , Auth::id())
+                ->where('role', '<>' , '2')
+                ->orderBy('role', 'desc')
+                ->simplePaginate(config('paginate.user'));
     }
 
     /**

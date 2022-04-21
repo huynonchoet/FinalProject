@@ -16,21 +16,27 @@ class TypeRoomSeeder extends Seeder
     {
         TypeRoom::insert([
             'name' => 'Single bed room',
+            'status' => '1'
         ]);
         TypeRoom::insert([
             'name' => 'Twin bed room',
+            'status' => '1'
         ]);
         TypeRoom::insert([
             'name' => 'Double bed room',
+            'status' => '1'
         ]);
         TypeRoom::insert([
             'name' => 'Family room',
+            'status' => '1'
         ]);
         TypeRoom::insert([
             'name' => 'Studio room',
+            'status' => '1'
         ]);
         TypeRoom::insert([
             'name' => 'Full House',
+            'status' => '1'
         ]);
     }
 }

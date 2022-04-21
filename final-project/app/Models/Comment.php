@@ -20,4 +20,12 @@ class Comment extends Model
         'created_at',
         'updated_at'
     ];
+
+    /**
+     * Get the user that author of the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

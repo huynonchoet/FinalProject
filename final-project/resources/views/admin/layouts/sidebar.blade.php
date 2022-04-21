@@ -55,7 +55,7 @@
                 </li>
                 <li class="app-sidebar__heading">Room directory management</li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.type-rooms.index') }}">
                         <i class="metismenu-icon fas fa-folder"></i>
                         Room directory management
                     </a>

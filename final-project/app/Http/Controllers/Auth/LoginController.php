@@ -30,21 +30,22 @@ class LoginController extends Controller
     {
         $user = User::where('email', $request->email)->get();
         if ($user[0]['status'] == '1') {
-            return back()->with('error', __('This Email ahs been locked!!!'));
+            return back()->with('error', __('This Email has been locked!!!'));
         }
         $login = [
             'email' => $request->email,
             'password' => $request->password
         ];
         if (Auth::attempt($login)) {
-            if (Auth::user()->role == 1) {
+            if (Auth::user()->role == 1 || Auth::user()->role == 2) {
                 return redirect()->route('admin.users.index');
             } else {
                 return redirect()->route('home');
             }
-        } else {
-            return back()->with('error', __('messages.error_login'));
         }
+
+        return back()->with('error', __('messages.error_login'))->withInput();
+
     }
 
     /**

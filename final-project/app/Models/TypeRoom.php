@@ -12,5 +12,18 @@ class TypeRoom extends Model
 
     public $table = "type_rooms";
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'status'];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    public function getStatusLabelAttribute()
+    {
+        return [
+            '0' => 'Pending',
+            '1' => 'Accepted'
+        ][$this->status];
+    }
 }

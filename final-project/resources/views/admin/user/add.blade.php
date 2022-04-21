@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="signup-form">
                                 <!--sign up form-->
-                                <h2 class="nav-link">Add Admin</h2>
+                                <h2 class="nav-link">Add User</h2>
                                 @if (session()->has('message'))
                                     <div class="alert alert-success">
                                         {{ session()->get('message') }}
@@ -41,6 +41,23 @@
                                         <div class="col-md-12">
                                             <input type="password" name="password_confirmation" value=""
                                                 class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Role</label>
+                                        <div class="col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="role"
+                                                    id="exampleRadios1" value="1" checked>
+                                                <label class="form-check-label">
+                                                    Admin
+                                                </label>
+                                                <input class="form-check-input" type="radio" name="role"
+                                                    id="exampleRadios2" value="0" style="margin-left: 15px;">
+                                                <label class="form-check-label" style="margin-left: 32px;">
+                                                    User
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
