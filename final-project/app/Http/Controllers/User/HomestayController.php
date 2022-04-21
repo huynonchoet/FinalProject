@@ -7,6 +7,7 @@ use App\Http\Requests\AddHomestayRequest;
 use App\Http\Requests\UpdateHomestayRequest;
 use App\Interfaces\HomestayRepositoryInterface;
 use App\Interfaces\RoomRepositoryInterface;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

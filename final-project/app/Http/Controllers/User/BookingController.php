@@ -17,6 +17,7 @@ use DatePeriod;
 use DateTime;
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckroomRequest;
+use App\Models\Comment;
 
 class BookingController extends Controller
 {
@@ -54,7 +55,12 @@ class BookingController extends Controller
         $homestay = $this->homestayRepository->getHomestayById($homestayId);
         $rooms = $this->roomRepository->getAllRoomsByIdHomestay($homestayId);
 
-        return view('user.booking.index', ['homestay' => $homestay, 'rooms' => $rooms]);
+        return view('user.booking.index', [
+            'homestay' => $homestay, 
+            'rooms' => $rooms,
+            'comments' => Comment::where('homestay_id', $homestayId)->get(),
+
+        ]);
     }
 
     /**

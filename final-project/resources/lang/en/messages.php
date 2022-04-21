@@ -12,7 +12,7 @@ return [
         'fail' => 'Failed to update',
     ],
     'delete' => [
-        'success' => 'delete successfully',
+        'success' => 'Delete successfully',
         'fail' => 'Failed to delete',
     ],
     'welcome' => 'Welcome to our application',

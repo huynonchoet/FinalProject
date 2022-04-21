@@ -9,6 +9,7 @@ use App\Http\Controllers\CaptchaValidationController;
 use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\BookingLandlordController;
 use App\Http\Controllers\User\BookingController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\HomestayController;
 use App\Http\Controllers\User\RoomController;
 use App\Models\Booking;
@@ -73,6 +74,12 @@ Route::name('user.')->group(function () {
     Route::prefix('/type-rooms')->name('type-rooms.')->group(function () {
         Route::post('/', [TypeRoomController::class, 'store'])->name('store');
         Route::get('/request', [TypeRoomController::class, 'request'])->name('request');
+    });
+
+    Route::middleware('user')->prefix('/comment')->name('comment.')->group(function () {
+        Route::post('/', [CommentController::class, 'store'])->name('store');
+        Route::patch('/{id}', [CommentController::class, 'update'])->name('update');
+        Route::get('/{id}', [CommentController::class, 'destroy'])->name('delete');
     });
 });
 

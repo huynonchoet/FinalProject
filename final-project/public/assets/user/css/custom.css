@@ -53,7 +53,56 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
 }
-.div-action{
+.div-action {
     height: 33px;
     margin-top: 29px;
+}
+.action-comment {
+    float: right;
+    position: relative;
+    margin-top: -21px;
+    margin-right: -56px;
+}
+.action-option {
+    display: none;
+    float: right;
+    margin: 0px -33px;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    border-radius: 10px;
+    font-weight: 500;
+    box-shadow: 0px 3px 5px #3333334d;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    width: 85px;
+    height: auto;
+    text-align: center;
+}
+.action-comment:hover .action-option {
+    display: block;
+}
+.action-option ul li:hover {
+    color: #f7941d;
+}
+.edit-parent-comment {
+    display: inline-block;
+    color: black;
+    font-size: 13px;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border: none;
+    outline: none;
+}
+.fas {
+    font-size: 20px;
+}
+.li-delete {
+    background: none;
+    border: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
 }
