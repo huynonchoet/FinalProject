@@ -18,59 +18,90 @@
         <div class="container">
             <div class="sidebar-item comments">
                 <div class="content">
-                    <ul>
-                        @if (Session::has('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        @if (Session::has('error'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                        <div class="sidebar-heading">
-                        </div>
+                    <div class="sidebar-heading">
                         <div>
                             <div class="table100 ver1 m-b-110">
                                 <div class="table table-hover table-center js-pscroll">
                                     <table>
                                         <tbody id="value-booking">
-                                            <tr class="row100 head">
-                                                <th class="cell100 column1">Room</th>
-                                                <th class="cell100 column1">Type</th>
-                                                <th class="cell100 column2">Day Start</th>
-                                                <th class="cell100 column3">Day End</th>
-                                                <th class="cell100 column3">Quantity</th>
-                                                <th class="cell100 column3">Total Price</th>
-                                                <th class="cell100 column3">Action</th>
-                                            </tr>
-                                            @foreach ($bookingDetails as $key => $bookingDetail)
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>
-                                                        <a
-                                                            href="">Detail</a>
-                                                        <a
-                                                            href="">Cancel</a>
-                                                    </td>
-                                            @endforeach
-                                            <td>
-                                                <a href="">Booking</a>
-                                            </td>
+                                            <?php
+                                            krsort($rooms);
+                                            krsort($bookings);
+                                            krsort($bookingDetails);
+                                            ?>
+                                            <tr>
+                                                <th>
+                                                    Booking ID
+                                                    <br>
+                                                    @foreach ($bookings as $booking)
+                                                        <p class="text-center">{{ $booking->id }}</p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
+                                                <th>
+                                                    Room Name
+                                                    <br>
+                                                    @foreach ($rooms as $room)
+                                                        <p>{{ $room->name }}</p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
+                                                <th>
+                                                    Room Type
+                                                    <br>
+                                                    @foreach ($rooms as $room)
+                                                        <p>{{ $room->typeRoom->name }}</p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
+                                                <th>
+                                                    From
+                                                    <br>
+                                                    @foreach ($bookings as $booking)
+                                                        <p class="text-center">{{ $booking->day_start }}</p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
+                                                <th>
+                                                    To
+                                                    <br>
+                                                    @foreach ($bookings as $booking)
+                                                        <p class="text-center">{{ $booking->day_end }}</p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
+                                                <th>
+                                                    Quantity Room
+                                                    <br>
+                                                    @foreach ($bookingDetails as $bookingDetail)
+                                                        <p class="text-center">{{ $bookingDetail->quantity_room }}</p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
+                                                <th>
+                                                    Total Price
+                                                    <br>
+                                                    @foreach ($bookingDetails as $bookingDetail)
+                                                        <p class="text-center">{{ $bookingDetail->price }}</p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
+                                                <th>
+                                                    Action
+                                                    <br>
+                                                    @foreach ($rooms as $room)
+                                                        <p><a class="text-warning h6" 
+                                                            href="{{ Route('booking.room-detail', ['roomId' => $room->id]) }}">View Room</a></p>
+                                                        <br>
+                                                    @endforeach
+                                                </th>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>

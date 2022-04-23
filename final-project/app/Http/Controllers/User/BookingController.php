@@ -270,16 +270,25 @@ class BookingController extends Controller
     {
         $booking = $this->bookingRepository->getBookingByIdUser(auth()->user()->id);
         $bookingDetails = array();
+        $rooms = array();
+        $bookings = array();
         foreach ($booking as $value) {
             $bookingDetail = $this->bookingDetailRepository->getBookingDetailByIdBooking($value['id']);
             foreach ($bookingDetail as $key => $value1) {
+                $room = $this->roomRepository->getRoomById($value1['room_id']);
+                $arrayRoom = array($room);
+                $rooms = array_merge($rooms, $arrayRoom);
+
+                $books = $this->bookingRepository->getBookingById($value1['booking_id']);
+                $arraybooking = array($books);
+                $bookings = array_merge($bookings, $arraybooking);
+
                 $mang = array($bookingDetail[$key]);
                 $bookingDetails = array_merge($bookingDetails, $mang);
             }
         }
-        dd($bookingDetails);
 
-        return view('user.booking.history', ['bookingDetails' => $bookingDetails]);
+        return view('user.booking.history', ['bookingDetails' => $bookingDetails, 'rooms' => $rooms, 'bookings' => $bookings]);
     }
 
     /**

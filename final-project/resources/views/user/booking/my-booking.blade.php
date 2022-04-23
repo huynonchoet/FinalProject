@@ -60,7 +60,7 @@
                                                     <td>{{ $booking['price'] }} VND</td>
                                                     <td>
                                                         <?php
-                                                        $key =$booking['roomId'] . '' . $booking['from'] . '' . $booking['to'];
+                                                        $key = $booking['roomId'] . '' . $booking['from'] . '' . $booking['to'];
                                                         ?>
                                                         <a
                                                             href="{{ Route('booking.room-detail', ['roomId' => $booking['roomId']]) }}">Detail</a>
@@ -69,7 +69,9 @@
                                                     </td>
                                             @endforeach
                                             <td>
-                                                <a href="{{ Route('booking.checkout') }}">Booking</a>
+                                                @if (!empty($homestay))
+                                                    <a href="{{ Route('booking.checkout') }}">Booking</a>
+                                                @endif
                                             </td>
                                             </tr>
                                         </tbody>
