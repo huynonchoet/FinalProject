@@ -21,6 +21,7 @@
             });
         });
     </script>
+
     <div class="heading-page header-text">
         <section class="page-heading">
             <div class="container">
@@ -102,7 +103,7 @@
                     </div>
                     <div class="content">
                         @foreach ($comments as $item)
-                            @if ($item->parent_id == 0)
+                            @if ($item->parent_id == 0 && $item->status == 0)
                                 <ul id="ul-{{ $item->id }}" style="margin-bottom: -26px; height: 100px;">
                                     <li>
                                         <div class="author-thumb">
@@ -130,7 +131,14 @@
                                                                 </button>
                                                             </form>
                                                         @else
-                                                            <li class="edit-parent-comment">Report</li>
+                                                            <input type="hidden" name="userId"
+                                                                value={{ $item->user->name }}>
+                                                            <input type="hidden" name="content"
+                                                                value={{ $item->user->content }}>
+                                                            <button id="report" type="button" class="li-delete"
+                                                                data-toggle="modal" data-target="#myModal">
+                                                                Report
+                                                            </button>
                                                         @endif
                                                     </ul>
                                                 </div>
@@ -160,14 +168,14 @@
                                                         <div class="col-lg-12">
                                                             <fieldset>
                                                                 <button type="submit" id="form-submit" style="display: inline-block;
-                                                                                    background-color: #f48840;
-                                                                                    color: #fff;
-                                                                                    font-size: 13px;
-                                                                                    font-weight: 500;
-                                                                                    padding: 12px 20px;
-                                                                                    text-transform: uppercase;
-                                                                                    transition: all .3s;
-                                                                                    border: none;"
+                                                                                                            background-color: #f48840;
+                                                                                                            color: #fff;
+                                                                                                            font-size: 13px;
+                                                                                                            font-weight: 500;
+                                                                                                            padding: 12px 20px;
+                                                                                                            text-transform: uppercase;
+                                                                                                            transition: all .3s;
+                                                                                                            border: none;"
                                                                     class="main-button">Edit
                                                                     Comment</button>
                                                             </fieldset>
@@ -178,7 +186,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <ul id="reply-{{ $item->id }}"  style="margin-bottom: 25px;">
+                                <ul id="reply-{{ $item->id }}" style="margin-bottom: 25px;">
                                     <div class="button" style="margin-left: 120px">
                                         <input type="hidden" id="parentId" value="{{ $item->id }}" />
                                         <a id="replyButton" class="btn">
@@ -187,7 +195,7 @@
                                     </div>
                                 </ul>
                                 @foreach ($comments as $item_child)
-                                    @if ($item_child->parent_id == $item->id)
+                                    @if ($item_child->parent_id == $item->id && $item->status == 0)
                                         <ul id="ul-{{ $item_child->id }}"
                                             style="margin: -20px 0px 35px 36px; height: 100px; padding-left:20px;/* margin-bottom: 25px; */">
                                             <li>
@@ -218,7 +226,10 @@
                                                                         </button>
                                                                     </form>
                                                                 @else
-                                                                    <li class="edit-parent-comment">Report</li>
+                                                                    <button id="report" type="button" class="li-delete"
+                                                                        data-toggle="modal" data-target="#myModal">
+                                                                        Report
+                                                                    </button>
                                                                 @endif
                                                             </ul>
                                                         </div>
@@ -249,14 +260,14 @@
                                                                 <div class="col-lg-12">
                                                                     <fieldset>
                                                                         <button type="submit" id="form-submit" style="display: inline-block;
-                                                                                    background-color: #f48840;
-                                                                                    color: #fff;
-                                                                                    font-size: 13px;
-                                                                                    font-weight: 500;
-                                                                                    padding: 12px 20px;
-                                                                                    text-transform: uppercase;
-                                                                                    transition: all .3s;
-                                                                                    border: none;"
+                                                                                                            background-color: #f48840;
+                                                                                                            color: #fff;
+                                                                                                            font-size: 13px;
+                                                                                                            font-weight: 500;
+                                                                                                            padding: 12px 20px;
+                                                                                                            text-transform: uppercase;
+                                                                                                            transition: all .3s;
+                                                                                                            border: none;"
                                                                             class="main-button">Edit
                                                                             Comment</button>
                                                                     </fieldset>

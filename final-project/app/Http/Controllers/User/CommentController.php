@@ -73,6 +73,12 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $commentChilds = Comment::where('parent_id', $id)->get();
+        foreach ($commentChilds as $item) {
+            Comment::find($item->id)->delete();
+        }
+        Comment::find($id)->delete();
+
+        return redirect()->back()->with('success', __('messages.delete.success'));
     }
 }

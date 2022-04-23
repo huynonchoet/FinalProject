@@ -79,7 +79,7 @@ Route::name('user.')->group(function () {
     Route::middleware('user')->prefix('/comment')->name('comment.')->group(function () {
         Route::post('/', [CommentController::class, 'store'])->name('store');
         Route::patch('/{id}', [CommentController::class, 'update'])->name('update');
-        Route::get('/{id}', [CommentController::class, 'destroy'])->name('delete');
+        Route::delete('/{id}', [CommentController::class, 'destroy'])->name('delete');
     });
 });
 
