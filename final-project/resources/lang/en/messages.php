@@ -73,6 +73,7 @@ return [
     ],
     'booking' => [
         'sucsess' => 'You have sent successful reservation request!',
+        'error' => 'Please Checkout Your Booking Before Add New Homestay!',
     ]
 
 ];
