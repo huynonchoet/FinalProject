@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\CommentReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,20 +35,30 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function report($id)
     {
-        //
+        $comment = Comment::find($id);
+
+        return view("modal.report-comment", compact("comment"))->render();
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function createReport(Request $request)
     {
-        //
+        $data = [
+            'user_id' => auth()->id(),
+            'comment_id' => $request->comment_id,
+            'content' => $request->content,
+            'status' => 0,
+        ];
+        CommentReport::create($data);
+
+        return redirect()->back()->with('success', __('Report successfully!!!'));
     }
 
     /**

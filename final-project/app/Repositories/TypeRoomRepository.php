@@ -15,7 +15,7 @@ class TypeRoomRepository implements TypeRoomRepositoryInterface
      */
     public function getAllTypeRooms()
     {
-        return TypeRoom::all();
+        return TypeRoom::where("status","1")->get();
     }
 
     /**

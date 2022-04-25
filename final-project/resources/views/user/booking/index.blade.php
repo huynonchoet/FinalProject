@@ -19,6 +19,26 @@
                 $('div#edit-comment-' + commentId).css('display', 'block');
                 $('ul#ul-' + commentId).css('margin-bottom', '70px');
             });
+            $(".reportDetail")
+                .unbind("click")
+                .click(function(e) {
+                    const id = $(this).attr("data-id");
+                    var route = $(this).attr("route");
+                    $.ajax({
+                        url: route,
+                        type: "GET",
+                        data: {
+                            id: id,
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            $(".details").html(data);
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
+                        },
+                    });
+                });
         });
     </script>
 
@@ -38,6 +58,15 @@
     </div>
     <div class="blog-posts">
         <div class="container">
+            <span class="action-comment"><i class="fas fa-ellipsis-h"></i>
+                <div class="action-option">
+                    <ul>
+                        <button data-toggle="modal" data-target="#ModalHomestay" data-id="1"
+                            route="{{ route('user.homestays.report', ['id' => $homestay->id]) }}"
+                            class="li-delete reportDetail">Report</button>
+                    </ul>
+                </div>
+            </span>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="all-blog-posts">
@@ -131,14 +160,10 @@
                                                                 </button>
                                                             </form>
                                                         @else
-                                                            <input type="hidden" name="userId"
-                                                                value={{ $item->user->name }}>
-                                                            <input type="hidden" name="content"
-                                                                value={{ $item->user->content }}>
-                                                            <button id="report" type="button" class="li-delete"
-                                                                data-toggle="modal" data-target="#myModal">
-                                                                Report
-                                                            </button>
+                                                            <button data-toggle="modal" data-target="#ModalDetail"
+                                                                data-id="{{ $item->id }}"
+                                                                route="{{ route('user.comment.report', ['id' => $item->id]) }}"
+                                                                class="li-delete reportDetail">Report</button>
                                                         @endif
                                                     </ul>
                                                 </div>
@@ -168,15 +193,14 @@
                                                         <div class="col-lg-12">
                                                             <fieldset>
                                                                 <button type="submit" id="form-submit" style="display: inline-block;
-                                                                                                            background-color: #f48840;
-                                                                                                            color: #fff;
-                                                                                                            font-size: 13px;
-                                                                                                            font-weight: 500;
-                                                                                                            padding: 12px 20px;
-                                                                                                            text-transform: uppercase;
-                                                                                                            transition: all .3s;
-                                                                                                            border: none;"
-                                                                    class="main-button">Edit
+                                                                        background-color: #f48840;
+                                                                        color: #fff;
+                                                                        font-size: 13px;
+                                                                        font-weight: 500;
+                                                                        padding: 12px 20px;
+                                                                        text-transform: uppercase;
+                                                                        transition: all .3s;
+                                                                        border: none;" class="main-button">Edit
                                                                     Comment</button>
                                                             </fieldset>
                                                         </div>
@@ -226,10 +250,10 @@
                                                                         </button>
                                                                     </form>
                                                                 @else
-                                                                    <button id="report" type="button" class="li-delete"
-                                                                        data-toggle="modal" data-target="#myModal">
-                                                                        Report
-                                                                    </button>
+                                                                    <button data-toggle="modal" data-target="#ModalDetail"
+                                                                        data-id="{{ $item_child->id }}"
+                                                                        route="{{ route('user.comment.report', ['id' => $item_child->id]) }}"
+                                                                        class="li-delete reportDetail">Report</button>
                                                                 @endif
                                                             </ul>
                                                         </div>
@@ -259,15 +283,16 @@
                                                                 </div>
                                                                 <div class="col-lg-12">
                                                                     <fieldset>
-                                                                        <button type="submit" id="form-submit" style="display: inline-block;
-                                                                                                            background-color: #f48840;
-                                                                                                            color: #fff;
-                                                                                                            font-size: 13px;
-                                                                                                            font-weight: 500;
-                                                                                                            padding: 12px 20px;
-                                                                                                            text-transform: uppercase;
-                                                                                                            transition: all .3s;
-                                                                                                            border: none;"
+                                                                        <button type="submit" id="form-submit"
+                                                                            style="display: inline-block;
+                                                                                                                                                                                            background-color: #f48840;
+                                                                                                                                                                                            color: #fff;
+                                                                                                                                                                                            font-size: 13px;
+                                                                                                                                                                                            font-weight: 500;
+                                                                                                                                                                                            padding: 12px 20px;
+                                                                                                                                                                                            text-transform: uppercase;
+                                                                                                                                                                                            transition: all .3s;
+                                                                                                                                                                                            border: none;"
                                                                             class="main-button">Edit
                                                                             Comment</button>
                                                                     </fieldset>
@@ -366,6 +391,43 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <h3 class="title-order">Report Comment</h3>
+                <div class="modal-header">
+                    <button type="button" class="close button-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body body">
+                    <div class="details"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalHomestay" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <h3 class="title-order">Report Homestay</h3>
+                <div class="modal-header">
+                    <button type="button" class="close button-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body body">
+                    <div class="details"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
 @endsection
