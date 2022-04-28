@@ -3,8 +3,9 @@
         <img style="width: 100px; height: 100px;" src="{{ asset('storage/users/' . $comment->user->avatar) }}" alt="">
     </div>
     <div class="right-content ml-2 mt-2">
-        <h4>{{ $comment->user->name }}<span>{{ $comment->user->updated_at->format('D m/Y') }}</span>
+        <h4>{{ $comment->user->name }}
         </h4>
+        <span>{{ $comment->user->updated_at->format('D m/Y') }}</span>
         <p id="content-{{ $comment->id }}">{{ $comment->content }}
         </p>
     </div>

@@ -28,4 +28,12 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the report of the comment.
+     */
+    public function report()
+    {
+        return $this->hasMany(CommentReport::class);
+    }
 }

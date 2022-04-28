@@ -140,7 +140,7 @@
                                                 src="{{ asset('storage/users/' . $item->user->avatar) }}" alt="">
                                         </div>
                                         <div class="right-content">
-                                            <h4>{{ $item->user->name }}<span>{{ $item->user->updated_at->format('D m/Y') }}</span>
+                                            <h4>{{ $item->user->name }}<span>{{ $item->updated_at->format('D m/Y') }}</span>
                                             </h4>
                                             <span class="action-comment"><i class="fas fa-ellipsis-h"></i>
                                                 <div class="action-option">

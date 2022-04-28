@@ -20,4 +20,20 @@ class CommentReport extends Model
         'content',
         'status'
     ];
+
+    /**
+     * Get the user that author of the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the user that author of the comment.
+     */
+    public function report()
+    {
+        return $this->hasMany(CommentReport::class);
+    }
 }

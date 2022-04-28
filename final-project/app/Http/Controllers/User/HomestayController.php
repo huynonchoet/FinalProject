@@ -213,7 +213,7 @@ class HomestayController extends Controller
             'user_id' => auth()->id(),
             'homestay_id' => (int)$request->homestay_id,
             'content' => $request->content,
-            'status' => 0,
+            'status' => '0',
         ];
         HomestayReport::create($data);
 

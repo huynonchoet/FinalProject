@@ -54,7 +54,7 @@ class CommentController extends Controller
             'user_id' => auth()->id(),
             'comment_id' => $request->comment_id,
             'content' => $request->content,
-            'status' => 0,
+            'status' => '0',
         ];
         CommentReport::create($data);
 
