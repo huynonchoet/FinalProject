@@ -7,7 +7,8 @@ use App\Http\Requests\AddHomestayRequest;
 use App\Http\Requests\UpdateHomestayRequest;
 use App\Interfaces\HomestayRepositoryInterface;
 use App\Interfaces\RoomRepositoryInterface;
-use App\Models\Comment;
+use App\Models\Homestay;
+use App\Models\HomestayReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -185,5 +186,37 @@ class HomestayController extends Controller
         }
 
         return back()->with('error', __('messages.delete.fail'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function report($id)
+    {
+        $homestay = Homestay::find($id);
+
+        return view("modal.report-homestay", compact("homestay"))->render();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createReport(Request $request)
+    {;
+        $data = [
+            'user_id' => auth()->id(),
+            'homestay_id' => (int)$request->homestay_id,
+            'content' => $request->content,
+            'status' => '0',
+        ];
+        HomestayReport::create($data);
+
+        return redirect()->back()->with('success', __('Report successfully!!!'));
     }
 }

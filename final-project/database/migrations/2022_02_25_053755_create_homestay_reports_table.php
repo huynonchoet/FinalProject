@@ -18,6 +18,7 @@ class CreateHomestayReportsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('homestay_id');
             $table->text('content');
+            $table->enum('status', [0, 1])->comment = '1:checked 0:normal';
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
