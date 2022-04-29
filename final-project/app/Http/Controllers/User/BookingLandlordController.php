@@ -36,8 +36,6 @@ class BookingLandlordController extends Controller
         $request->start_day = Carbon::yesterday()->format('Y-m-d');
         $request->end_day = Carbon::tomorrow()->format('Y-m-d');
         $bookinglandlords = $this->bookingRepository->getAllBookingsByIdUserLandLord($request);
-        $this->latedBooking($bookinglandlords);
-        $bookinglandlords = $this->bookingRepository->getAllBookingsByIdUserLandLord($request);
 
         return view('user.booking_landlords.index', ['bookinglandlords' => $bookinglandlords]);
     }
@@ -53,9 +51,7 @@ class BookingLandlordController extends Controller
         foreach ($bookinglandlords as $value) {
             $value->total_price = number_format($value->total_price);
         }
-        $this->latedBooking($bookinglandlords);
-        $bookinglandlords = $this->bookingRepository->getAllBookingsByIdUserLandLord($request);
-
+        
         return $bookinglandlords;
     }
 
@@ -87,19 +83,5 @@ class BookingLandlordController extends Controller
         $user = $this->userRepository->getUserById($booking->user_id);
 
         return view('user.booking_landlords.show');
-    }
-
-    public function latedBooking($bookings)
-    {  
-        foreach ($bookings as $item) {
-            // $start = Carbon::createFromFormat('Y.m.d', $item->start_day);
-            // dd($start);
-            // // $startDay = $start->addDays(-1);
-            // // $now = Carbon::createFromFormat('Y-m-d', Carbon::now());
-            
-            // // if ($start === $now ) {
-            // //     $this->bookingRepository->updateBooking($item->id, ['status' => '1']);
-            // // }
-        }
     }
 }

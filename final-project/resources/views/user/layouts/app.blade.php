@@ -12,6 +12,7 @@
         rel="stylesheet">
 
     <title>Your Homestay</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/user/images/icon.png') }}">
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/user/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
