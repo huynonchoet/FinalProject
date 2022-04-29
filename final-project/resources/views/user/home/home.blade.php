@@ -141,20 +141,22 @@
                         <div class="col-md-4 col-sm-6">
                             <div class="blog-post">
                                 <div class="blog-thumb">
-                                    <img src="{{ asset('storage/homestays/' . $images['0']) }}" alt="">
+                                    <img style="width: 352px; height: 233px;"
+                                        src="{{ asset('storage/homestays/' . $images['0']) }}" alt="">
                                 </div>
-                                <div class="down-content">
-                                    <span> {{ $homestay->name }} </span>
-                                    <a href="vacations.html">
+                                <div class="down-content" style="width: 352px; height: 358px;">
+                                    <div style="width: 300px; height: 70px;">
+                                        <span > {{ $homestay->name }} </span>
                                         <h4>{{ $homestay->phone }}</h4>
-                                    </a>
-                                    <p>{{ $homestay->address }}</p>
-                                    <div class="post-options">
+                                    </div>
+                                    <p style="width: 300px; height: 145px;">{{ $homestay->address }}</p>
+                                    <div class="post-options mb-0">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <ul class="post-tags">
                                                     <li><i class="fa fa-bullseye"></i></li>
-                                                    <li><a href="{{ route('booking.index', ['homestayId' => $homestay->id]) }}">View
+                                                    <li><a
+                                                            href="{{ route('booking.index', ['homestayId' => $homestay->id]) }}">View
                                                             Homestay
                                                         </a>
                                                     </li>
