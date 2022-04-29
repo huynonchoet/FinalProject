@@ -57,25 +57,31 @@
                                                     <td>{{ $booking['from'] }}</td>
                                                     <td>{{ $booking['to'] }} </td>
                                                     <td>{{ $booking['qty'] }}</td>
-                                                    <td>{{ $booking['price'] }} VND</td>
+                                                    <td>{{ number_format($booking['price'], 0, '', ',') }} VND</td>
                                                     <td>
                                                         <?php
                                                         $key = $booking['roomId'] . '' . $booking['from'] . '' . $booking['to'];
                                                         ?>
                                                         <a
                                                             href="{{ Route('booking.room-detail', ['roomId' => $booking['roomId']]) }}">Detail</a>
-                                                        <a
-                                                            href="{{ Route('booking.cancel', ['key' => $key]) }}">Cancel</a>
+                                                        <form action="{{ Route('booking.cancel') }}" method="post"
+                                                            enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+                                                            <input name="key" type="hidden" value={{ $key }}>
+                                                            <button name="submit" type="submit"
+                                                                onclick="return confirm('Are you sure you want to remove this room?');"
+                                                                class="btn"><i
+                                                                    class="fa fa-trash"></i></button>
+                                                        </form>
                                                     </td>
+                                                </tr>
                                             @endforeach
-                                            <td>
-                                                @if (!empty($homestay))
-                                                    <a href="{{ Route('booking.checkout') }}">Booking</a>
-                                                @endif
-                                            </td>
-                                            </tr>
                                         </tbody>
                                     </table>
+                                    @if (!empty($homestay))
+                                        <p class="float-right"><a href="{{ Route('booking.checkout') }}">Booking</a>
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -85,6 +91,15 @@
             </div>
         </div>
     </div>
+    <script>
+        function formDelete() {
+            if (confirm("Are You Sure to delete this")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 @endsection
 @section('css')
 @endsection

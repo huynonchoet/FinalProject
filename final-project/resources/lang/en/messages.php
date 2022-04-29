@@ -72,7 +72,7 @@ return [
         'full' => 'The number of rooms is not enough for your request!'
     ],
     'booking' => [
-        'sucsess' => 'You have sent successful reservation request!',
+        'sucsess' => 'Added This Room To Your Booking Successfully!',
         'error' => 'Please Checkout Your Booking Before Add New Homestay!',
     ]
 

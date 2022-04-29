@@ -70,13 +70,13 @@
                             <form action="{{ route('admin.users.update', ['id' => $user->id]) }}" method="post">
                                 {{ csrf_field() }}
                                 @method('post')
-                                <button type="submit" class="btn btn-warning">Block</button>
+                                <button type="submit" class="btn btn-warning"  onclick="return confirm('Are you sure you want to block this user?');">Block</button>
                             </form>
                         @else
                             <form action="{{ route('admin.users.unblock', ['id' => $user->id]) }}" method="post">
                                 {{ csrf_field() }}
                                 @method('post')
-                                <button type="submit" class="btn btn-success">UnBlock</button>
+                                <button type="submit" class="btn btn-success"  onclick="return confirm('Are you sure you want to unblock this user?');">UnBlock</button>
                             </form>
                         @endif
                     </td>

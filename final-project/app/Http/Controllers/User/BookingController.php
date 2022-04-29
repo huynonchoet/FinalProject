@@ -18,6 +18,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckroomRequest;
 use App\Models\Comment;
+use Illuminate\Support\Arr;
 
 class BookingController extends Controller
 {
@@ -56,7 +57,7 @@ class BookingController extends Controller
         $rooms = $this->roomRepository->getAllRoomsByIdHomestay($homestayId);
 
         return view('user.booking.index', [
-            'homestay' => $homestay, 
+            'homestay' => $homestay,
             'rooms' => $rooms,
             'comments' => Comment::where('homestay_id', $homestayId)->get(),
 
@@ -135,7 +136,6 @@ class BookingController extends Controller
         }
         foreach ($check_qty as $qty) {
             if ($qty < $request->qty) {
-
                 return redirect()->back()->with('message', __('messages.check.full'));
             }
         }
@@ -161,9 +161,9 @@ class BookingController extends Controller
         if (isset($cart)) {
             foreach ($cart as $key1 => $booking) {
                 $homestayIdCurrent = $this->roomRepository->getRoomById($cart[$key1]['roomId'])->homestay_id;
-            }
-            if ($homestayId != $homestayIdCurrent) {
-                return redirect()->back()->with('message', __('messages.booking.error'));
+                if ($homestayId != $homestayIdCurrent) {
+                    return redirect()->back()->with('message', __('messages.booking.error'));
+                }
             }
             if (isset($cart[$key])) {
                 $cart[$key]['qty'] += $request->qty;
@@ -215,9 +215,15 @@ class BookingController extends Controller
         $homestay = array();
         if (session()->has('cart')) {
             $cart = session()->get('cart');
+            $days = array();
             foreach ($cart as $key => $booking) {
                 $homestayId = $this->roomRepository->getRoomById($cart[$key]['roomId'])->homestay_id;
                 $homestay = $this->homestayRepository->getHomestayById($homestayId);
+                $cart[$key]['bill'] = $booking['from'] . '' . $booking['to'];
+                session()->put('cart', $cart);
+                if (!in_array($cart[$key]['bill'], $days)) {
+                    $days[$booking['from'] . '' . $booking['to']] = ['from' => $booking['from'], 'to' => $booking['to']];
+                }
             }
         }
         return view('user.booking.my-booking', [
@@ -261,9 +267,13 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cancel($key)
+    public function cancel(Request $request)
     {
-        dd($key);
+        $cart = session()->get('cart');
+        $cart = Arr::except($cart, [$request->key]);
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('message', __('messages.booking.sucsess'));
     }
 
     /**

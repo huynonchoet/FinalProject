@@ -194,7 +194,7 @@
                                                         <button type="button" id="accept" class="btn btn-success">
                                                             <i class="bi bi-check-circle-fill"></i>Accept
                                                         </button>
-                                                        <button type="button" id="cancel" class="btn btn-danger">
+                                                        <button type="button" id="cancel" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this request?');">
                                                             <i class="bi bi-check-circle-fill"></i>Cancel
                                                         </button>
                                                     </td>

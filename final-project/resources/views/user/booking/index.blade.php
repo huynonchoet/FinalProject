@@ -111,7 +111,7 @@
                                 <div class="right-content">
                                     <h4>{{ $item->name }}<span>{{ $item->created_at }}<span>({{ $item->typeRoom->name }})</span>
                                     </h4>
-                                    <p>Real Price : {{ $item->price }} VND</p>
+                                    <p>Real Price : {{ number_format($item->price, 0, '', ',') }} VND</p>
                                     <p>Discount : {{ $item->discount }}%</p>
                                     <p>Available : {{ $item->quantity_room }}</p>
                                     <p>{{ $item->description }}.</p>
@@ -200,7 +200,8 @@
                                                                         padding: 12px 20px;
                                                                         text-transform: uppercase;
                                                                         transition: all .3s;
-                                                                        border: none;" class="main-button">Edit
+                                                                        border: none;" 
+                                                            class="main-button">Edit
                                                                     Comment</button>
                                                             </fieldset>
                                                         </div>
@@ -283,6 +284,17 @@
                                                                 </div>
                                                                 <div class="col-lg-12">
                                                                     <fieldset>
+<<<<<<< HEAD
+                                                                        <button type="submit" id="form-submit" style="display: inline-block;
+                                                                                            background-color: #f48840;
+                                                                                            color: #fff;
+                                                                                            font-size: 13px;
+                                                                                            font-weight: 500;
+                                                                                            padding: 12px 20px;
+                                                                                            text-transform: uppercase;
+                                                                                            transition: all .3s;
+                                                                                            border: none;"
+=======
                                                                         <button type="submit" id="form-submit"
                                                                             style="display: inline-block;
                                                                                                                                                                                             background-color: #f48840;
@@ -293,6 +305,7 @@
                                                                                                                                                                                             text-transform: uppercase;
                                                                                                                                                                                             transition: all .3s;
                                                                                                                                                                                             border: none;"
+>>>>>>> 72322499a8eaa97926af109bd8d08b38b5da3af6
                                                                             class="main-button">Edit
                                                                             Comment</button>
                                                                     </fieldset>
