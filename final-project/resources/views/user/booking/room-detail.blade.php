@@ -49,7 +49,12 @@
                             <p>Name Room: {{ $room->name }}</P>
                             <p>Type: {{ $room->typeRoom->name }}</P>
                             <p>Available: {{ $room->quantity_room }}</P>
-                            <p>Price: {{ $room->price - ($room->price * $room->discount/100) }} VND Per Night @if($room->discount>0)(Include Discount: {{ $room->discount }}%)@endif
+                            <p>Price:
+                                {{ number_format($room->price - ($room->price * $room->discount) / 100, 0, '', ',') }}
+                                VND Per Night
+                                @if ($room->discount > 0)
+                                    (Include Discount: {{ $room->discount }}%)
+                                @endif
                         </div>
                     </div>
                     <br>
@@ -120,7 +125,7 @@
                         culpa blanditiis. Quia tenetur distinctio rem, quibusdam officiis voluptatum neque!</p>
                 </div>
                 <br>
-                <br>
+                <a class="float-right" href="{{ route('booking.index', ['homestayId' => $homestay->id]) }}">Back List Room</a>
             </div>
         </div>
     </div>
@@ -153,11 +158,13 @@
                                         <div class="content">
                                             <p>Name Room: {{ $room->name }}</P>
                                             <p>Type: {{ $room->typeRoom->name }}</P>
+                                            <p>Quantity: {{ session()->get('qty') }}</P>
+                                            <p>Unit Price: {{ number_format($room->price, 0, '', ',') }}</P>
                                             <p>From: {{ session()->get('from') }}</P>
                                             <p>To: {{ session()->get('to') }}</P>
                                             <p>Discount: {{ $room->discount }}%</P>
                                             <p>Total Price:
-                                                {{ ($room->price * session()->get('qty') * session()->get('days')) -($room->price * session()->get('qty') * session()->get('days') * $room->discount/100) }}
+                                                {{ number_format($room->price * session()->get('qty') * session()->get('days') -($room->price * session()->get('qty') * session()->get('days') * $room->discount) / 100,0,'',',') }}
                                                 VND</P>
                                             <input type="hidden" name="from" class="form-control"
                                                 value={{ session()->get('from') }}>
@@ -166,12 +173,12 @@
                                             <input type="hidden" name="qty" class="form-control"
                                                 value={{ session()->get('qty') }}>
                                             <input type="hidden" name="price" class="form-control"
-                                                value={{ ($room->price * session()->get('qty') * session()->get('days')) -($room->price * session()->get('qty') * session()->get('days') * $room->discount/100) }}>
+                                                value={{ $room->price * session()->get('qty') * session()->get('days') -($room->price * session()->get('qty') * session()->get('days') * $room->discount) / 100 }}>
                                         </div>
                                     </fieldset>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Send Request</button>
+                                        <button type="submit" class="btn btn-primary">Add To My Booking</button>
                                     </div>
                                 </form>
                             @else

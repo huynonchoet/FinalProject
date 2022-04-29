@@ -81,7 +81,7 @@
                                 <div class="right-content">
                                     <h4>{{ $item->name }}<span>{{ $item->created_at }}<span>({{ $item->typeRoom->name }})</span>
                                     </h4>
-                                    <p>Real Price : {{ $item->price }} VND</p>
+                                    <p>Real Price : {{ number_format($item->price, 0, '', ',') }} VND</p>
                                     <p>Discount : {{ $item->discount }}%</p>
                                     <p>Available : {{ $item->quantity_room }}</p>
                                     <p>{{ $item->description }}.</p>
@@ -160,14 +160,14 @@
                                                         <div class="col-lg-12">
                                                             <fieldset>
                                                                 <button type="submit" id="form-submit" style="display: inline-block;
-                                                                                    background-color: #f48840;
-                                                                                    color: #fff;
-                                                                                    font-size: 13px;
-                                                                                    font-weight: 500;
-                                                                                    padding: 12px 20px;
-                                                                                    text-transform: uppercase;
-                                                                                    transition: all .3s;
-                                                                                    border: none;"
+                                                                                            background-color: #f48840;
+                                                                                            color: #fff;
+                                                                                            font-size: 13px;
+                                                                                            font-weight: 500;
+                                                                                            padding: 12px 20px;
+                                                                                            text-transform: uppercase;
+                                                                                            transition: all .3s;
+                                                                                            border: none;"
                                                                     class="main-button">Edit
                                                                     Comment</button>
                                                             </fieldset>
@@ -178,7 +178,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <ul id="reply-{{ $item->id }}"  style="margin-bottom: 25px;">
+                                <ul id="reply-{{ $item->id }}" style="margin-bottom: 25px;">
                                     <div class="button" style="margin-left: 120px">
                                         <input type="hidden" id="parentId" value="{{ $item->id }}" />
                                         <a id="replyButton" class="btn">
@@ -249,14 +249,14 @@
                                                                 <div class="col-lg-12">
                                                                     <fieldset>
                                                                         <button type="submit" id="form-submit" style="display: inline-block;
-                                                                                    background-color: #f48840;
-                                                                                    color: #fff;
-                                                                                    font-size: 13px;
-                                                                                    font-weight: 500;
-                                                                                    padding: 12px 20px;
-                                                                                    text-transform: uppercase;
-                                                                                    transition: all .3s;
-                                                                                    border: none;"
+                                                                                            background-color: #f48840;
+                                                                                            color: #fff;
+                                                                                            font-size: 13px;
+                                                                                            font-weight: 500;
+                                                                                            padding: 12px 20px;
+                                                                                            text-transform: uppercase;
+                                                                                            transition: all .3s;
+                                                                                            border: none;"
                                                                             class="main-button">Edit
                                                                             Comment</button>
                                                                     </fieldset>

@@ -108,6 +108,6 @@ Route::prefix('/booking')->name('booking.')->group(function () {
     Route::post('/room/booking/{roomId}', [BookingController::class, 'booking'])->name('booking');
     Route::get('/mybooking/list', [BookingController::class, 'show'])->name('test');
     Route::get('/mybooking/checkout', [BookingController::class, 'checkout'])->name('checkout');
-    Route::post('/mybooking/cancel/{key}', [BookingController::class, 'cancel'])->name('cancel');
+    Route::post('/mybooking/cancel', [BookingController::class, 'cancel'])->name('cancel');
     Route::get('/mybooking/history', [BookingController::class, 'history'])->name('history');
 });

@@ -72,7 +72,7 @@
                                         {{ csrf_field() }}
                                         @method('delete')
                                         <button type="submit" style="margin-top: -63px;margin-left: 78px;"
-                                            class="btn btn-danger">Delete</button>
+                                            class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">Delete</button>
                                     </form>
                                 </div>
                                 <br>

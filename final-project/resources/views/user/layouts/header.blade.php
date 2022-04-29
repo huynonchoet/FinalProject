@@ -29,7 +29,7 @@
                     @if (Auth::check())
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false">Người cho thuê</a>
+                                aria-haspopup="true" aria-expanded="false">My Homestay</a>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{ Route('user.booking-landlords.index') }}">Booking order</a></li>
@@ -38,11 +38,11 @@
                         </div>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false">Người Thuê</a>
+                                aria-haspopup="true" aria-expanded="false">My booking</a>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('booking.test') }}">My booking</a>
+                                    <a class="dropdown-item" href="{{ route('booking.test') }}">Booking</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('booking.history') }}">Booking

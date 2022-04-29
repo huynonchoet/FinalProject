@@ -82,7 +82,8 @@
                                                     Total Price
                                                     <br>
                                                     @foreach ($bookingDetails as $bookingDetail)
-                                                        <p class="text-center">{{ $bookingDetail->price }}</p>
+                                                        <p class="text-center">
+                                                            {{ number_format($bookingDetail->price, 0, '', ',') }}</p>
                                                         <br>
                                                     @endforeach
                                                 </th>
@@ -90,8 +91,9 @@
                                                     Action
                                                     <br>
                                                     @foreach ($rooms as $room)
-                                                        <p><a class="text-warning h6" 
-                                                            href="{{ Route('booking.room-detail', ['roomId' => $room->id]) }}">View Room</a></p>
+                                                        <p><a class="text-warning h6"
+                                                                href="{{ Route('booking.room-detail', ['roomId' => $room->id]) }}">View
+                                                                Room</a></p>
                                                         <br>
                                                     @endforeach
                                                 </th>
