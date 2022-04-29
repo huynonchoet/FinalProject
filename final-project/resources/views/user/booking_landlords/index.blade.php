@@ -3,7 +3,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //button accept click
-            $('button#accept').on('click', function() {
+            $(document).on('click', '#accept', function() {
                 var id = $(this).closest("tr").find('input#id-booking').val()
                 $.ajax({
                     headers: {
@@ -20,10 +20,10 @@
                         $('td#status-' + id).text('Accepted');
                     }
                 });
-            })
+            });
 
             //button cancel click
-            $('button#cancel').on('click', function() {
+            $(document).on('click', '#cancel', function() {
                 var id = $(this).closest("tr").find('input#id-booking').val()
                 $.ajax({
                     headers: {
@@ -40,7 +40,7 @@
                         $('td#status-' + id).text('Cancelled');
                     }
                 });
-            })
+            });
 
             //start day change 
             $('input#start_day').on('change', function() {
@@ -58,65 +58,66 @@
             })
         });
 
-        function bookingSearch(){
+        function bookingSearch() {
             var status = $('select#status-select').val();
 
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'GET',
-                    url: '/booking-landlords/search',
-                    data: {
-                        status: status,
-                        start_day: $('input#start_day').val(),
-                        end_day: $('input#end_day').val(),
-                    },
-                    success: function(data) {
-                        var html = "<tr><th class='cell100 column1'>Tenant's Name</th>" +
-                            "<th class='cell100 column2'>Day Start</th>" +
-                            "<th class='cell100 column3'>Day End</th>" +
-                            "<th class='cell100 column3'>Total Price</th>" +
-                            "<th class='cell100 column3'>Status</th>" +
-                            "<th class='cell100 column3'>Action</th></tr>";
-                        $('tbody#value-booking').empty();
-                        data.forEach((element) => {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'GET',
+                url: '/booking-landlords/search',
+                data: {
+                    status: status,
+                    start_day: $('input#start_day').val(),
+                    end_day: $('input#end_day').val(),
+                },
+                success: function(data) {
+                    $('tbody#value-booking').empty();
+                    var html = "<tr class='row100 head'>" +
+                        "<th class='cell100 column1'>Tenant's Name</th>" +
+                        "<th class='cell100 column2'>Day Start</th>" +
+                        "<th class='cell100 column3'>Day End</th>" +
+                        "<th class='cell100 column3'>Total Price</th>" +
+                        "<th class='cell100 column3'>Status</th>" +
+                        "<th class='cell100 column3'>Action</th>" +
+                        "</tr>";
+                    data.forEach((element) => {
+                        html +=
+                            "<tr><td><a href='http://localhost:8000/booking-landlords/" + element.id +
+                            "'>" +
+                            element.name +
+                            "</a></td><td>" + element.day_start +
+                            "</td><td>" + element.day_end +
+                            "</td><td>" + element.total_price + " VNĐ" +
+                            "</td><td id='status-" + element.id + "'>";
+                        if (element.status == 0) {
+                            html += "Pending"
+                        }
+                        if (element.status == 1) {
+                            html += "Accepted"
+                        }
+                        if (element.status == 2) {
+                            html += "Cancelled"
+                        }
+                        html += "</td><td id='action-" + element.id + "'>" +
+                            "<input id='id-booking' type='hidden' value='" + element.id + "'>";
+                        if (status == 0) {
                             html +=
-                                "<tr><td><a href='http://localhost:8000/booking-landlords/" +
-                                element.id + "'>" +
-                                element.name +
-                                "</a></td><td>" + element.day_start +
-                                "</td><td>" + element.day_end +
-                                "</td><td>" + element.total_price + "' VNĐ" +
-                                "</td><td id='status-" + element.id + "'>";
-                            if (element.status == 0) {
-                                html += "Pending"
-                            }
-                            if (element.status == 1) {
-                                html += "Accepted"
-                            }
-                            if (element.status == 2) {
-                                html += "Cancelled"
-                            }
-                            html += "</td><td id='action-" + element
-                                .id + "'>" +
-                                "<input id='id-booking' type='hidden' value='" + element
-                                .id + "'>"
-                            if (status == 0) {
-                                html +=
-                                    "<button type='button' id='accept' class='btn btn-success'><i class='bi bi-check-circle-fill'></i>Accept" +
-                                    "</button><button type='button' id='cancel' class='btn btn-danger'>" +
-                                    "<i class='bi bi-check-circle-fill'></i>Cancel</button></td></tr>"
-                            }
-                            if (status == 1) {
-                                html +=
-                                    "<button type='button' id='cancel' class='btn btn-danger'>" +
-                                    "<i class='bi bi-check-circle-fill'></i>Cancel</button></td></tr>"
-                            }
-                        })
-                        $('tbody#value-booking').append(html);
-                    }
-                });
+                                "<button type='button' id='accept' class='btn btn-success'>" +
+                                "<i class='bi bi-check-circle-fill'></i>Accept</button>" +
+                                "<button type='button' id='cancel' class='btn btn-danger'>" +
+                                "<i class='bi bi-check-circle-fill'></i>Cancel</button></td></tr>"
+                        }
+                        if (status == 1) {
+                            html +=
+                                "<button type='button' id='cancel' class='btn btn-danger'>" +
+                                "<i class='bi bi-check-circle-fill'></i>Cancel</button></td></tr>"
+                        }
+                    })
+                    $('tbody#value-booking').append(html);
+                }
+            });
         }
     </script>
     <div class="heading-page header-text">
@@ -201,7 +202,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {{-- {!! $bookinglandlords->appends(Request::except('page'))->links() !!} --}}
                                 </div>
                             </div>
                         </div>

@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model
+class CommentReport extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
+    public $table = "comment_reports";
+
+    protected $fillable =
+    [
         'id',
         'user_id',
-        'homestay_id',
-        'status',
-        'parent_id',
+        'comment_id',
         'content',
-        'created_at',
-        'updated_at'
+        'status'
     ];
 
     /**
@@ -30,7 +30,7 @@ class Comment extends Model
     }
 
     /**
-     * Get the report of the comment.
+     * Get the user that author of the comment.
      */
     public function report()
     {

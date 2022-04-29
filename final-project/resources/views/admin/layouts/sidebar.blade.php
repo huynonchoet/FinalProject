@@ -35,15 +35,21 @@
                 <li class="app-sidebar__heading">User Management</li>
                 <li>
                     <a href="{{ route('admin.users.index') }}">
-                        <i class="metismenu-icon fas fa-users"></i>
+                        <i class="metismenu-icon fas fa-thin fa-users"></i>
                         Users Management
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Reports Managements</li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.reports.comments.index') }}">
                         <i class="metismenu-icon fas fa-comments"></i>
-                        Reports Management
+                        Reports Comment
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.reports.homestays.index') }}">
+                        <i class="metismenu-icon fas fa-thin fa-house-fire"></i>
+                        Reports Homestay
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Statistical</li>

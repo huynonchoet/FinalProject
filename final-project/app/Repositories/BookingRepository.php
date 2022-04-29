@@ -33,7 +33,7 @@ class BookingRepository implements BookingRepositoryInterface
             'bookings.day_end',
             'bookings.status',
             'users.name',
-            DB::raw('SUM(booking_details.quantity_room * booking_details.price) as total_price')
+            DB::raw('SUM(booking_details.price) as total_price')
         )
             ->leftJoin('booking_details', 'booking_id', 'bookings.id')
             ->leftJoin('rooms', 'rooms.id', 'booking_details.room_id')

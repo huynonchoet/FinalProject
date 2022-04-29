@@ -106,3 +106,13 @@ a:hover {
     margin-bottom: 5px;
     padding-bottom: 5px;
 }
+.title-order {
+    color: black;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal-header .close {
+    padding: 2rem 2rem;
+    margin: -6rem -2rem -1rem auto;
+}
