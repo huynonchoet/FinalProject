@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\BookingDetailRepositoryInterface;
 use App\Interfaces\BookingRepositoryInterface;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 
 class BookingLandlordController extends Controller
 {
@@ -67,6 +68,7 @@ class BookingLandlordController extends Controller
     {
         $newDetails = ['status' => $request->action];
         $this->bookingRepository->updateBooking($id, $newDetails);
+        $this->sendMailBooking($id, $newDetails);
 
         return $newDetails;
     }
@@ -84,5 +86,13 @@ class BookingLandlordController extends Controller
         $user = $this->userRepository->getUserById($booking->user_id);
 
         return view('user.booking_landlords.show');
+    }
+
+    public function sendMailBooking($id, $newDetails){
+        $booking = $this->bookingRepository->getBookingById($id);
+        $user = User::find($booking->user_id);
+        Mail::send('mail.notice_booking', ['status' => $newDetails['status']], function ($m) use ($user) {
+            $m->to($user->email, $user->name)->subject('Notice of your booking!!!');
+        });
     }
 }

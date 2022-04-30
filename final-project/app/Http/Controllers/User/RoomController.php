@@ -62,7 +62,7 @@ class RoomController extends Controller
         $newDetails = $request->only(
             [
                 'name',
-                'images',
+                'images',   
                 'price',
                 'description',
                 'discount',

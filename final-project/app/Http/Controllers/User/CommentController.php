@@ -26,7 +26,7 @@ class CommentController extends Controller
         ];
         Comment::create($data);
 
-        return redirect()->back()->with('success', __('messages.create.success'));
+        return redirect()->back()->with('success', __('Comment successfully'));
     }
 
     /**
@@ -73,7 +73,7 @@ class CommentController extends Controller
         $data = ['content' => $request->content];
         Comment::find($id)->update($data);
 
-        return redirect()->back()->with('success', __('messages.update.success'));
+        return redirect()->back()->with('success', __('Update comment successfully!!!'));
     }
 
     /**

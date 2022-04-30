@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TypeRoomSeeder::class,
             UserSeeder::class,
-            HomestaySeeder::class,
-            RoomSeeder::class,
-            BookingSeeder::class,
-            BookingDetailSeeder::class,
+            // HomestaySeeder::class,
+            // RoomSeeder::class,
+            // BookingSeeder::class,
+            // BookingDetailSeeder::class,
         ]);
     }
 }

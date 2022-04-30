@@ -44,7 +44,14 @@ class BookingRepository implements BookingRepositoryInterface
             ->whereBetween('day_start', [$request->start_day, $request->end_day])
             ->distinct()
             ->orderBy('day_start', 'asc')
-            ->groupBy('bookings.id')
+            ->groupBy(
+                'bookings.user_id',
+                'bookings.id',
+                'bookings.day_start',
+                'bookings.day_end',
+                'bookings.status',
+                'users.name'
+            )
             ->get();
     }
 
@@ -87,7 +94,7 @@ class BookingRepository implements BookingRepositoryInterface
     public function deleteBooking($homestayId)
     {
     }
-    
+
     /**
      * delete Booking by id 
      *
@@ -95,6 +102,6 @@ class BookingRepository implements BookingRepositoryInterface
      */
     public function getBookingByIdUser($userId)
     {
-        return Booking::where('user_id',$userId)->get();
+        return Booking::where('user_id', $userId)->get();
     }
 }

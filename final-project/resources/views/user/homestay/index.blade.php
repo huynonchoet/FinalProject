@@ -27,16 +27,16 @@
                                 <div class="col-lg-6">
                                     <div class="blog-post">
                                         <div class="blog-thumb">
-                                            <img src="{{ asset('storage/homestays/' . $images[0]) }}" alt="">
+                                            <img style="width: 540px; height: 326px;" src="{{ asset('storage/homestays/' . $images[0]) }}" alt="">
                                         </div>
                                         <div class="down-content">
                                             <a href="{{ Route('user.homestays.show', ['id' => $item->id]) }}">
                                                 <h4>{{ $item->name }}</h4>
                                             </a>
-                                            <ul class="post-info">
+                                            <ul class="post-info" style="height: 80px;">
                                                 <li>{{ $item->user->name }}</li>
                                                 <li>{{ $item->address }}</li>
-                                                <li><i class="fa fa-comments" title="Comments"></i> 12</li>
+                                                <li><i class="fa fa-comments" title="Comments"></i> {{ count($item->comments) }}</li>
                                             </ul>
                                             <div class="add-room">
                                                 <a type="button"
