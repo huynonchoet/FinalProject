@@ -6,6 +6,7 @@ return [
     [
         'success' => "Update Account Successful",
         'fail' => "Failed To Update",
+        'match' => "The password and confirm password must match!",
     ],
     'update' => [
         'success' => 'Updated successfully',
