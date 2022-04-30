@@ -9,6 +9,7 @@ use App\Interfaces\UserRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+
 class BookingLandlordController extends Controller
 {
     private $bookingRepository;

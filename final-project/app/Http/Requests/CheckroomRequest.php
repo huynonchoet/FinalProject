@@ -24,9 +24,9 @@ class CheckroomRequest extends FormRequest
     public function rules()
     {
         return [
-            'fromDate' => 'required',
-            'toDate' => 'required',
-            'qty' => 'required',
+            'fromDate' => 'required|after:yesterday',
+            'toDate' => 'required|after:fromDate',
+            'qty' => 'required|gt:0',
 
         ];
     }
@@ -39,9 +39,12 @@ class CheckroomRequest extends FormRequest
     public function messages()
     {
         return [
-            'fromDate.required' =>  __('validation.required', ['attribute' => 'From Date']),
-            'toDate.required' =>  __('validation.required', ['attribute' => 'To Date']),
+            'fromDate.required' =>  __('validation.required', ['attribute' => 'From Day']),
+            'fromDate.after' =>  __('validation.after', ['attribute' => 'From Day']),
+            'toDate.required' =>  __('validation.required', ['attribute' => 'To Day']),
+            'toDate.after' =>  __('validation.after', ['attribute' => 'To Day']),
             'qty.required' =>  __('validation.required', ['attribute' => 'Quantity Room']),
+            'qty.gt' =>  __('validation.gt', ['attribute' => 'Quantity Room']),
         ];
     }
 }

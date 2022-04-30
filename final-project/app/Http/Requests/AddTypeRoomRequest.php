@@ -24,7 +24,7 @@ class AddTypeRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|regex:"/^[#?!@$%^&*-]+$"|integer',
         ];
     }
 
@@ -38,6 +38,8 @@ class AddTypeRoomRequest extends FormRequest
         return [
             'name.required' => __('validation.required', ['attribute' => 'name']),
             'name.max' =>  __('validation.max', ['attribute' => 'name']),
+            'name.integer' =>  __('validation.integer', ['attribute' => 'name']),
+            'name.regex' =>  __('validation.regex', ['attribute' => 'name']),
         ];
     }
 }
