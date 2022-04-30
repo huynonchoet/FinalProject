@@ -28,7 +28,7 @@ class AddRoomRequest extends FormRequest
             'image' => 'required|array|min:2|max:6',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|numeric',
-            'description' => 'required|max:500',
+            'description' => 'required|max:2000',
             'discount' => 'integer|between:0,50',
             'quantity_room' => 'required|integer',
             'typeroom' => 'required|integer',
