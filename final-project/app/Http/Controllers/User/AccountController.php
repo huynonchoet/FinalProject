@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
@@ -86,10 +87,14 @@ class AccountController extends Controller
         if (!empty($file)) {
             $data['avatar'] = $file->getClientOriginalName();
         }
-        if ($data['confirmpassword'] && $data['confirmpassword'] == $data['password']) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
+        if ($data['password'] == $user->password) {
             $data['password'] = $user->password;
+        } else {
+            if ($data['confirmpassword'] == $data['password']) {
+                $data['password'] = bcrypt($data['password']);
+            } else {
+                return redirect()->back()->with('messages', __('messages.account.match'));
+            }
         }
         if (!empty($file)) {
             $file->move('storage/users', $file->getClientOriginalName());

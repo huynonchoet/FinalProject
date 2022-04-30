@@ -46,6 +46,7 @@ class AccountRequest extends FormRequest
             'avatar.mimes' =>  __('validation.mimes', ['attribute' => 'image']),
             'avatar.max' => __('validation.max', ['attribute' => 'image']),
             'phone.required' =>  __('validation.required', ['attribute' => 'phone']),
+            'address.required' =>  __('validation.required', ['attribute' => 'address']),
             'birthday.required' =>  __('validation.required', ['attribute' => 'birthday']),
             'password.required' =>  __('validation.required', ['attribute' => 'password']),
         ];

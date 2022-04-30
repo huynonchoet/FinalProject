@@ -36,6 +36,9 @@
                                         <div class="col-md-12">
                                             <input type="text" name="name" value="<?php echo Auth::user()->name; ?>"
                                                 class="form-control form-control-line">
+                                            @error('name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -51,6 +54,9 @@
                                         <div class="col-md-12">
                                             <input type="password" name="password" value="<?php echo Auth::user()->password; ?>"
                                                 class="form-control form-control-line">
+                                            @error('password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -58,6 +64,11 @@
                                         <div class="col-md-12">
                                             <input type="password" name="confirmpassword" value=""
                                                 class="form-control form-control-line">
+                                            @if (session()->has('messages'))
+                                                <div class="alert alert-danger">
+                                                    {{ session()->get('messages') }}
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -65,6 +76,9 @@
                                         <div class="col-md-12">
                                             <input type="text" name="phone" value="<?php echo Auth::user()->phone; ?>"
                                                 class="form-control form-control-line">
+                                            @error('phone')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -72,6 +86,9 @@
                                         <div class="col-md-12">
                                             <input type="date" name="birthday" value="<?php echo Auth::user()->birthday; ?>"
                                                 class="form-control form-control-line">
+                                            @error('birthday')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -79,6 +96,9 @@
                                         <div class="col-md-12">
                                             <input name="address" type="text" value="<?php echo Auth::user()->address; ?>"
                                                 class="form-control form-control-line">
+                                            @error('address')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -87,19 +107,13 @@
                                             <th> <img width="100px" height="100px"
                                                     src="{{ asset('storage/users/' . Auth::user()->avatar) }}">
                                             </th>
+                                            @error('avatar')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="file" name="avatar">
-                                    </div>
-                                    <div class="form-group">
-                                        @if ($errors->any())
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">

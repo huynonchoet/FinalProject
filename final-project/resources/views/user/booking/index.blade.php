@@ -58,15 +58,6 @@
     </div>
     <div class="blog-posts">
         <div class="container">
-            <span class="action-comment"><i class="fas fa-ellipsis-h"></i>
-                <div class="action-option">
-                    <ul>
-                        <button data-toggle="modal" data-target="#ModalHomestay" data-id="1"
-                            route="{{ route('user.homestays.report', ['id' => $homestay->id]) }}"
-                            class="li-delete reportDetail">Report</button>
-                    </ul>
-                </div>
-            </span>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="mb-4">{{ $homestay->name }}</h1>
@@ -285,7 +276,6 @@
                                                                 </div>
                                                                 <div class="col-lg-12">
                                                                     <fieldset>
-<<<<<<< HEAD
                                                                         <button type="submit" id="form-submit" style="display: inline-block;
                                                                                             background-color: #f48840;
                                                                                             color: #fff;
@@ -295,18 +285,6 @@
                                                                                             text-transform: uppercase;
                                                                                             transition: all .3s;
                                                                                             border: none;"
-=======
-                                                                        <button type="submit" id="form-submit"
-                                                                            style="display: inline-block;
-                                                                                                                                                                                            background-color: #f48840;
-                                                                                                                                                                                            color: #fff;
-                                                                                                                                                                                            font-size: 13px;
-                                                                                                                                                                                            font-weight: 500;
-                                                                                                                                                                                            padding: 12px 20px;
-                                                                                                                                                                                            text-transform: uppercase;
-                                                                                                                                                                                            transition: all .3s;
-                                                                                                                                                                                            border: none;"
->>>>>>> 72322499a8eaa97926af109bd8d08b38b5da3af6
                                                                             class="main-button">Edit
                                                                             Comment</button>
                                                                     </fieldset>
