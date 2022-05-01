@@ -106,6 +106,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('/reports')->name('reports.')->group(function () {
         Route::get('/comments', [ReportController::class, 'comment'])->name('comments.index');
         Route::post('/comments/{id}', [ReportController::class, 'handleComment'])->name('comments.handle');
+        Route::post('/blockComments/{id}', [ReportController::class, 'blockComments'])->name('comments.block');
         Route::get('/homestays', [ReportController::class, 'homestay'])->name('homestays.index');
         Route::post('/homestays/{id}', [ReportController::class, 'handleHomestay'])->name('homestays.handle');
     });

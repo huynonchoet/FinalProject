@@ -55,4 +55,12 @@ class Homestay extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the comment that owns the homestay.
+     */
+    public function report()
+    {
+        return $this->hasMany(HomestayReport::class);
+    }
 }

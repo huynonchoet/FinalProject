@@ -6,15 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
+use App\Interfaces\PasswordResetRepositoryInterface;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
     private $userRepository;
+    private $passwordResetRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository, PasswordResetRepositoryInterface $passwordResetRepository)
     {
         $this->userRepository = $userRepository;
+        $this->passwordResetRepository = $passwordResetRepository;
     }
 
     /**
@@ -49,6 +54,16 @@ class UserController extends Controller
     {
         $data = $request->all();
         if ($this->add($data)) {
+            $email = $request['email'];
+            $token = Hash::make($email);
+            $passwordReset = $this->passwordResetRepository->getPasswordResetByEmail($email);
+            if (count($passwordReset) == 0) {
+                $this->passwordResetRepository->createPasswordReset(['email' => $email, 'token' => $token]);
+            } else {
+                $this->passwordResetRepository->updatePasswordReset($email, ['email' => $email, 'token' => $token]);
+            }
+            Mail::to($email)->send(new \App\Mail\UserActivationEmail($token));
+            
             return redirect()->route('admin.users.create')->with('message', 'Create successfully');
         }
 
@@ -61,6 +76,7 @@ class UserController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'role' => $data['role'],
+            'status' => '1',
             'password' => bcrypt($data['password'])
         ]);
     }

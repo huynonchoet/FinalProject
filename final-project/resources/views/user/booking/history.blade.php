@@ -45,8 +45,8 @@
                     <div class="sidebar-heading">
                         <div>
                             <div class="table100 ver1 m-b-110">
-                                <div class="table table-center js-pscroll">
-                                    <table style="width: 100%">
+                                <div class="table table-center js-pscroll" style="margin-left: -90px">
+                                    <table style="width: 1250px">
                                         <tbody id="value-bookin">
                                             <?php
                                             krsort($rooms);
