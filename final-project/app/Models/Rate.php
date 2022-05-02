@@ -14,6 +14,6 @@ class Rate extends Model
         'id',
         'user_id',
         'homestay_id',
-        'start',
+        'star',
     ];
 }

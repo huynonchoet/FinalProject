@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $homestays = $this->homestayRepository->searchHomestays();
 
-        return view("user.home.home",['homestays'=>$homestays]);
+        return view("user.home.home", ['homestays' => $homestays]);
     }
 
     /**

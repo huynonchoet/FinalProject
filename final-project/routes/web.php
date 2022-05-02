@@ -55,6 +55,7 @@ Route::name('user.')->group(function () {
         Route::patch('/{id}', [HomestayController::class, 'update'])->name('update');
         Route::delete('/{id}/delete', [HomestayController::class, 'destroy'])->name('destroy');
         Route::post('/report/{id}', [HomestayController::class, 'createReport'])->name('create.report');
+        Route::post('/rate/{id}', [HomestayController::class, 'createRate'])->name('create.rate');
 
         Route::prefix('/rooms')->name('rooms.')->group(function () {
             Route::get('/{homestayId}/create', [RoomController::class, 'create'])->name('create');
@@ -124,4 +125,6 @@ Route::prefix('/booking')->name('booking.')->group(function () {
 
 Route::get('/homestays/report/{id}', [HomestayController::class, 'report'])->name('user.homestays.report');
 Route::get('/comment/report/{id}', [CommentController::class, 'report'])->name('user.comment.report');
+Route::get('/homestays/rate/{id}', [HomestayController::class, 'rate'])->name('user.homestays.rate');
+
 

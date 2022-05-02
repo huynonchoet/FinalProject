@@ -9,6 +9,7 @@ use App\Interfaces\HomestayRepositoryInterface;
 use App\Interfaces\RoomRepositoryInterface;
 use App\Models\Homestay;
 use App\Models\HomestayReport;
+use App\Models\Rate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -218,5 +219,36 @@ class HomestayController extends Controller
         HomestayReport::create($data);
 
         return redirect()->back()->with('success', __('Report successfully!!!'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function rate($id)
+    {
+        $homestay = Homestay::find($id);
+
+        return view("modal.rate_homestays", compact("homestay"))->render();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createRate(Request $request, $id)
+    {
+        $data = [
+            'user_id' => auth()->id(),
+            'homestay_id' => $id,
+            'star' => (int)$request->star
+        ];
+        Rate::create($data);
+
+        return redirect()->back()->with('success', __('Rate successfully!!!'));
     }
 }
