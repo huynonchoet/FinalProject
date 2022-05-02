@@ -38,7 +38,7 @@ class LoginController extends Controller
         ];
         if (Auth::attempt($login)) {
             if (Auth::user()->role == 1 || Auth::user()->role == 2) {
-                return redirect()->route('admin.users.index');
+                return redirect()->route('admin.index');
             } else {
                 return redirect()->route('home');
             }

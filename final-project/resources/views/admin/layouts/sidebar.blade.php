@@ -36,7 +36,11 @@
                 <li>
                     <a href="{{ route('admin.index')}}">
                         <i class="metismenu-icon fas fa-sort-amount-up-alt"></i>
-                        Statistical
+                        Statistics of System
+                    </a>
+                    <a href="{{ route('admin.incomes')}}">
+                        <i class="metismenu-icon fa-solid fa-money-bill-transfer"></i>
+                        System Earnings Statistics
                     </a>
                 </li>
                 <li class="app-sidebar__heading">User Management</li>
