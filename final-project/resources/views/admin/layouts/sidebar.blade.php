@@ -32,6 +32,13 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
+                <li class="app-sidebar__heading">DashBoard</li>
+                <li>
+                    <a href="{{ route('admin.index')}}">
+                        <i class="metismenu-icon fas fa-sort-amount-up-alt"></i>
+                        Statistical
+                    </a>
+                </li>
                 <li class="app-sidebar__heading">User Management</li>
                 <li>
                     <a href="{{ route('admin.users.index') }}">
@@ -50,13 +57,6 @@
                     <a href="{{ route('admin.reports.homestays.index') }}">
                         <i class="metismenu-icon fas fa-thin fa-house-fire"></i>
                         Reports Homestay
-                    </a>
-                </li>
-                <li class="app-sidebar__heading">Statistical</li>
-                <li>
-                    <a href="">
-                        <i class="metismenu-icon fas fa-sort-amount-up-alt"></i>
-                        Statistical
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Room directory management</li>
