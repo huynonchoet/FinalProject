@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TypeRoomController;
 use App\Http\Controllers\Admin\UserController;
@@ -86,6 +87,7 @@ Route::name('user.')->group(function () {
 });
 
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [DashBoardController::class, 'index'])->name('index');
     Route::prefix('/users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('/add', [UserController::class, 'create'])->name('create');
