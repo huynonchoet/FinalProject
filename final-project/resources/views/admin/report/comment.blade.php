@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
     <div>
-        <p class="h2 ml-2">List Report</p>
+        <p class="h2 ml-2">List Report Comment</p>
         @if (session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
@@ -27,13 +27,18 @@
                             @endif
                             <p id="content-{{ $item->id }}">{{ $item->content }}
                             </p>
-                            @if (count($item->report) >= 3)
+                            <div class="d-flex">
                                 <form action="{{ route('admin.reports.comments.handle', ['id' => $item->id]) }}"
                                     method="post">
                                     @csrf
                                     <button class="btn btn-danger" type="submit">BLOCK USER</button>
                                 </form>
-                            @endif
+                                <form action="{{ route('admin.reports.comments.block', ['id' => $item->id]) }}"
+                                    method="post">
+                                    @csrf
+                                    <button class="btn btn-warning ml-3" type="submit">BLOCK COMMENT</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

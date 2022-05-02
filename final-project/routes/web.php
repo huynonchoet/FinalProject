@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TypeRoomController;
 use App\Http\Controllers\Admin\UserController;
@@ -87,6 +88,8 @@ Route::name('user.')->group(function () {
 });
 
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [DashBoardController::class, 'index'])->name('index');
+    Route::get('/incomes', [DashBoardController::class, 'incomes'])->name('incomes');
     Route::prefix('/users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('/add', [UserController::class, 'create'])->name('create');
@@ -107,6 +110,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('/reports')->name('reports.')->group(function () {
         Route::get('/comments', [ReportController::class, 'comment'])->name('comments.index');
         Route::post('/comments/{id}', [ReportController::class, 'handleComment'])->name('comments.handle');
+        Route::post('/blockComments/{id}', [ReportController::class, 'blockComments'])->name('comments.block');
         Route::get('/homestays', [ReportController::class, 'homestay'])->name('homestays.index');
         Route::post('/homestays/{id}', [ReportController::class, 'handleHomestay'])->name('homestays.handle');
     });
