@@ -89,6 +89,9 @@ Route::name('user.')->group(function () {
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashBoardController::class, 'index'])->name('index');
     Route::get('/incomes', [DashBoardController::class, 'incomes'])->name('incomes');
+    Route::post('/incomes/{id}', [DashBoardController::class, 'updateStatus'])->name('incomes.status');
+    Route::post('/incomes/remind/{id}', [DashBoardController::class, 'remind'])->name('incomes.remind');
+
     Route::prefix('/users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('/add', [UserController::class, 'create'])->name('create');
