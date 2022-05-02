@@ -38,7 +38,6 @@ class BookingLandlordController extends Controller
         $request->start_day = Carbon::yesterday()->format('Y-m-d');
         $request->end_day = Carbon::tomorrow()->format('Y-m-d');
         $bookinglandlords = $this->bookingRepository->getAllBookingsByIdUserLandLord($request);
-        dd($bookinglandlords);
 
         return view('user.booking_landlords.index', ['bookinglandlords' => $bookinglandlords]);
     }
