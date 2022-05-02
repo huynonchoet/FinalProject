@@ -43,7 +43,7 @@
                             <td class="col-1">{{ $item->month }}</td>
                             <td class="col-1">{{ $item->year }}</td>
                             <td class="col-2">{{ number_format($item->total) }} VNĐ</td>
-                            @if ($item->status == 0)
+                            @if ($item->status == 0 && $item->month < date('m'))
                                 <td class="col-1">
                                     <p class="text-warning">Unpaid</p>
                                 </td>
@@ -61,6 +61,11 @@
                                         </form>
                                     </div>
                                 </td>
+                            @elseif ($item->month == date('m'))
+                                <td class="col-1">
+                                    <p class="text-warning">Unpaid</p>
+                                </td>
+                                <td class="col-2"></td>
                             @else
                                 <td class="col-1">
                                     <p class="text-success">Paid</p>
