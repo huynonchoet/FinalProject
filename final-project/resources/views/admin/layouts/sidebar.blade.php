@@ -34,14 +34,19 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">DashBoard</li>
                 <li>
-                    <a href="{{ route('admin.index')}}">
+                    <a href="{{ route('admin.index') }}">
                         <i class="metismenu-icon fas fa-sort-amount-up-alt"></i>
                         Statistics of System
                     </a>
-                    <a href="{{ route('admin.incomes')}}">
-                        <i class="metismenu-icon fa-solid fa-money-bill-transfer"></i>
-                        System Earnings Statistics
-                    </a>
+                    @php
+                        $user = \App\Models\User::find(auth()->id());
+                    @endphp
+                    @if ($user->role == '2')
+                        <a href="{{ route('admin.incomes') }}">
+                            <i class="metismenu-icon fa-solid fa-money-bill-transfer"></i>
+                            System Earnings Statistics
+                        </a>
+                    @endif
                 </li>
                 <li class="app-sidebar__heading">User Management</li>
                 <li>
