@@ -1,7 +1,19 @@
-@extends('admin.layouts.app')
+@extends('user.layouts.app')
 @section('content')
-    <div>
-        <p class='h2'>Dashboard</p>
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+        <section class="page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <h2>Statistic Lanlord.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <div class="content-wrapper">
 
@@ -9,7 +21,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <!-- AREA CHART -->
                         <div class="card card-primary">
                             <div class="card-header">
@@ -24,7 +36,25 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
+                    </div>
 
+                    <div class="col-md-6">
+                        <!-- /.card -->
+                        <!-- PIE CHART -->
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h3 class="card-title">Statistic By Homestay</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="pieChart"
+                                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <div class="col-md-6">
                         <!-- DONUT CHART -->
                         <div class="card card-danger">
                             <div class="card-header">
@@ -37,39 +67,7 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-
                     </div>
-                    <!-- /.col (LEFT) -->
-                    <div class="col-md-6">
-                        <!-- STACKED BAR CHART -->
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Statistic By Month</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart">
-                                    <canvas id="stackedBarChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                        <!-- PIE CHART -->
-                        <div class="card card-danger">
-                            <div class="card-header">
-                                <h3 class="card-title">Statistic By Type Room</h3>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="pieChart"
-                                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-
-                    </div>
-                    <!-- /.col (RIGHT) -->
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -81,7 +79,9 @@
             var dataStatisticByMonth = <?php echo $dataStatisticByMonth; ?>;
             var dataStatisticByTypeRoom = <?php echo $dataStatisticByTypeRoom; ?>;
             var typeRoom = <?php echo $typeRoom; ?>;
-            console.log(typeRoom);
+            var dataStatisticByHomestay = <?php echo $dataStatisticByHomestay; ?>;
+            var homestay = <?php echo $homestay; ?>;
+            console.log(homestay);
             /* ChartJS
              * -------
              * Here we will create a few charts using ChartJS
@@ -173,7 +173,13 @@
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
             var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
+            var pieData =  {
+                labels: homestay,
+                datasets: [{
+                    data: dataStatisticByHomestay,
+                    backgroundColor: ['#00a65a', '#f56954', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                }]
+            }
             var pieOptions = {
                 maintainAspectRatio: false,
                 responsive: true,
@@ -185,39 +191,8 @@
                 data: pieData,
                 options: pieOptions
             })
-
-            //---------------------
-            //- STACKED BAR CHART -
-            //---------------------
-            var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-            var stackedBarChartData = $.extend(true, {}, areaChartData)
-
-            var stackedBarChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            callback: function(value, index, values) {
-                                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                                    ' VNĐ';
-                            }
-                        },
-                    }]
-                }
-            }
-
-            new Chart(stackedBarChartCanvas, {
-                type: 'bar',
-                data: stackedBarChartData,
-                options: stackedBarChartOptions
-            })
         })
     </script>
 @endsection
-@section('js')
+@section('css')
 @endsection

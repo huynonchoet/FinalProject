@@ -33,6 +33,7 @@
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{ Route('user.booking-landlords.index') }}">Booking order</a></li>
+                                <li><a class="dropdown-item" href="{{ Route('user.statistic') }}">Statistic</a></li>
                                 <li><a class="dropdown-item" href="{{ Route('user.type-rooms.request') }}">Request Type Room</a></li>
                             </ul>
                         </div>

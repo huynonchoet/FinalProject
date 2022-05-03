@@ -6,8 +6,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-content">
-                            <h4>Your Homestay</h4>
-                            <h2>Manage Your Homestay</h2>
+                            <h2>USER UPDATE</h2>
                         </div>
                     </div>
                 </div>
@@ -21,8 +20,6 @@
                     <div class="all-blog-posts">
                         <div class="row">
                             <div class="signup-form">
-                                <!--sign up form-->
-                                <h2 class="nav-link">USER UPDATE</h2>
                                 @if (session()->has('message'))
                                     <div class="alert alert-success">
                                         {{ session()->get('message') }}

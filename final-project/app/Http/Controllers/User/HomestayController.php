@@ -248,6 +248,9 @@ class HomestayController extends Controller
      */
     public function createRate(Request $request, $id)
     {
+        if($request->star == 0){
+            return redirect()->back()->with('error', __('Rate failed, you must choose number of stars!!!'));
+        }
         $bookingDetails_id =$request->bookingDetails_id;
         $data = [
             'user_id' => auth()->id(),
