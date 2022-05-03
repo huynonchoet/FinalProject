@@ -121,11 +121,11 @@
                     $starNumber = $rate;
                     for ($x = 0; $x < 5; $x++) {
                         if (floor($starNumber) - $x >= 1) {
-                            echo '<td><i class="fas fa-star fa-pulse fa-spin fa-3x"></i></td>';
+                            echo '<td><i class="fas fa-star fa-pulse fa-spin fa-3x" style="color: #FFFF66;"></i></td>';
                         } elseif ($starNumber - $x > 0) {
-                            echo '<td><i class="fas fa-star-o fa-pulse fa-spin fa-3x"></i></td>';
+                            echo '<td><i class="fas fa-star-o fa-pulse fa-spin fa-3x" style="color: #FFFF66;"></i></td>';
                         } else {
-                            echo '<td><i class="fa fa-star-o fa-pulse fa-spin fa-3x"></i></td>';
+                            echo '<td><i class="fa fa-star-o fa-pulse fa-spin fa-3x" style="color: #FFFF66;"></i></td>';
                         }
                     }
                 @endphp

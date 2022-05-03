@@ -14,6 +14,7 @@ use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\HomestayController;
 use App\Http\Controllers\User\RoomController;
+use App\Http\Controllers\User\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,6 +86,8 @@ Route::name('user.')->group(function () {
         Route::delete('/{id}', [CommentController::class, 'destroy'])->name('delete');
         Route::post('/report/{id}', [CommentController::class, 'createReport'])->name('create.report');
     });
+
+    Route::get('/statistic', [StatisticController::class, 'statistic'])->name('statistic')->middleware('user');
 });
 
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
@@ -119,7 +122,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-Route::prefix('/booking')->name('booking.')->group(function () {
+Route::middleware('user')->prefix('/booking')->name('booking.')->group(function () {
     Route::get('/{homestayId}', [BookingController::class, 'index'])->name('index');
     Route::get('/room/detail/{roomId}', [BookingController::class, 'roomDetail'])->name('room-detail');
     Route::post('/room/check/{roomId}', [BookingController::class, 'check'])->name('check');
@@ -133,5 +136,3 @@ Route::prefix('/booking')->name('booking.')->group(function () {
 Route::get('/homestays/report/{id}', [HomestayController::class, 'report'])->name('user.homestays.report');
 Route::get('/comment/report/{id}', [CommentController::class, 'report'])->name('user.comment.report');
 Route::get('/homestays/rate/{id}', [HomestayController::class, 'rate'])->name('user.homestays.rate');
-
-
