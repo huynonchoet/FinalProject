@@ -51,6 +51,7 @@
                     @for ($i = 5; $i >= 1; $i--)
                         <input class="star star-{{ $i }}" id="star-{{ $i }}"
                             value={{ $i }} type="radio" name="star" />
+                        <input value={{$bookingDetail->id}} type="hidden" name="bookingDetails_id" />
                         <label class="star star-{{ $i }}" for="star-{{ $i }}"></label>
                     @endfor
                     <br>

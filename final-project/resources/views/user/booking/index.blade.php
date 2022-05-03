@@ -116,6 +116,19 @@
                         @endforeach
                     </ul>
                 </div>
+                <p class="h4">Voted By Rented Customers</p>
+                @php
+                    $starNumber = $rate;
+                    for ($x = 0; $x < 5; $x++) {
+                        if (floor($starNumber) - $x >= 1) {
+                            echo '<td><i class="fas fa-star fa-pulse fa-spin fa-3x"></i></td>';
+                        } elseif ($starNumber - $x > 0) {
+                            echo '<td><i class="fas fa-star-o fa-pulse fa-spin fa-3x"></i></td>';
+                        } else {
+                            echo '<td><i class="fa fa-star-o fa-pulse fa-spin fa-3x"></i></td>';
+                        }
+                    }
+                @endphp
             </div>
             <div class="col-lg-12">
                 <div class="sidebar-item comments">
@@ -185,15 +198,15 @@
                                                         <div class="col-lg-12">
                                                             <fieldset>
                                                                 <button type="submit" id="form-submit" style="display: inline-block;
-                                                                        background-color: #f48840;
-                                                                        color: #fff;
-                                                                        font-size: 13px;
-                                                                        font-weight: 500;
-                                                                        padding: 12px 20px;
-                                                                        text-transform: uppercase;
-                                                                        transition: all .3s;
-                                                                        border: none;" 
-                                                            class="main-button">Edit
+                                                                                                            background-color: #f48840;
+                                                                                                            color: #fff;
+                                                                                                            font-size: 13px;
+                                                                                                            font-weight: 500;
+                                                                                                            padding: 12px 20px;
+                                                                                                            text-transform: uppercase;
+                                                                                                            transition: all .3s;
+                                                                                                            border: none;"
+                                                                    class="main-button">Edit
                                                                     Comment</button>
                                                             </fieldset>
                                                         </div>
@@ -276,15 +289,16 @@
                                                                 </div>
                                                                 <div class="col-lg-12">
                                                                     <fieldset>
-                                                                        <button type="submit" id="form-submit" style="display: inline-block;
-                                                                                            background-color: #f48840;
-                                                                                            color: #fff;
-                                                                                            font-size: 13px;
-                                                                                            font-weight: 500;
-                                                                                            padding: 12px 20px;
-                                                                                            text-transform: uppercase;
-                                                                                            transition: all .3s;
-                                                                                            border: none;"
+                                                                        <button type="submit" id="form-submit"
+                                                                            style="display: inline-block;
+                                                                                                                                background-color: #f48840;
+                                                                                                                                color: #fff;
+                                                                                                                                font-size: 13px;
+                                                                                                                                font-weight: 500;
+                                                                                                                                padding: 12px 20px;
+                                                                                                                                text-transform: uppercase;
+                                                                                                                                transition: all .3s;
+                                                                                                                                border: none;"
                                                                             class="main-button">Edit
                                                                             Comment</button>
                                                                     </fieldset>

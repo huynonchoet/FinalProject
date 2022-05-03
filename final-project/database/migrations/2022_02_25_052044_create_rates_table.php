@@ -18,10 +18,12 @@ class CreateRatesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('homestay_id');
             $table->enum('star', [1, 2, 3, 4, 5]);
+            $table->unsignedBigInteger('bookingDetails_id');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('homestay_id')->references('id')->on('homestays')->onDelete('cascade');
+            $table->foreign('bookingDetails_id')->references('id')->on('booking_details')->onDelete('cascade');
         });
     }
 
