@@ -7,8 +7,11 @@ use App\Http\Requests\AddHomestayRequest;
 use App\Http\Requests\UpdateHomestayRequest;
 use App\Interfaces\HomestayRepositoryInterface;
 use App\Interfaces\RoomRepositoryInterface;
+use App\Models\BookingDetail;
 use App\Models\Homestay;
 use App\Models\HomestayReport;
+use App\Models\Rate;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -218,5 +221,42 @@ class HomestayController extends Controller
         HomestayReport::create($data);
 
         return redirect()->back()->with('success', __('Report successfully!!!'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function rate($id)
+    {
+        $bookingDetail = BookingDetail::find($id);
+        $room_id = $bookingDetail->room_id;
+        $room = Room::find($room_id);
+        $homestay_id = $room->homestay_id;
+        $homestay = Homestay::find($homestay_id);
+
+        return view("modal.rate_homestays", compact("homestay","bookingDetail"))->render();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createRate(Request $request, $id)
+    {
+        $bookingDetails_id =$request->bookingDetails_id;
+        $data = [
+            'user_id' => auth()->id(),
+            'homestay_id' => $id,
+            'star' => (int)$request->star,
+            'bookingDetails_id' => $bookingDetails_id
+        ];
+        Rate::create($data);
+
+        return redirect()->back()->with('success', __('Rate successfully!!!'));
     }
 }

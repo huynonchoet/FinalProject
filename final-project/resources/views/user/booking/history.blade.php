@@ -22,6 +22,26 @@
                         },
                     });
                 });
+            $(".rateDetail")
+                .unbind("click")
+                .click(function(e) {
+                    const id = $(this).attr("data-id");
+                    var route = $(this).attr("route");
+                    $.ajax({
+                        url: route,
+                        type: "GET",
+                        data: {
+                            id: id,
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            $(".details").html(data);
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
+                        },
+                    });
+                });
         });
     </script>
     <div class="heading-page header-text">
@@ -46,8 +66,8 @@
                         <div>
                             <div class="table100 ver1 m-b-110">
                                 <div class="table table-center js-pscroll" style="margin-left: -90px">
-                                    <table style="width: 1250px">
-                                        <tbody id="value-bookin">
+                                    <table style="width: 1250px" class="text-center">
+                                        <tbody id="value-booking">
                                             <?php
                                             krsort($rooms);
                                             krsort($bookings);
@@ -120,15 +140,15 @@
                                                     <br>
                                                     @foreach ($bookings as $booking)
                                                         @if ($booking->status == 0)
-                                                            <p style="font-size: 13px">
+                                                            <p class="text-warning" style="font-size: 13px">
                                                                 Pending</p>
                                                             <br>
                                                         @elseif($booking->status == 1)
-                                                            <p style="font-size: 13px">
+                                                            <p class="text-success" style="font-size: 13px">
                                                                 Accept</p>
                                                             <br>
                                                         @else
-                                                            <p style="font-size: 13px">
+                                                            <p class="text-danger" style="font-size: 13px">
                                                                 Cancel</p>
                                                             <br>
                                                         @endif
@@ -137,16 +157,61 @@
                                                 <th style="font-size: 13px">
                                                     Action
                                                     <br>
-                                                    @foreach ($rooms as $room)
-                                                        <p class="text-center" style="margin-bottom: 0.56em"><a
-                                                                class="text-warning" style="font-size: 13px"
+                                                    @foreach ($rooms as $key1 => $room)
+                                                        <p style="margin-bottom: 0.56em"><a class="text-warning"
+                                                                style="font-size: 13px"
                                                                 href="{{ Route('booking.room-detail', ['roomId' => $room->id]) }}">VIEW
                                                             </a>
-                                                            <button data-toggle="modal" data-target="#ModalHomestay"
-                                                                data-id="1"
-                                                                route="{{ route('user.homestays.report', ['id' => $room->homestay_id]) }}"
-                                                                class="li-delete reportDetail"><a style="font-size: 13px"
-                                                                    class="text-warning">Report</a></button>
+                                                            @foreach ($bookings as $key2 => $booking)
+                                                                @if ($key1 == $key2)
+                                                                    @php
+                                                                        $today = date('Y-m-d');
+                                                                        $day_end = $booking->day_end;
+                                                                    @endphp
+                                                                    @if ($day_end < $today)
+                                                                        <button data-toggle="modal"
+                                                                            data-target="#ModalHomestay" data-id="1"
+                                                                            route="{{ route('user.homestays.report', ['id' => $room->homestay_id]) }}"
+                                                                            class="li-delete reportDetail"><a
+                                                                                style="font-size: 13px"
+                                                                                class="text-warning">Report</a></button>
+                                                                        @foreach ($bookingDetails as $key3 => $bookingDetail)
+                                                                            @if ($key3 == $key1)
+                                                                                @if (!in_array($bookingDetail->id, $rates))
+                                                                                    <button data-toggle="modal"
+                                                                                        data-target="#ModalRateHomestay"
+                                                                                        data-id="1"
+                                                                                        route="{{ route('user.homestays.rate', ['id' => $bookingDetail->id]) }}"
+                                                                                        class="li-delete rateDetail"><a
+                                                                                            style="font-size: 13px"
+                                                                                            class="text-warning">Rate</a></button>
+                                                                                @else
+                                                                                    <button data-toggle="modal"
+                                                                                        data-target="#ModalRateHomestay"
+                                                                                        data-id="1"
+                                                                                        route="{{ route('user.homestays.rate', ['id' => $room->homestay_id]) }}"
+                                                                                        class="li-delete rateDetail"><a
+                                                                                            style="font-size: 13px"
+                                                                                            class="text-white">Rate</a></button>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @else
+                                                                        <button data-toggle="modal"
+                                                                            data-target="#ModalRateHomestay" data-id="1"
+                                                                            route="{{ route('user.homestays.rate', ['id' => $room->homestay_id]) }}"
+                                                                            class="li-delete rateDetail"><a
+                                                                                style="font-size: 13px"
+                                                                                class="text-white">Rate</a></button>
+                                                                        <button data-toggle="modal"
+                                                                            data-target="#ModalHomestay" data-id="1"
+                                                                            route="{{ route('user.homestays.report', ['id' => $room->homestay_id]) }}"
+                                                                            class="li-delete reportDetail"><a
+                                                                                style="font-size: 13px"
+                                                                                class="text-white">Report</a></button>
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
                                                         </p>
                                                     @endforeach
                                                 </th>
@@ -157,6 +222,24 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalRateHomestay" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <h3 class="title-order">Rate Homestay</h3>
+                <div class="modal-header">
+                    <button type="button" class="close button-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body body">
+                    <div class="details"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

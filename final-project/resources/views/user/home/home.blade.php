@@ -134,6 +134,9 @@
                 <h2 class="text-center">Featured Vacations</h2>
                 <br>
                 <div class="row">
+                @if(empty($homestays->toArray()['data']))
+                    <p class="text-secondary text-uppercase h3">--- Not Found ---</p>
+                @else
                     @foreach ($homestays as $homestay)
                         @php
                             $images = json_decode($homestay->images);
@@ -169,6 +172,7 @@
                         </div>
                     @endforeach
                     {{ $homestays->appends(Request::except('page'))->links() }}
+                @endif
                 </div>
             </div>
         </div>

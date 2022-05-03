@@ -18,6 +18,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckroomRequest;
 use App\Models\Comment;
+use App\Models\Rate;
 use Illuminate\Support\Arr;
 
 class BookingController extends Controller
@@ -55,12 +56,19 @@ class BookingController extends Controller
     {
         $homestay = $this->homestayRepository->getHomestayById($homestayId);
         $rooms = $this->roomRepository->getAllRoomsByIdHomestay($homestayId);
+        $rates = Rate::where('homestay_id', $homestayId)->get()->toArray();
+        $rateAv = 0;
+        $count = 0;
+        foreach ($rates as $rate) {
+            $count++;
+            $rateAv += (int)$rate['star'] / $count;
+        }
 
         return view('user.booking.index', [
             'homestay' => $homestay,
             'rooms' => $rooms,
             'comments' => Comment::where('homestay_id', $homestayId)->get(),
-
+            'rate' => $rateAv
         ]);
     }
 
@@ -285,6 +293,11 @@ class BookingController extends Controller
     public function history()
     {
         $booking = $this->bookingRepository->getBookingByIdUser(auth()->user()->id);
+        $rates = Rate::where('user_id', auth()->id())->get()->toArray();
+        $bd_id = array();
+        foreach ($rates as $rate) {
+            $bd_id[] = $rate['bookingDetails_id'];
+        }
         $bookingDetails = array();
         $rooms = array();
         $bookings = array();
@@ -304,7 +317,7 @@ class BookingController extends Controller
             }
         }
 
-        return view('user.booking.history', ['bookingDetails' => $bookingDetails, 'rooms' => $rooms, 'bookings' => $bookings]);
+        return view('user.booking.history', ['bookingDetails' => $bookingDetails, 'rooms' => $rooms, 'bookings' => $bookings, 'rates' => $bd_id]);
     }
 
     /**
