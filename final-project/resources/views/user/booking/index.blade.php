@@ -70,7 +70,7 @@
                                 <div class="col-lg-6">
                                     <div class="blog-post">
                                         <div class="blog-thumb">
-                                            <img src="{{ asset('storage/homestays/' . $item) }}" alt="">
+                                            <img style="width: 562px; height:362px;" src="{{ asset('storage/homestays/' . $item) }}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -107,8 +107,10 @@
                                     <p>Discount : {{ $item->discount }}%</p>
                                     <p>Available : {{ $item->quantity_room }}</p>
                                     <p>{{ $item->description }}.</p>
+                                    @if(auth()->user())
                                     <a type="button" href="{{ Route('booking.room-detail', ['roomId' => $item->id]) }}"
                                         class="btn btn-info">Detail</a>
+                                    @endif
                                 </div>
                                 <br>
                             </li>

@@ -123,7 +123,6 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::middleware('user')->prefix('/booking')->name('booking.')->group(function () {
-    Route::get('/{homestayId}', [BookingController::class, 'index'])->name('index');
     Route::get('/room/detail/{roomId}', [BookingController::class, 'roomDetail'])->name('room-detail');
     Route::post('/room/check/{roomId}', [BookingController::class, 'check'])->name('check');
     Route::post('/room/booking/{roomId}', [BookingController::class, 'booking'])->name('booking');
@@ -132,6 +131,7 @@ Route::middleware('user')->prefix('/booking')->name('booking.')->group(function 
     Route::post('/mybooking/cancel', [BookingController::class, 'cancel'])->name('cancel');
     Route::get('/mybooking/history', [BookingController::class, 'history'])->name('history');
 });
+Route::get('/booking/{homestayId}', [BookingController::class, 'index'])->name('booking.index');
 
 Route::get('/homestays/report/{id}', [HomestayController::class, 'report'])->name('user.homestays.report');
 Route::get('/comment/report/{id}', [CommentController::class, 'report'])->name('user.comment.report');
