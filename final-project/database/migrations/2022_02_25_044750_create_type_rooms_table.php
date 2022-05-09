@@ -16,7 +16,7 @@ class CreateTypeRoomsTable extends Migration
         Schema::create('type_rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('status', [0, 1])->notNull()->comment = '1:accepted 0:pending';
+            $table->enum('status', [0, 1, 2])->notNull()->comment = '0:pending 1:accepted 2:hidden';
             $table->timestamps();
             $table->softDeletes();
         });
