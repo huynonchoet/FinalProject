@@ -7,6 +7,7 @@ use App\Models\Homestay;
 use App\Models\StatisticIncome;
 use App\Models\TypeRoom;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -66,7 +67,7 @@ class DashBoardController extends Controller
             $moneyIncome =  DB::table('bookings')->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
                 ->join('rooms', 'booking_details.room_id', '=', 'rooms.id')
                 ->join('homestays', 'homestays.id', '=', 'rooms.homestay_id')
-                ->selectRaw('SUM(booking_details.price) as total')
+                ->selectRaw('SUM(booking_details.price / 100 * 5) as total')
                 ->whereRaw('YEAR(bookings.day_end) = year(curdate())')
                 ->whereRaw('MONTH(bookings.day_end) = ' . $month)
                 ->where('bookings.status', '1')
@@ -99,8 +100,9 @@ class DashBoardController extends Controller
             'status',
             'homestays.name'
         )->join('homestays', 'homestays.id', '=', 'statistic_incomes.homestay_id')->get();
+        $taxs = DB::table('taxs')->get();
 
-        return view('admin.income', ['statisticIncomes' => $statisticIncomes]);
+        return view('admin.income', ['statisticIncomes' => $statisticIncomes, 'taxs' => $taxs]);
     }
 
     public function updateStatus($id)
@@ -122,10 +124,18 @@ class DashBoardController extends Controller
             'homestays.name',
             'homestays.user_id',
         )->join('homestays', 'homestays.id', '=', 'statistic_incomes.homestay_id')->where('statistic_incomes.id', $id)->get();
+        $taxs = DB::table('taxs')->orderBy('day_start', 'asc')->get();
+        $taxInMonth = 0;
+        $day = Carbon::createFromFormat('Y-m-d', $statisticIncome[0]->year. '-' . $statisticIncome[0]->month . '-02');
+        foreach ($taxs as $item){
+            if($item->day_start < $day){
+                $taxInMonth = $item->tax;
+            }
+        }
         $dataMail = [
             'month' => $statisticIncome[0]->month,
             'year' => $statisticIncome[0]->year,
-            'total' => $statisticIncome[0]->total,
+            'total' => $statisticIncome[0]->total - ($statisticIncome[0]->total / 100 * 10),
             'name' => $statisticIncome[0]->name
         ];
         $user = User::find($statisticIncome[0]->user_id);

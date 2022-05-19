@@ -40,19 +40,19 @@ class AddHomestayRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('validation.required', ['attribute' => 'name']),
-            'name.max' =>  __('validation.max', ['attribute' => 'name']),
-            'name.min' =>  __('validation.min', ['attribute' => 'name']),
-            'image.required' =>  __('validation.required', ['attribute' => 'image']),
-            'image.array'  =>  __('validation.array', ['attribute' => 'image']),
-            'image.max' =>  __('validation.max', ['attribute' => 'image']),
-            'image.min' =>  __('validation.min', ['attribute' => 'image']),
-            'image.*.image' =>  __('validation.image', ['attribute' => 'image']),
-            'image.*.mimes' =>  __('validation.mimes', ['attribute' => 'image']),
-            'image.*.max' => __('validation.max', ['attribute' => 'image']),
-            'address.required' =>  __('validation.required', ['attribute' => 'address']),
-            'phone.required' => __('validation.required', ['attribute' => 'phone']),
-            'phone.digits' => __('validation.digits', ['attribute' => 'phone']),
+            'name.required' => __('validation.required', ['attribute' => 'Name']),
+            'name.max' =>  __('validation.max', ['attribute' => 'Name']),
+            'name.min' =>  __('validation.min', ['attribute' => 'Name']),
+            'image.required' =>  __('validation.required', ['attribute' => 'Image']),
+            'image.array'  =>  __('validation.array', ['attribute' => 'Image']),
+            'image.max' =>  __('validation.max', ['attribute' => 'Image']),
+            'image.min' =>  __('validation.min', ['attribute' => 'Image']),
+            'image.*.image' =>  __('validation.image', ['attribute' => 'Image']),
+            'image.*.mimes' =>  __('validation.mimes', ['attribute' => 'Image']),
+            'image.*.max' => __('validation.max', ['attribute' => 'Image']),
+            'address.required' =>  __('validation.required', ['attribute' => 'Address']),
+            'phone.required' => __('validation.required', ['attribute' => 'Phone']),
+            'phone.digits' => __('validation.digits', ['attribute' => 'Phone']),
         ];
     }
 }

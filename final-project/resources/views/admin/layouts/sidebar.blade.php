@@ -55,7 +55,7 @@
                         Users Management
                     </a>
                 </li>
-                <li class="app-sidebar__heading">Reports Managements</li>
+                <li class="app-sidebar__heading">Reports Management</li>
                 <li>
                     <a href="{{ route('admin.reports.comments.index') }}">
                         <i class="metismenu-icon fas fa-comments"></i>
@@ -73,6 +73,13 @@
                     <a href="{{ route('admin.type-rooms.index') }}">
                         <i class="metismenu-icon fas fa-folder"></i>
                         Room directory management
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Tax Management</li>
+                <li>
+                    <a href="{{ route('admin.taxs.index') }}">
+                        <i class="metismenu-icon fa-solid fa-circle-dollar-to-slot"></i>
+                        Tax management
                     </a>
                 </li>
             </ul>

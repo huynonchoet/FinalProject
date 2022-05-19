@@ -41,14 +41,14 @@ class AccountRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' =>  __('validation.required', ['attribute' => 'name']),
-            'name.min' => __('validation.min', ['attribute' => 'name']),
-            'avatar.mimes' =>  __('validation.mimes', ['attribute' => 'image']),
-            'avatar.max' => __('validation.max', ['attribute' => 'image']),
-            'phone.required' =>  __('validation.required', ['attribute' => 'phone']),
-            'address.required' =>  __('validation.required', ['attribute' => 'address']),
-            'birthday.required' =>  __('validation.required', ['attribute' => 'birthday']),
-            'password.required' =>  __('validation.required', ['attribute' => 'password']),
+            'name.required' =>  __('validation.required', ['attribute' => 'Name']),
+            'name.min' => __('validation.min', ['attribute' => 'Name']),
+            'avatar.mimes' =>  __('validation.mimes', ['attribute' => 'Avatar']),
+            'avatar.max' => __('validation.max', ['attribute' => 'Avatar']),
+            'phone.required' =>  __('validation.required', ['attribute' => 'Phone']),
+            'address.required' =>  __('validation.required', ['attribute' => 'Address']),
+            'birthday.required' =>  __('validation.required', ['attribute' => 'Birthday']),
+            'password.required' =>  __('validation.required', ['attribute' => 'Password']),
         ];
     }
 }

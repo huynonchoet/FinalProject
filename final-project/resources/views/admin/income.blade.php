@@ -11,7 +11,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="col-4">
+                <th class="col-2">
                     Homestay Name
                 </th>
                 <th class="col-1">
@@ -19,6 +19,12 @@
                 </th>
                 <th class="col-1">
                     Year
+                </th>
+                <th class="col-2">
+                    Money
+                </th>
+                <th class="col-1">
+                    Tax
                 </th>
                 <th class="col-2">
                     Total Income
@@ -39,10 +45,16 @@
                 @foreach ($statisticIncomes as $item)
                     @if ($item->month == $i && $item->total > 0)
                         <tr role="row">
-                            <td class="col-4">{{ $item->name }}</td>
+                            <td class="col-2">{{ $item->name }}</td>
                             <td class="col-1">{{ $item->month }}</td>
                             <td class="col-1">{{ $item->year }}</td>
                             <td class="col-2">{{ number_format($item->total) }} VNĐ</td>
+                            @foreach ($taxs as $tax)
+                                @if ($item->year == Carbon\Carbon::createFromFormat('Y-m-d', $tax->day_start)->year && Carbon\Carbon::createFromFormat('Y-m-d', $tax->day_start)->month <= $item->month  && $item->month <= Carbon\Carbon::createFromFormat('Y-m-d', $tax->day_end)->month)
+                                    <td class="col-1">{{ $tax->tax }}%</td>
+                                    <td class="col-2">{{ number_format($item->total - ($item->total / 100 * $tax->tax)) }} VNĐ</td>
+                                @endif
+                            @endforeach
                             @if ($item->status == 0 && $item->month < date('m'))
                                 <td class="col-1">
                                     <p class="text-warning">Unpaid</p>

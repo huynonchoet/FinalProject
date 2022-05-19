@@ -53,7 +53,6 @@ class BookingLandlordController extends Controller
         foreach ($bookinglandlords as $value) {
             $value->total_price = number_format($value->total_price);
         }
-        
         return $bookinglandlords;
     }
 
@@ -85,7 +84,7 @@ class BookingLandlordController extends Controller
         $bookingDetails = $this->bookingDetailRepository->getBookingDetailByIdBooking($id);
         $user = $this->userRepository->getUserById($booking->user_id);
 
-        return view('user.booking_landlords.show');
+        return view('user.booking_landlords.show', ['booking' => $booking, 'bookingDetails' => $bookingDetails, 'user' => $user]);
     }
 
     public function sendMailBooking($id, $newDetails){

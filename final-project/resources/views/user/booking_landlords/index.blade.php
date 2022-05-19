@@ -76,6 +76,8 @@
                     $('tbody#value-booking').empty();
                     var html = "<tr class='row100 head'>" +
                         "<th class='cell100 column1'>Tenant's Name</th>" +
+                        "<th class='cell100 column2'>Email</th>"+
+                        "<th class='cell100 column2'>Phone Number</th>"+
                         "<th class='cell100 column2'>Day Start</th>" +
                         "<th class='cell100 column3'>Day End</th>" +
                         "<th class='cell100 column3'>Total Price</th>" +
@@ -84,10 +86,12 @@
                         "</tr>";
                     data.forEach((element) => {
                         html +=
-                            "<tr><td><a href='http://localhost:8000/booking-landlords/" + element.id +
+                            "<tr><td><a href=''" + element.id +
                             "'>" +
                             element.name +
-                            "</a></td><td>" + element.day_start +
+                            "</a></td><td>" + element.email +
+                            "</td><td>" + element.phone +
+                            "</td><td>" + element.day_start +
                             "</td><td>" + element.day_end +
                             "</td><td>" + element.total_price + " VNĐ" +
                             "</td><td id='status-" + element.id + "'>";
@@ -169,10 +173,12 @@
                             </div>
                             <div class="table100 ver1 m-b-110">
                                 <div class="table table-hover table-center js-pscroll">
-                                    <table>
+                                    <table style="width: 1250px" class="text-center">
                                         <tbody id="value-booking">
                                             <tr class="row100 head">
                                                 <th class="cell100 column1">Tenant's Name</th>
+                                                <th class="cell100 column2">Email</th>
+                                                <th class="cell100 column2">Phone Number</th>
                                                 <th class="cell100 column2">Day Start</th>
                                                 <th class="cell100 column3">Day End</th>
                                                 <th class="cell100 column3">Total Price</th>
@@ -182,8 +188,10 @@
                                             @foreach ($bookinglandlords as $item)
                                                 <tr>
                                                     <td><a
-                                                            href="{{ route('user.booking-landlords.show', ['id' => $item->id]) }}">{{ $item->name }}
+                                                            href="">{{ $item->name }}
                                                         </a></td>
+                                                    <td>{{ $item->email }}</td>
+                                                    <td>{{ $item->phone }}</td>
                                                     <td>{{ $item->day_start }}</td>
                                                     <td>{{ $item->day_end }}</td>
                                                     <td>{{ number_format($item->total_price) }} VNĐ</td>

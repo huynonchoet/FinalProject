@@ -33,6 +33,8 @@ class BookingRepository implements BookingRepositoryInterface
             'bookings.day_end',
             'bookings.status',
             'users.name',
+            'users.phone',
+            'users.email',
             DB::raw('SUM(booking_details.price) as total_price')
         )
             ->leftJoin('booking_details', 'booking_id', 'bookings.id')
@@ -50,7 +52,9 @@ class BookingRepository implements BookingRepositoryInterface
                 'bookings.day_start',
                 'bookings.day_end',
                 'bookings.status',
-                'users.name'
+                'users.name',
+                'users.phone',
+                'users.email'
             )
             ->get();
     }

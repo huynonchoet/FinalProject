@@ -73,7 +73,6 @@ class StatisticController extends Controller
                 }
             $i++;
         }
-
         return view('user.statistic', [
             'dataStatisticByMonth' => json_encode($dataStatisticByMonth),
             'dataStatisticByTypeRoom' => json_encode($dataStatisticByTypeRoom),
