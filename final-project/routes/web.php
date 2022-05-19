@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\TaxController;
 use App\Http\Controllers\Admin\TypeRoomController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -119,6 +120,13 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/blockComments/{id}', [ReportController::class, 'blockComments'])->name('comments.block');
         Route::get('/homestays', [ReportController::class, 'homestay'])->name('homestays.index');
         Route::post('/homestays/{id}', [ReportController::class, 'handleHomestay'])->name('homestays.handle');
+    });
+
+    Route::prefix('/taxs')->name('taxs.')->group(function () {
+        Route::get('/', [TaxController::class, 'index'])->name('index');
+        Route::get('/create', [TaxController::class, 'create'])->name('create');
+        Route::post('/', [TaxController::class, 'store'])->name('store');
+
     });
 });
 

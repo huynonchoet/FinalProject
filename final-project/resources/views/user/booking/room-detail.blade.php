@@ -109,20 +109,7 @@
                     <h2>Description</h2>
                 </div>
                 <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia doloremque sit, enim sint odio
-                        corporis illum perferendis, unde repellendus aut dolore doloribus minima qui ullam vel possimus
-                        magnam ipsa deleniti.</p>
-                    <br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ducimus ab numquam magnam
-                        aliquid, odit provident consectetur corporis eius blanditiis alias nulla commodi qui voluptatibus
-                        laudantium quaerat tempore possimus esse nam sed accusantium inventore? Sapiente minima dicta sed
-                        quia sunt?</p>
-                    <br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum qui, corrupti consequuntur. Officia
-                        consectetur error amet debitis esse minus quasi, dicta suscipit tempora, natus, vitae voluptatem
-                        quae libero. Sunt nulla culpa impedit! Aliquid cupiditate, impedit reiciendis dolores, illo
-                        adipisci, omnis dolor distinctio voluptas expedita maxime officiis maiores cumque sequi quaerat
-                        culpa blanditiis. Quia tenetur distinctio rem, quibusdam officiis voluptatum neque!</p>
+                    {{ $room->description }}
                 </div>
                 <br>
                 <a class="float-right" href="{{ route('booking.index', ['homestayId' => $homestay->id]) }}">Back List Room</a>

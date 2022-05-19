@@ -24,7 +24,7 @@
                     <div class="col-md-12">
                         <!-- AREA CHART -->
                         <div class="card card-primary">
-                            <div class="card-header">
+                            <div class="card-header text-center">
                                 <h3 class="card-title">Statistic By Month</h3>
                             </div>
                             <div class="card-body">
@@ -73,6 +73,62 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
+        <div class="card-header text-center">
+            <h3 class="card-title">Statistic By Month</h3>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-1">
+                        Month
+                    </th>
+                    <th class="col-1">
+                        1
+                    </th>
+                    <th class="col-1">
+                        2
+                    </th>
+                    <th class="col-1">
+                        3
+                    </th>
+                    <th class="col-1">
+                        4
+                    </th>
+                    <th class="col-1">
+                        5
+                    </th>
+                    <th class="col-1">
+                        6
+                    </th>
+                    <th class="col-1">
+                        7
+                    </th>
+                    <th class="col-1">
+                        8
+                    </th>
+                    <th class="col-1">
+                        9
+                    </th>
+                    <th class="col-1">
+                        10
+                    </th>
+                    <th class="col-1">
+                        11
+                    </th>
+                    <th class="col-1">
+                        12
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-striped">
+            <tbody>
+                <td class="col-1">Money (VNĐ)</td>
+                @foreach (json_decode($dataStatisticByMonth) as $item)
+                        <td class="col-1">{{ number_format($item) }}</td>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     <script>
         $(function() {
@@ -173,7 +229,7 @@
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
             var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData =  {
+            var pieData = {
                 labels: homestay,
                 datasets: [{
                     data: dataStatisticByHomestay,

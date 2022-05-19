@@ -36,10 +36,10 @@ class AddTypeRoomRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('validation.required', ['attribute' => 'name']),
-            'name.max' =>  __('validation.max', ['attribute' => 'name']),
-            'name.integer' =>  __('validation.integer', ['attribute' => 'name']),
-            'name.regex' =>  __('validation.regex', ['attribute' => 'name']),
+            'name.required' => __('validation.required', ['attribute' => 'Name']),
+            'name.max' =>  __('validation.max', ['attribute' => 'Name']),
+            'name.integer' =>  __('validation.integer', ['attribute' => 'Name']),
+            'name.regex' =>  __('validation.regex', ['attribute' => 'Name']),
         ];
     }
 }
