@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
     <div>
-        <p class="h2 ml-2">List Report Comment</p>
+        <p class="h2 ml-2">List Report Homestay</p>
         @if (session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
