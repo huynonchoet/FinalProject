@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="owl-banner owl-carousel">
                 <div class="item">
-                    <img style="width: 544px; height: 368px;" src="{{ asset('assets/user/images/ccccc.jpg') }}" alt="">
+                    <img style="width: 544px; height: 368px;" src="{{ asset('assets/user/images/c3.jpg') }}" alt="">
                     <div class="item-content">
 
                         
@@ -91,28 +91,6 @@
                     @endforeach
                     {{ $homestays->appends(Request::except('page'))->links() }}
                 @endif
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="call-to-action">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main-content">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <span>Lorem ipsum dolor sit amet.</span>
-                                <h4>Sed doloribus accusantium reiciendis et officiis.</h4>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="main-button">
-                                    <a href="contact.html">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
