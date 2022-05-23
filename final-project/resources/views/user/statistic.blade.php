@@ -128,6 +128,31 @@
                         <td class="col-1">{{ number_format($item) }}</td>
                 @endforeach
             </tbody>
+            <tbody>
+                <td class="col-1">Tax </td>
+                <td class="col-1">10%</td>
+                <td class="col-1">10%</td>
+                <td class="col-1">10%</td>
+                <td class="col-1">10%</td>
+                <td class="col-1">12%</td>
+                <td class="col-1">12%</td>
+                <td class="col-1">12%</td>
+                <td class="col-1">12%</td>
+                <td class="col-1">12%</td>
+                <td class="col-1">12%</td>
+                <td class="col-1">12%</td>
+                <td class="col-1">12%</td>
+            </tbody>
+            <tbody>
+                <td class="col-1">Total (VNĐ)</td>
+                @foreach (json_decode($dataStatisticByMonth) as $key => $item)
+                    @if($key < 4)
+                        <td class="col-1">{{ number_format($item/100*90) }}</td>
+                    @else
+                        <td class="col-1">{{ number_format($item/100*88) }}</td>
+                    @endif
+                @endforeach
+            </tbody>
         </table>
     </div>
     <script>

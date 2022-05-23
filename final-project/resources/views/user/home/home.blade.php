@@ -6,121 +6,39 @@
         <div class="container-fluid">
             <div class="owl-banner owl-carousel">
                 <div class="item">
-                    <img src="{{ asset('assets/user/images/product-1-720x480.jpg') }}" alt="">
+                    <img style="width: 544px; height: 368px;" src="{{ asset('assets/user/images/ccccc.jpg') }}" alt="">
                     <div class="item-content">
 
-                        <div class="main-content">
-                            <div class="meta-category">
-                                <span> $500.00 - $700.00 </span>
-                            </div>
-
-                            <a href="vacation-details.html">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                            </a>
-
-                            <ul class="post-info">
-                                <li><i class="fa fa-map-marker"></i> 6 Regeneration Road, SE16 2NX</li>
-                            </ul>
-                        </div>
+                        
 
                     </div>
                 </div>
                 <div class="item">
-                    <img src="{{ asset('assets/user/images/product-2-720x480.jpg') }}" alt="">
+                    <img style="width: 544px; height: 368px;" src="{{ asset('assets/user/images/ccc.jpg') }}" alt="">
                     <div class="item-content">
 
-                        <div class="main-content">
-                            <div class="meta-category">
-                                <span> $500.00 - $700.00 </span>
-                            </div>
-
-                            <a href="vacation-details.html">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                            </a>
-
-                            <ul class="post-info">
-                                <li><i class="fa fa-map-marker"></i> 6 Regeneration Road, SE16 2NX</li>
-                            </ul>
-                        </div>
 
                     </div>
                 </div>
                 <div class="item">
-                    <img src="{{ asset('assets/user/images/product-3-720x480.jpg') }}" alt="">
+                    <img style="width: 544px; height: 368px;" src="{{ asset('assets/user/images/cccc.jpg') }}" alt="">
                     <div class="item-content">
 
-                        <div class="main-content">
-                            <div class="meta-category">
-                                <span> $500.00 - $700.00 </span>
-                            </div>
-
-                            <a href="vacation-details.html">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                            </a>
-
-                            <ul class="post-info">
-                                <li><i class="fa fa-map-marker"></i> 6 Regeneration Road, SE16 2NX</li>
-                            </ul>
-                        </div>
 
                     </div>
                 </div>
                 <div class="item">
-                    <img src="{{ asset('assets/user/images/product-4-720x480.jpg') }}" alt="">
+                    <img style="width: 544px; height: 368px;" src="{{ asset('assets/user/images/c.jpg') }}" alt="">
                     <div class="item-content">
 
-                        <div class="main-content">
-                            <div class="meta-category">
-                                <span> $500.00 - $700.00 </span>
-                            </div>
-
-                            <a href="vacation-details.html">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                            </a>
-
-                            <ul class="post-info">
-                                <li><i class="fa fa-map-marker"></i> 6 Regeneration Road, SE16 2NX</li>
-                            </ul>
-                        </div>
 
                     </div>
                 </div>
                 <div class="item">
-                    <img src="{{ asset('assets/user/images/product-5-720x480.jpg') }}" alt="">
+                    <img style="width: 544px; height: 368px;" src="{{ asset('assets/user/images/c1.jpg') }}" alt="">
                     <div class="item-content">
 
-                        <div class="main-content">
-                            <div class="meta-category">
-                                <span> $500.00 - $700.00 </span>
-                            </div>
 
-                            <a href="vacation-details.html">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                            </a>
-
-                            <ul class="post-info">
-                                <li><i class="fa fa-map-marker"></i> 6 Regeneration Road, SE16 2NX</li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{{ asset('assets/user/images/product-6-720x480.jpg') }}" alt="">
-                    <div class="item-content">
-                        <div class="main-content">
-                            <div class="meta-category">
-                                <span> $500.00 - $700.00 </span>
-                            </div>
-
-                            <a href="vacation-details.html">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                            </a>
-
-                            <ul class="post-info">
-                                <li><i class="fa fa-map-marker"></i> 6 Regeneration Road, SE16 2NX</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
